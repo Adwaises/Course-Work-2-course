@@ -23,7 +23,7 @@ namespace WindowsFormsApplication1
             while(true)
             {
                 i++;
-                MessageBox.Show("Хуй " + i);
+                MessageBox.Show("" + i);
             }
         }
     }
