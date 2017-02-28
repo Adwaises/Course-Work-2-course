@@ -21,7 +21,7 @@ namespace WindowsFormsApplication1
         {
             for (int i=0; i<99; i++)
             {
-                MessageBox.Show("Хуй");
+                MessageBox.Show("Хуй " + i);
             }
         }
     }
