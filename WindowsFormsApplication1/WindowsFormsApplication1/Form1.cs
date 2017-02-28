@@ -19,8 +19,10 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            for (int i=0; i<99; i++)
+            int i= 0;
+            while(true)
             {
+                i++;
                 MessageBox.Show("Хуй " + i);
             }
         }
