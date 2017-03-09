@@ -22,8 +22,13 @@ namespace WindowsFormsApplication1
         private void button1_Click(object sender, EventArgs e)
         {
             mbd.Connection();
-            DataTable dt = mbd.selectionquery("Select * from FurnituraZakaz;");
-            var n =  dt.Rows[0][1]; // получаю ячейку
+            //mbd.controlquery("ALTER TABLE zakaz add summa Integer;");
+            //mbd.controlquery("update zakaz set summa = 150000 where id_zakaz =1;");
+
+            //DataTable dt = mbd.selectionquery("Select * from zakaz;");
+             DataTable dt = mbd.Statistic();
+
+            var n =  dt.Rows[0][0]; // получаю ячейку
             textBox1.Text = n.ToString();
             dataGridView1.DataSource = dt;
 

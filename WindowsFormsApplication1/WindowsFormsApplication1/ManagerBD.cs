@@ -66,6 +66,30 @@ namespace WindowsFormsApplication1
             }
             return dt;
         }
+        /// <summary>
+        /// Вывод статистики для диаграмм
+        /// </summary>
+        /// <returns></returns>
+        public DataTable Statistic()
+        {
+            DataTable dt;
+            try
+            {
+                sql.Open();
+                SQLiteCommand sc = new SQLiteCommand(sql);
+                sc.CommandText = @"select month_zakaz,sum(summa) from zakaz group by month_zakaz ;";
+
+                SQLiteDataReader sdr = sc.ExecuteReader();
+                dt = new DataTable();
+                dt.Load(sdr);
+                //dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
 
     }
 
