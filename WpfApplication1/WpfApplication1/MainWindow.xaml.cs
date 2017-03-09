@@ -98,6 +98,9 @@ namespace WpfApplication1
             gl.Vertex4d(0.5, 0.5, 1, 1);
             gl.Vertex4d(0.5, 0.5, 0, 1);
 
+            gl.Color(1f, 1f, 1f);
+            
+
             gl.End();
 
 
@@ -118,7 +121,7 @@ namespace WpfApplication1
             gl.Perspective(60.0f, (double)Width / (double)Height, 0.01, 100.0);
 
             //  Задаем координаты камеры куда она будет смотреть 
-            gl.LookAt(-5, 5, -5, 0, 0, 0, 0, 1, 0);
+            gl.LookAt(0, 0, 2, 0, 0, 0, 0, 1, 0);
 
             //  задаем матрицу вида мдели 
             gl.MatrixMode(OpenGL.GL_MODELVIEW);
