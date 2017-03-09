@@ -83,23 +83,23 @@ namespace WpfApplication1
             gl.Vertex4d(-0.5, 0.5, 1, 1);
             gl.Vertex4d(-0.5, 0.5, 0, 1);
             // потолок
+            gl.Color(0f, 0f, 1f);
             gl.Vertex4d(0.5, 0.5, 0, 1);
             gl.Vertex4d(0.5, 0.5, 1, 1);
             gl.Vertex4d(-0.5, 0.5, 1, 1);
             gl.Vertex4d(-0.5, 0.5, 0, 1);
             //пол
+            gl.Color(1f, 0f, 0f);
             gl.Vertex4d(0.5, -0.5, 0, 1);
             gl.Vertex4d(0.5, -0.5, 1, 1);
             gl.Vertex4d(-0.5, -0.5, 1, 1);
             gl.Vertex4d(-0.5, -0.5, 0, 1);
             //правая
+            gl.Color(0f, 1f, 1f);
             gl.Vertex4d(0.5, -0.5, 0, 1);
             gl.Vertex4d(0.5, -0.5, 1, 1);
             gl.Vertex4d(0.5, 0.5, 1, 1);
             gl.Vertex4d(0.5, 0.5, 0, 1);
-
-            gl.Color(1f, 1f, 1f);
-            
 
             gl.End();
 
