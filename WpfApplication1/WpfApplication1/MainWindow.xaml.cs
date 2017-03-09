@@ -1,5 +1,6 @@
 ﻿using SharpGL;
 using SharpGL.SceneGraph;
+using SharpGL.WPF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -105,7 +106,22 @@ namespace WpfApplication1
         }
         private void OpenGLControl_Resized(object sender, OpenGLEventArgs args)
         {
+            OpenGL gl = args.OpenGL;
 
+            //  Задаем матрицу вида 
+            gl.MatrixMode(OpenGL.GL_PROJECTION);
+
+            //  загружаем нулевую матрицу сцены
+            gl.LoadIdentity();
+
+            //  подгоняем окно просмотра под размеры окна OpenGL в форме 
+            gl.Perspective(60.0f, (double)Width / (double)Height, 0.01, 100.0);
+
+            //  Задаем координаты камеры куда она будет смотреть 
+            gl.LookAt(-5, 5, -5, 0, 0, 0, 0, 1, 0);
+
+            //  задаем матрицу вида мдели 
+            gl.MatrixMode(OpenGL.GL_MODELVIEW);
         }
 
         private void draw1(OpenGLEventArgs args)
