@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.Data;
 
+
 namespace WindowsFormsApplication1
 {
     class ManagerBD
@@ -59,9 +60,11 @@ namespace WindowsFormsApplication1
                  dt = new DataTable();
                 dt.Load(sdr);
                 //dataGridView1.DataSource = dt;
+                sql.Close();
             }
             catch (Exception ex)
             {
+                sql.Close();
                 throw ex;
             }
             return dt;
@@ -83,13 +86,17 @@ namespace WindowsFormsApplication1
                 dt = new DataTable();
                 dt.Load(sdr);
                 //dataGridView1.DataSource = dt;
+                sql.Close();
             }
             catch (Exception ex)
             {
+                sql.Close();
                 throw ex;
             }
             return dt;
         }
+
+        
 
     }
 
