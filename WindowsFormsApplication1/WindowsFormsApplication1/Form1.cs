@@ -175,7 +175,8 @@ namespace WindowsFormsApplication1
                     ObjWorkSheet.Cells[i, 2] = Convert.ToString(dictCount[i]);
                 }
                 //ObjWorkSheet.Cells[3, 1] = "51";
-
+                //ObjExcel.Application.DisplayAlerts = true;
+                ObjExcel.DisplayAlerts = false;
                 ObjWorkBook.SaveAs("book.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Excel.XlSaveAsAccessMode.xlExclusive,
                 Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
                
@@ -198,37 +199,9 @@ namespace WindowsFormsApplication1
                 {
                     ExcelDiagr2();
                 }
-               
-                /*
-                excelcells.Select();
-                excelappworkbook.SaveAs("book2.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Excel.XlSaveAsAccessMode.xlExclusive,
-               Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
-                //количество заказов
-                excelcells = excelworksheet.get_Range("B1", "B12");
-                excelcells.Select();
-
-                excelchart = (Excel.Chart)excelapp.Charts.Add(Type.Missing,
-                    Type.Missing, Type.Missing, Type.Missing);
-                excelapp.ActiveChart.HasTitle = true;
-                excelapp.ActiveChart.ChartTitle.Text = "Выручка";
-
-                ((Excel.Axis)excelapp.ActiveChart.Axes(Excel.XlAxisType.xlCategory,
-                Excel.XlAxisGroup.xlPrimary)).HasTitle = true;
-                ((Excel.Axis)excelapp.ActiveChart.Axes(Excel.XlAxisType.xlCategory,
-                Excel.XlAxisGroup.xlPrimary)).AxisTitle.Text = "Месяц";
-                ((Excel.Axis)excelapp.ActiveChart.Axes(Excel.XlAxisType.xlValue,
-                Excel.XlAxisGroup.xlPrimary)).HasTitle = true;
-                ((Excel.Axis)excelapp.ActiveChart.Axes(Excel.XlAxisType.xlValue,
-                Excel.XlAxisGroup.xlPrimary)).AxisTitle.Text = "Количество";
-
-                seriesCollection =
-                (Excel.SeriesCollection)excelapp.ActiveChart.SeriesCollection(
-                Type.Missing);
-                series = seriesCollection.Item(1);
-                series.Name = "Количество заказов";
-                */
 
 
+                MessageBox.Show("OK");
 
 
             }
@@ -277,9 +250,10 @@ namespace WindowsFormsApplication1
                 Type.Missing);
                 Excel.Series series = seriesCollection.Item(1);
                 series.Name = "Количество заказов";
-
+                excelapp.DisplayAlerts = false;
                 excelappworkbook.SaveAs("book.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Excel.XlSaveAsAccessMode.xlExclusive,
                Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
+                
                 excelapp.Quit();
 
             }
@@ -328,6 +302,7 @@ namespace WindowsFormsApplication1
                 Excel.Series series = seriesCollection.Item(1);
                 series.Name = "Выручка";
 
+                excelapp.DisplayAlerts = false;
                 excelappworkbook.SaveAs("book.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Excel.XlSaveAsAccessMode.xlExclusive,
                Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
                 excelapp.Quit();
