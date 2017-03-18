@@ -80,7 +80,7 @@ namespace WindowsFormsApplication1
             {
                 sql.Open();
                 SQLiteCommand sc = new SQLiteCommand(sql);
-                sc.CommandText = @"select month_zakaz,sum(summa) from zakaz group by month_zakaz ;";
+                sc.CommandText = @"select month_zakaz,sum(summa),count(*) from zakaz group by month_zakaz ;";
 
                 SQLiteDataReader sdr = sc.ExecuteReader();
                 dt = new DataTable();

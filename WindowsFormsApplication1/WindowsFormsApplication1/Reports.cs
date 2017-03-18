@@ -209,6 +209,7 @@ namespace WindowsFormsApplication1
            new iTextSharp.text.Font(baseFont, 14,
            iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
             a2 = new Paragraph(p1);
+            
             a2.SpacingAfter = 30;
             doc.Add(a2);
             a2.SpacingAfter = 30;
@@ -223,7 +224,7 @@ namespace WindowsFormsApplication1
 
             doc.Close();
 
-
+            
         }
     }
 }
