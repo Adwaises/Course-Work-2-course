@@ -192,13 +192,12 @@ namespace WindowsFormsApplication1
             try
             {
 
-                if (checkBox1.Checked)
-                {
+               // if (checkBox1.Checked){
                     ExcelDiagr1();
-                }else if(checkBox2.Checked)
-                {
+                //}else if(checkBox2.Checked)
+                //{
                     ExcelDiagr2();
-                }
+                //}
 
 
                 MessageBox.Show("OK");
@@ -227,7 +226,14 @@ namespace WindowsFormsApplication1
                 Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
                 Type.Missing, Type.Missing, Type.Missing, Type.Missing);
                 Excel.Sheets excelsheets = excelappworkbook.Worksheets;
+
+                //excelappworkbook = excelappworkbooks[2];
+                //excelappworkbook.Activate();
+                //excelsheets = excelapp.ActiveWorkbook.Worksheets;
+
                 Excel.Worksheet excelworksheet = (Excel.Worksheet)excelsheets.get_Item(1);
+                excelworksheet.Activate();
+                //Excel.Worksheet excelworksheet = (Excel.Worksheet)excelappworkbook.Sheets[2];
                 Excel.Range excelcells = excelworksheet.get_Range("B1", "B12");
                 excelcells.Select();
 
@@ -246,10 +252,12 @@ namespace WindowsFormsApplication1
                 Excel.XlAxisGroup.xlPrimary)).AxisTitle.Text = "Количество";
 
                 Excel.SeriesCollection seriesCollection =
-                (Excel.SeriesCollection)excelapp.ActiveChart.SeriesCollection(
-                Type.Missing);
+                (Excel.SeriesCollection)excelapp.ActiveChart.SeriesCollection(Type.Missing);
                 Excel.Series series = seriesCollection.Item(1);
                 series.Name = "Количество заказов";
+
+                //excelworksheet.Name = "Количество заказов";
+
                 excelapp.DisplayAlerts = false;
                 excelappworkbook.SaveAs("book.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Excel.XlSaveAsAccessMode.xlExclusive,
                Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
@@ -301,7 +309,7 @@ namespace WindowsFormsApplication1
                 Type.Missing);
                 Excel.Series series = seriesCollection.Item(1);
                 series.Name = "Выручка";
-
+                
                 excelapp.DisplayAlerts = false;
                 excelappworkbook.SaveAs("book.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Excel.XlSaveAsAccessMode.xlExclusive,
                Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
