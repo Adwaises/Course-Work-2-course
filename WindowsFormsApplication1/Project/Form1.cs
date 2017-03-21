@@ -14,6 +14,7 @@ namespace Project
 {
     public partial class Form1 : Form
     {
+        Reports report = new Reports();
         public Form1()
         {
             InitializeComponent();
@@ -28,7 +29,7 @@ namespace Project
 
         private void создатьToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            Reports report = new Reports();
+           
             report.blank();
             DialogResult result = MessageBox.Show("Открыть?", "Отчет сформирован", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
@@ -41,14 +42,10 @@ namespace Project
 
         private void отправитьНаПочтуToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(File.Exists("Document.pdf"))
-            {
-                ToMail tm = new ToMail();
-                tm.ShowDialog();
-            } else
-            {
-                MessageBox.Show("Бланк заказа не сформирован", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            report.blank();
+            ToMail tm = new ToMail();
+            tm.ShowDialog();
+
         }
     }
 }
