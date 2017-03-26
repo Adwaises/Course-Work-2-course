@@ -12,6 +12,7 @@ namespace Project
 {
     class Mail
     {
+
         public void SendMail(String s)
         {
             int id = 1;
