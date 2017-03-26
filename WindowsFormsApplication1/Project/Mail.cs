@@ -15,6 +15,7 @@ namespace Project
 
         public void SendMail(String s)
         {
+
             int id = 1;
             DateTime second = DateTime.Now;
             SmtpClient Smtp = new SmtpClient("smtp.mail.ru", 587);
