@@ -18,6 +18,9 @@ namespace Project
         public Form1()
         {
             InitializeComponent();
+
+
+
         }
 
         private void графическийОтчетToolStripMenuItem_Click(object sender, EventArgs e)
@@ -46,6 +49,12 @@ namespace Project
             ToMail tm = new ToMail();
             tm.ShowDialog();
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormBD fBD = new FormBD();
+            fBD.Show();
         }
     }
 }

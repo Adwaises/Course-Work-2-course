@@ -17,6 +17,7 @@ namespace Project
         public Diagram()
         {
             InitializeComponent();
+            label1.Text = "";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -38,8 +39,16 @@ namespace Project
             {
                 //отрытие документа программой по умолчанию
                 //Process.Start("Document.pdf");
+
+                // System.Diagnostics.Stopwatch sw = new Stopwatch();
+                // sw.Start();
+                label1.Text = "Построение отчета в Excel";
                 report.ExcelDiagr();
-                MessageBox.Show("Диаграмма в Excel построена \r\nФайл находится в папке 'Мои документы'", "Диаграмма", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                label1.Text = "";
+                // sw.Stop();
+                MessageBox.Show("Диаграмма в Excel построена \r\nФайл находится в папке 'Мои документы'" ,
+                    "Диаграмма", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
                 /*
                 result = MessageBox.Show("Желаете открыть?", "Диаграмма", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 

@@ -22,7 +22,11 @@ namespace Project
         {
             try
             {
+               
                 mail.SendMail(textBox1.Text);
+
+                //progressBar1.Value = 100;
+
                 MessageBox.Show("Письмо отправлено", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch(Exception ex)

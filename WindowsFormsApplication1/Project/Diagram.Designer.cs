@@ -34,6 +34,7 @@
             this.PBLegend = new System.Windows.Forms.PictureBox();
             this.RBCountOrders = new System.Windows.Forms.RadioButton();
             this.GBReport = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PBDiagr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBLegend)).BeginInit();
             this.GBReport.SuspendLayout();
@@ -99,11 +100,22 @@
             this.GBReport.TabStop = false;
             this.GBReport.Text = "Отчет";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(635, 478);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 16);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "label1";
+            // 
             // Diagram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(849, 534);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.GBReport);
             this.Controls.Add(this.PBLegend);
             this.Controls.Add(this.PBDiagr);
@@ -115,6 +127,7 @@
             this.GBReport.ResumeLayout(false);
             this.GBReport.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -126,5 +139,6 @@
         private System.Windows.Forms.PictureBox PBLegend;
         private System.Windows.Forms.RadioButton RBCountOrders;
         private System.Windows.Forms.GroupBox GBReport;
+        private System.Windows.Forms.Label label1;
     }
 }
