@@ -20,7 +20,7 @@ namespace Project
         public static string famil;
         public static string name;
         public static string otchestvo;
-        public static string num_tel;
+        public static string numTel;
         public static string mail;
 
         public static List<string> listZakazStroyMat = new List<string>();

@@ -19,7 +19,7 @@ namespace Project
         {
             InitializeComponent();
 
-
+            DataForBD.idZakaz = 2;
 
         }
 
@@ -33,7 +33,7 @@ namespace Project
         private void создатьToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
            
-            report.blank();
+            report.blank(DataForBD.idZakaz);
             DialogResult result = MessageBox.Show("Открыть?", "Отчет сформирован", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
             if (result == DialogResult.Yes) //Если нажал Да
@@ -45,7 +45,7 @@ namespace Project
 
         private void отправитьНаПочтуToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            report.blank();
+            report.blank(DataForBD.idZakaz);
             ToMail tm = new ToMail();
             tm.ShowDialog();
 
@@ -54,7 +54,19 @@ namespace Project
         private void button1_Click(object sender, EventArgs e)
         {
             FormBD fBD = new FormBD();
-            fBD.Show();
+            fBD.ShowDialog();
+        }
+
+        private void оформитьСохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSave fs = new FormSave();
+            fs.ShowDialog();
+        }
+
+        private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormLoad fl = new FormLoad();
+            fl.ShowDialog();
         }
     }
 }

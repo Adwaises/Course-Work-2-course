@@ -22,12 +22,12 @@ namespace Project
 
         ManagerBD mbd = new ManagerBD();
         Dictionary<string, string> dict;
-        int id = 1;
+        //int id = 2;
 
         Dictionary<int, int> dictSum;
         Dictionary<int, int> dictCount;
 
-        public void blank()
+        public void blank(int id)
         {
             dict = new Dictionary<string, string>();
             dict.Add("oboi","Обои");
@@ -113,61 +113,66 @@ namespace Project
                 }
                 sumSM += Convert.ToInt32(dt.Rows[i][2]);
             }
-
-            cell = new PdfPCell(new Phrase("Мебель", new iTextSharp.text.Font(baseFont,
-               12, iTextSharp.text.Font.BOLD, new BaseColor(Color.Black))));
-
-            cell.Padding = 3; //отступ
-            cell.Colspan = 3;
-            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-            table.AddCell(cell);
             int sumM = 0;
-            for (int i = 0; i < dt1.Rows.Count; i++)
-            {
-                for (int j = 0; j < dt1.Columns.Count; j++)
-                {
-                    if (j == 0)
-                    {
-                        cell = new PdfPCell(new Phrase(dict[Convert.ToString(dt1.Rows[i][j])], new iTextSharp.text.Font(baseFont, 12,
-                        iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
-                    } else
-                    {
-                        cell = new PdfPCell(new Phrase(Convert.ToString(dt1.Rows[i][j]), new iTextSharp.text.Font(baseFont, 12,
-                     iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
-                    }
-                    table.AddCell(cell);
-                    
-                }
-                sumM += Convert.ToInt32(dt1.Rows[i][2]);
-            }
+            if (dt1.Rows.Count !=0) {
+                cell = new PdfPCell(new Phrase("Мебель", new iTextSharp.text.Font(baseFont,
+                   12, iTextSharp.text.Font.BOLD, new BaseColor(Color.Black))));
 
-            cell = new PdfPCell(new Phrase("Техника", new iTextSharp.text.Font(baseFont,
-             12, iTextSharp.text.Font.BOLD, new BaseColor(Color.Black))));
+                cell.Padding = 3; //отступ
+                cell.Colspan = 3;
+                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                table.AddCell(cell);
+                
+                for (int i = 0; i < dt1.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dt1.Columns.Count; j++)
+                    {
+                        if (j == 0)
+                        {
+                            cell = new PdfPCell(new Phrase(dict[Convert.ToString(dt1.Rows[i][j])], new iTextSharp.text.Font(baseFont, 12,
+                            iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
+                        } else
+                        {
+                            cell = new PdfPCell(new Phrase(Convert.ToString(dt1.Rows[i][j]), new iTextSharp.text.Font(baseFont, 12,
+                         iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
+                        }
+                        table.AddCell(cell);
+
+                    }
+                    sumM += Convert.ToInt32(dt1.Rows[i][2]);
+                }
+            }
             int sumT = 0;
-            cell.Padding = 3; //отступ
-            cell.Colspan = 3;
-            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-            table.AddCell(cell);
-
-            for (int i = 0; i < dt2.Rows.Count; i++)
+            if (dt2.Rows.Count != 0)
             {
-                for (int j = 0; j < dt2.Columns.Count; j++)
-                {
-                    if (j == 0)
-                    {
-                        cell = new PdfPCell(new Phrase(dict[Convert.ToString(dt2.Rows[i][j])], new iTextSharp.text.Font(baseFont, 12,
-                        iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
-                    }else
-                    {
-                        cell = new PdfPCell(new Phrase(Convert.ToString(dt2.Rows[i][j]), new iTextSharp.text.Font(baseFont, 12,
-                       iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
-                    }
-                    table.AddCell(cell);
-                   
-                }
-                sumT += Convert.ToInt32(dt2.Rows[i][2]);
-            }
+                cell = new PdfPCell(new Phrase("Техника", new iTextSharp.text.Font(baseFont,
+             12, iTextSharp.text.Font.BOLD, new BaseColor(Color.Black))));
+                
+                cell.Padding = 3; //отступ
+                cell.Colspan = 3;
+                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                table.AddCell(cell);
 
+                for (int i = 0; i < dt2.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dt2.Columns.Count; j++)
+                    {
+                        if (j == 0)
+                        {
+                            cell = new PdfPCell(new Phrase(dict[Convert.ToString(dt2.Rows[i][j])], new iTextSharp.text.Font(baseFont, 12,
+                            iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
+                        }
+                        else
+                        {
+                            cell = new PdfPCell(new Phrase(Convert.ToString(dt2.Rows[i][j]), new iTextSharp.text.Font(baseFont, 12,
+                           iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
+                        }
+                        table.AddCell(cell);
+
+                    }
+                    sumT += Convert.ToInt32(dt2.Rows[i][2]);
+                }
+            }
             //table.AddCell("Обои");
             //table.AddCell("Col 3 Row 1");
             //table.AddCell("Col 2 Row 2");
