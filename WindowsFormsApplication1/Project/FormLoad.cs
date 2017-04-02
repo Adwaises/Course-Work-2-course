@@ -64,6 +64,8 @@ namespace Project
             }
             DataForBD.idCustomer++;
 
+
+            MessageBox.Show("Загружено");
         }
     }
 }

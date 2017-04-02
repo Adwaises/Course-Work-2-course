@@ -47,6 +47,8 @@ namespace Project
             DataTable dt2 = mbd.selectionquery("select naimenovanie,nazvanie,price from Furnitura  join FurnituraZakaz  on FurnituraZakaz.id_Furnitura = Furnitura.id_furnit " +
                " join Zakaz on FurnituraZakaz.id_zakaz = Zakaz.id_zakaz  where zakaz.id_zakaz = "+ Convert.ToString(id) + " AND type = 'technics';");
 
+            DataTable dt3 = mbd.selectionquery("select length,width,height from zakaz where id_zakaz = " + Convert.ToString(id) + ";");
+
             var doc = new Document();
             PdfWriter.GetInstance(doc, new FileStream(@"Document.pdf", FileMode.Create));
             doc.Open();
@@ -61,27 +63,11 @@ namespace Project
             a1.SpacingAfter = 5;
             doc.Add(a1);
 
-            PdfPTable table = new PdfPTable(3);
+            PdfPTable table = new PdfPTable(4);
 
-            PdfPCell cell = new PdfPCell(new Phrase("Наименование", new iTextSharp.text.Font(baseFont,
-                12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
 
-            //cell.BackgroundColor = new BaseColor(Color.Yellow);
-            //cell.Padding = 3; //отступ
-            cell.Colspan = 1;
-            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-            cell.VerticalAlignment = PdfPCell.ALIGN_MIDDLE;
-            table.AddCell(cell);
-            cell = new PdfPCell(new Phrase("Название", new iTextSharp.text.Font(baseFont,
-                12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
-            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-            table.AddCell(cell);
-            cell = new PdfPCell(new Phrase("Цена", new iTextSharp.text.Font(baseFont,
-                12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
-            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-            table.AddCell(cell);
-
-            cell = new PdfPCell(new Phrase("Строительные материалы", new iTextSharp.text.Font(baseFont,
+            /*
+             cell = new PdfPCell(new Phrase("Строительные материалы", new iTextSharp.text.Font(baseFont,
                 12, iTextSharp.text.Font.BOLD, new BaseColor(Color.Black))));
 
             //cell.BackgroundColor = new BaseColor(Color.Yellow);
@@ -89,16 +75,53 @@ namespace Project
             cell.Colspan = 3;
             cell.HorizontalAlignment = Element.ALIGN_CENTER;
             table.AddCell(cell);
+            */
+
+            p = new Phrase("Строительные материалы",
+new iTextSharp.text.Font(baseFont, 12,
+iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
+            a1 = new Paragraph(p);
+            a1.Alignment = Element.ALIGN_CENTER;
+            a1.Add(Environment.NewLine);
+            a1.SpacingAfter = 5;
+            doc.Add(a1);
+
+            PdfPCell cell = new PdfPCell(new Phrase("Наименование", new iTextSharp.text.Font(baseFont,
+               12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
+
+            //cell.BackgroundColor = new BaseColor(Color.Yellow);
+            //cell.Padding = 3; //отступ
+            cell.Colspan = 1;
+            cell.HorizontalAlignment = Element.ALIGN_CENTER;
+            cell.VerticalAlignment = PdfPCell.ALIGN_MIDDLE;
+            table.AddCell(cell);
+
+            cell = new PdfPCell(new Phrase("Название", new iTextSharp.text.Font(baseFont,
+                12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
+            cell.HorizontalAlignment = Element.ALIGN_CENTER;
+            table.AddCell(cell);
+
+
+
+            cell = new PdfPCell(new Phrase("Цена за кв.м", new iTextSharp.text.Font(baseFont,
+                12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
+            cell.HorizontalAlignment = Element.ALIGN_CENTER;
+            table.AddCell(cell);
+
+            cell = new PdfPCell(new Phrase("Кв.м", new iTextSharp.text.Font(baseFont,
+                12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
+            cell.HorizontalAlignment = Element.ALIGN_CENTER;
+            table.AddCell(cell);
 
             //PdfPCell cell1 = new PdfPCell(new Phrase("14"));
             //cell1.Rowspan = 1;
             //table.AddCell(cell1);
-            int sumSM = 0;
+            double sumSM = 0;
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 for (int j = 0; j < dt.Columns.Count; j++)
                 {
-                    string s = Convert.ToString(dt.Rows[i][j]);
+                    //string s = Convert.ToString(dt.Rows[i][j]);
                     if (j == 0) {
                         cell = new PdfPCell(new Phrase(dict[Convert.ToString(dt.Rows[i][j])], new iTextSharp.text.Font(baseFont,
                             12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
@@ -107,14 +130,67 @@ namespace Project
                         cell = new PdfPCell(new Phrase(Convert.ToString(dt.Rows[i][j]), new iTextSharp.text.Font(baseFont,
                             12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
                     }
-                   
-                    
+
                     table.AddCell(cell);
                 }
-                sumSM += Convert.ToInt32(dt.Rows[i][2]);
+                double S=0;
+                if (Convert.ToString( dt.Rows[i][0]) == "plitka") {
+                  S = (Convert.ToDouble(dt3.Rows[0][0]) / 100) * (Convert.ToDouble(dt3.Rows[0][1]) / 100);
+                    cell = new PdfPCell(new Phrase(Convert.ToString(S), new iTextSharp.text.Font(baseFont,
+                                12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
+                    table.AddCell(cell);
+                }  else if(Convert.ToString(dt.Rows[i][0]) == "oboi")
+                {
+                    S = (Convert.ToDouble(dt3.Rows[0][0]) / 100) * (Convert.ToDouble(dt3.Rows[0][2]) / 100) * 2;
+                    S+= (Convert.ToDouble(dt3.Rows[0][1]) / 100) * (Convert.ToDouble(dt3.Rows[0][2]) / 100) * 2;
+                    cell = new PdfPCell(new Phrase(Convert.ToString(S), new iTextSharp.text.Font(baseFont,
+                                12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
+                    table.AddCell(cell);
+                }
+
+
+                sumSM += Convert.ToInt32(dt.Rows[i][2]) * S;
+                
             }
+
+            doc.Add(table);
+
+           
+
+            table = new PdfPTable(3);
             int sumM = 0;
             if (dt1.Rows.Count !=0) {
+
+                p = new Phrase("Мебель",
+           new iTextSharp.text.Font(baseFont, 12,
+           iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
+                a1 = new Paragraph(p);
+                a1.Alignment = Element.ALIGN_CENTER;
+                a1.Add(Environment.NewLine);
+                a1.SpacingAfter = 5;
+                doc.Add(a1);
+
+                cell = new PdfPCell(new Phrase("Наименование", new iTextSharp.text.Font(baseFont,
+  12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
+
+                //cell.BackgroundColor = new BaseColor(Color.Yellow);
+                //cell.Padding = 3; //отступ
+                cell.Colspan = 1;
+                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                cell.VerticalAlignment = PdfPCell.ALIGN_MIDDLE;
+                table.AddCell(cell);
+                cell = new PdfPCell(new Phrase("Название", new iTextSharp.text.Font(baseFont,
+                    12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
+                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                table.AddCell(cell);
+
+
+
+                cell = new PdfPCell(new Phrase("Цена", new iTextSharp.text.Font(baseFont,
+                    12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
+                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                table.AddCell(cell);
+                /*
                 cell = new PdfPCell(new Phrase("Мебель", new iTextSharp.text.Font(baseFont,
                    12, iTextSharp.text.Font.BOLD, new BaseColor(Color.Black))));
 
@@ -122,7 +198,7 @@ namespace Project
                 cell.Colspan = 3;
                 cell.HorizontalAlignment = Element.ALIGN_CENTER;
                 table.AddCell(cell);
-                
+                */
                 for (int i = 0; i < dt1.Rows.Count; i++)
                 {
                     for (int j = 0; j < dt1.Columns.Count; j++)
@@ -142,9 +218,46 @@ namespace Project
                     sumM += Convert.ToInt32(dt1.Rows[i][2]);
                 }
             }
+
+            doc.Add(table);
+
+            table = new PdfPTable(3);
             int sumT = 0;
+
             if (dt2.Rows.Count != 0)
             {
+
+                p = new Phrase("Техника",
+new iTextSharp.text.Font(baseFont, 12,
+iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
+                a1 = new Paragraph(p);
+                a1.Alignment = Element.ALIGN_CENTER;
+                a1.Add(Environment.NewLine);
+                a1.SpacingAfter = 5;
+                doc.Add(a1);
+
+                cell = new PdfPCell(new Phrase("Наименование", new iTextSharp.text.Font(baseFont,
+12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
+
+                //cell.BackgroundColor = new BaseColor(Color.Yellow);
+                //cell.Padding = 3; //отступ
+                cell.Colspan = 1;
+                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                cell.VerticalAlignment = PdfPCell.ALIGN_MIDDLE;
+                table.AddCell(cell);
+                cell = new PdfPCell(new Phrase("Название", new iTextSharp.text.Font(baseFont,
+                    12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
+                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                table.AddCell(cell);
+
+
+
+                cell = new PdfPCell(new Phrase("Цена", new iTextSharp.text.Font(baseFont,
+                    12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
+                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                table.AddCell(cell);
+
+                /*
                 cell = new PdfPCell(new Phrase("Техника", new iTextSharp.text.Font(baseFont,
              12, iTextSharp.text.Font.BOLD, new BaseColor(Color.Black))));
                 
@@ -152,6 +265,7 @@ namespace Project
                 cell.Colspan = 3;
                 cell.HorizontalAlignment = Element.ALIGN_CENTER;
                 table.AddCell(cell);
+                */
 
                 for (int i = 0; i < dt2.Rows.Count; i++)
                 {
@@ -194,10 +308,20 @@ namespace Project
             doc.Add(table);
 
 
-            Phrase p1 = new Phrase("             Сумма строительных материалов(это не точно): " + Convert.ToString(sumSM),
+            Phrase p1 = new Phrase("             Параметры комнаты: " + Convert.ToString(Convert.ToDouble(dt3.Rows[0][0])/100) + " м * "+
+                 Convert.ToString(Convert.ToDouble(dt3.Rows[0][1]) / 100) + " м * " + Convert.ToString(Convert.ToDouble(dt3.Rows[0][2]) / 100) + " м",
             new iTextSharp.text.Font(baseFont, 14,
             iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black)));
             Paragraph a2 = new Paragraph(p1);
+            a2.Alignment = Element.ALIGN_LEFT;
+            a2.Add(Environment.NewLine);
+            //a2.SpacingAfter = 5;
+            doc.Add(a2);
+
+            p1 = new Phrase("             Сумма строительных материалов: " + Convert.ToString(sumSM),
+            new iTextSharp.text.Font(baseFont, 14,
+            iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black)));
+            a2 = new Paragraph(p1);
             a2.Alignment = Element.ALIGN_LEFT;
             a2.Add(Environment.NewLine);
             //a2.SpacingAfter = 5;
@@ -216,7 +340,9 @@ namespace Project
             
             doc.Add(a2);
 
-            p1 = new Phrase("             Общая сумма: " + Convert.ToString(sumM+ sumT+ sumSM),
+            int allSum =Convert.ToInt32(  sumM + sumT + sumSM);
+
+            p1 = new Phrase("             Общая сумма: " + Convert.ToString(allSum),
            new iTextSharp.text.Font(baseFont, 14,
            iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
             a2 = new Paragraph(p1);
@@ -235,6 +361,7 @@ namespace Project
 
             doc.Close();
 
+            DataForBD.summa = allSum;
             
         }
         /// <summary>

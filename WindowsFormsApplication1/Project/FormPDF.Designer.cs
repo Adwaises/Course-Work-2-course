@@ -1,6 +1,6 @@
 ﻿namespace Project
 {
-    partial class FormLoad
+    partial class FormPDF
     {
         /// <summary>
         /// Required designer variable.
@@ -28,48 +28,49 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.CBorder = new System.Windows.Forms.ComboBox();
-            this.BLoad = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // CBorder
+            // comboBox1
             // 
-            this.CBorder.FormattingEnabled = true;
-            this.CBorder.Location = new System.Drawing.Point(12, 35);
-            this.CBorder.Name = "CBorder";
-            this.CBorder.Size = new System.Drawing.Size(260, 21);
-            this.CBorder.TabIndex = 0;
-            // 
-            // BLoad
-            // 
-            this.BLoad.Location = new System.Drawing.Point(100, 92);
-            this.BLoad.Name = "BLoad";
-            this.BLoad.Size = new System.Drawing.Size(75, 23);
-            this.BLoad.TabIndex = 1;
-            this.BLoad.Text = "Загрузить";
-            this.BLoad.UseVisualStyleBackColor = true;
-            this.BLoad.Click += new System.EventHandler(this.button1_Click);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(15, 50);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(209, 21);
+            this.comboBox1.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(12, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 13);
-            this.label1.TabIndex = 2;
+            this.label1.TabIndex = 1;
             this.label1.Text = "Выберите заказ";
             // 
-            // FormLoad
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(53, 107);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(127, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Сформировать";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // FormPDF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 144);
+            this.ClientSize = new System.Drawing.Size(237, 177);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.BLoad);
-            this.Controls.Add(this.CBorder);
-            this.Name = "FormLoad";
-            this.Text = "FormLoad";
+            this.Controls.Add(this.comboBox1);
+            this.Name = "FormPDF";
+            this.Text = "FormPDF";
+            this.Load += new System.EventHandler(this.FormPDF_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -77,8 +78,8 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox CBorder;
-        private System.Windows.Forms.Button BLoad;
+        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
     }
 }

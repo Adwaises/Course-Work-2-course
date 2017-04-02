@@ -7,39 +7,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Project
 {
-    public partial class ToMail : Form
+    public partial class FormPDF : Form
     {
-        Mail mail = new Mail();
+        Reports report = new Reports();
         ManagerBD mbd = new ManagerBD();
         DataTable dt;
-        Reports report = new Reports();
-        public ToMail()
+        public FormPDF()
         {
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
             report.blank(Convert.ToInt32(dt.Rows[comboBox1.SelectedIndex][0]));
-            try
-            {
-                mail.SendMail(textBox1.Text);
+            DialogResult result = MessageBox.Show("Открыть?", "Отчет сформирован", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
-                //progressBar1.Value = 100;
-
-                MessageBox.Show("Письмо отправлено", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch(Exception ex)
+            if (result == DialogResult.Yes) //Если нажал Да
             {
-                MessageBox.Show("Введите правильный E-mail", "Ошибка: " + ex, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //отрытие документа программой по умолчанию
+                Process.Start("Document.pdf");
             }
         }
 
-        private void ToMail_Load(object sender, EventArgs e)
+        private void FormPDF_Load(object sender, EventArgs e)
         {
             mbd.Connection();
             dt = mbd.selectionquery("select * from zakaz;");
@@ -47,7 +41,6 @@ namespace Project
             {
                 comboBox1.Items.Add(Convert.ToString(dt.Rows[i][0]) + " " + dt.Rows[i][1] + " " + dt.Rows[i][2] + " " + dt.Rows[i][3] + " " + dt.Rows[i][6]);
             }
-
         }
     }
 }

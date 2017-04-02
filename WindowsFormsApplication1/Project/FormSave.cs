@@ -14,6 +14,7 @@ namespace Project
     {
         ManagerBD mbd = new ManagerBD();
         DataTable dt;
+       // DataTable dt1;
         public FormSave()
         {
             InitializeComponent();
@@ -24,11 +25,25 @@ namespace Project
             
             DataForBD.length = 400;
             DataForBD.width = 400;
-            DataForBD.height = 250;
+            DataForBD.height = 300;
             //DataForBD.idCustomer = 1;
-            DataForBD.summa = 75000; // нужно рассчитать // вызвать report , он закинет в стат класс и оттуда взять уже сумму
-            DataForBD.mounth = 2;
+
+            //DataForBD.summa = 75000; // нужно рассчитать // вызвать report , он закинет в стат класс и оттуда взять уже сумму
+            
+
+            DateTime data = DateTime.Now;
+            DataForBD.mounth = data.Month;
             // заказчик если есть
+
+
+            mbd.Connection();
+            dt = mbd.selectionquery("select * from customer;");
+            for (int i=0; i<dt.Rows.Count; i++) {
+                CBCustomer.Items.Add(Convert.ToString(dt.Rows[i][1]) +" "+ dt.Rows[i][2] +" "+ dt.Rows[i][3] + " " + dt.Rows[i][4]);
+            }
+
+            
+
 
             // список заказ_строймат
             DataForBD.listZakazStroyMat.Add(DataForBD.idZakaz + ",12");
@@ -39,15 +54,6 @@ namespace Project
             DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",21,1");
             DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",21,1");
             DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",21,1");
-
-            mbd.Connection();
-            dt = mbd.selectionquery("select * from customer;");
-            for (int i=0; i<dt.Rows.Count; i++) {
-                CBCustomer.Items.Add(Convert.ToString(dt.Rows[i][1]) +" "+ dt.Rows[i][2] +" "+ dt.Rows[i][3] + " " + dt.Rows[i][4]);
-            }
-
-
-            
 
         }
 
@@ -106,9 +112,16 @@ namespace Project
 
             //вставка в заказ
 
+            //присвоение id заказа
+
+
             mbd.controlquery("insert into Zakaz  values (" + DataForBD.idZakaz.ToString() + ", " + DataForBD.length.ToString()
                 + " ," + DataForBD.width.ToString() + " ," + DataForBD.height.ToString() + " ," + DataForBD.idCustomer.ToString()
                 + " ," + DataForBD.mounth.ToString() + " ," + DataForBD.summa.ToString() + ")");
+
+            Reports rep = new Reports();
+            rep.blank(DataForBD.idZakaz);
+            mbd.controlquery("update zakaz set summa = " + Convert.ToString(DataForBD.summa) + " where id_zakaz = " + Convert.ToString(DataForBD.idZakaz));
 
             MessageBox.Show("OK");
         }

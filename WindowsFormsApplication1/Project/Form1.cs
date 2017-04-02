@@ -14,12 +14,12 @@ namespace Project
 {
     public partial class Form1 : Form
     {
-        Reports report = new Reports();
+        //Reports report = new Reports();
+        ManagerBD mbd = new ManagerBD();
         public Form1()
         {
             InitializeComponent();
 
-            DataForBD.idZakaz = 2;
 
         }
 
@@ -32,20 +32,14 @@ namespace Project
 
         private void создатьToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-           
-            report.blank(DataForBD.idZakaz);
-            DialogResult result = MessageBox.Show("Открыть?", "Отчет сформирован", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            FormPDF pdf = new FormPDF();
+            pdf.ShowDialog();
 
-            if (result == DialogResult.Yes) //Если нажал Да
-            {
-                //отрытие документа программой по умолчанию
-                Process.Start("Document.pdf");
-            }
         }
 
         private void отправитьНаПочтуToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            report.blank(DataForBD.idZakaz);
+            //report.blank(DataForBD.idZakaz);
             ToMail tm = new ToMail();
             tm.ShowDialog();
 
@@ -67,6 +61,25 @@ namespace Project
         {
             FormLoad fl = new FormLoad();
             fl.ShowDialog();
+        }
+
+        private void новыйToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //присвоение id заказа
+            //DataForBD.idZakaz = 1;
+            mbd.Connection();
+            DataTable dt1 = mbd.selectionquery("select * from zakaz;");
+
+            DataForBD.idZakaz = 1;
+            for (int i = 0; i < dt1.Rows.Count; i++)
+            {
+                if (Convert.ToInt32(dt1.Rows[i][0]) > DataForBD.idZakaz)
+                {
+                    DataForBD.idZakaz = Convert.ToInt32(dt1.Rows[i][0]);
+                }
+            }
+            DataForBD.idZakaz++;
+
         }
     }
 }
