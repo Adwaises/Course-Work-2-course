@@ -25,7 +25,7 @@ namespace Project
         private void FormBD_Load(object sender, EventArgs e)
         {
             mbd.Connection();
-            DataTable dt = mbd.selectionquery("select * from zakaz;");
+            DataTable dt = mbd.selectionquery("select * from StroyMaterial;");
             dataGridView1.DataSource = dt;
         }
 

@@ -39,6 +39,8 @@ namespace Project
             }
         }
 
+
+
         private void ToMail_Load(object sender, EventArgs e)
         {
             mbd.Connection();
@@ -48,6 +50,12 @@ namespace Project
                 comboBox1.Items.Add(Convert.ToString(dt.Rows[i][0]) + " " + dt.Rows[i][1] + " " + dt.Rows[i][2] + " " + dt.Rows[i][3] + " " + dt.Rows[i][6]);
             }
 
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataTable dt1 = mbd.selectionquery("select id_zakaz,mail from zakaz join customer on zakaz.id_customer = customer.id_customer;");
+            textBox1.Text = Convert.ToString(dt1.Rows[comboBox1.SelectedIndex][1]);
         }
     }
 }
