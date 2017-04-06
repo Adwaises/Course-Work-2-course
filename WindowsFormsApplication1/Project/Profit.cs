@@ -10,30 +10,24 @@ using System.Windows.Forms;
 
 namespace Project
 {
-    public partial class FormBD : Form
+    public partial class Profit : Form
     {
-        ManagerBD mbd = new ManagerBD();
-        public FormBD()
+        public Profit()
         {
             InitializeComponent();
-
-
-
-
-        }
-
-        private void FormBD_Load(object sender, EventArgs e)
-        {
-            mbd.Connection();
-            DataTable dt = mbd.selectionquery("select * from zakaz;");
-            dataGridView1.DataSource = dt;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
 
-            
+        }
 
+        private void Profit_Load(object sender, EventArgs e)
+        {
+            for(int i=1;i<=12;i++)
+            {
+                comboBox1.Items.Add(i);
+            }
         }
     }
 }

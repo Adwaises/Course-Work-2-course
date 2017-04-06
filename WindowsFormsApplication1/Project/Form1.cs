@@ -81,5 +81,11 @@ namespace Project
             DataForBD.idZakaz++;
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Profit pr = new Profit();
+            pr.ShowDialog();
+        }
     }
 }

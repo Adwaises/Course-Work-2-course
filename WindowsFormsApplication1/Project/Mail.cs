@@ -13,7 +13,7 @@ namespace Project
     class Mail
     {
 
-        public void SendMail(String s)
+        public void SendMail(string s)
         {
 
             int id = 1;
@@ -32,6 +32,9 @@ namespace Project
             try
             {
                 Smtp.Send(Message);
+
+                //нужно закрыть подключение, 2 раза не отправляет подряд
+                attach = null;
             }
             catch (Exception ex)
             {
