@@ -84,7 +84,7 @@ namespace Project
             {
                 progressBar1.Value = 90;
             }
-            else if (DataForBD.iter == 2)
+            else if (DataForBD.iter == 3)
             {
                 progressBar1.Value = 100;
                 timer1.Stop();

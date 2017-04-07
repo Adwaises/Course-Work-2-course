@@ -33,9 +33,9 @@ namespace Project
             DataForBD.iter = 2;
             try
             {
-                //Smtp.Send(Message);
+                Smtp.Send(Message);
                 
-                //attach.Dispose();
+                attach.Dispose();
                 DataForBD.iter = 3;
 
                 //нужно закрыть подключение, 2 раза не отправляет подряд, не закрывает поток на файл
