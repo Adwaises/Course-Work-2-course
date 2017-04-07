@@ -15,7 +15,7 @@ namespace Project
 
         public void SendMail(string s, int id)
         {
-
+            DataForBD.iter = 0;
             //int id = 1;
             DateTime second = DateTime.Now;
             SmtpClient Smtp = new SmtpClient("smtp.mail.ru", 587);
@@ -29,11 +29,14 @@ namespace Project
             string file = "Document.pdf";
             Attachment attach = new Attachment(file, MediaTypeNames.Application.Octet);
             Message.Attachments.Add(attach);
+            DataForBD.iter = 1;
             try
             {
                 Smtp.Send(Message);
-                //attach = null;
-                //Message.Attachments.Clear();
+                DataForBD.iter = 2;
+                attach.Dispose();
+                DataForBD.iter = 3;
+
                 //нужно закрыть подключение, 2 раза не отправляет подряд, не закрывает поток на файл
             }
             catch (Exception ex)

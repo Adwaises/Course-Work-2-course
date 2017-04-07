@@ -34,13 +34,15 @@ namespace Project
             report.blank(Convert.ToInt32(dt.Rows[comboBox1.SelectedIndex][0]));
             try
             {
+                DataForBD.iter = 0;
                 Thread t = new Thread(toMail);
                 t.Start();
-                
+                timer1.Start();
 
                 //progressBar1.Value = 100;
 
-                MessageBox.Show("Письмо отправлено", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+
             }
             catch(Exception ex)
             {
@@ -66,6 +68,29 @@ namespace Project
             DataTable dt1 = mbd.selectionquery("select id_zakaz,mail from zakaz join customer on zakaz.id_customer = customer.id_customer;");
             //textBox1.Text = Convert.ToString(dt1.Rows[comboBox1.SelectedIndex][1]);
             textBox1.Text = "adwaises@mail.ru";
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (DataForBD.iter == 0)
+            {
+                progressBar1.Value = 10;
+            }
+            else if (DataForBD.iter == 1)
+            {
+                progressBar1.Value = 30;
+            }
+            else if (DataForBD.iter == 2)
+            {
+                progressBar1.Value = 90;
+            }
+            else if (DataForBD.iter == 2)
+            {
+                progressBar1.Value = 100;
+                timer1.Stop();
+                MessageBox.Show("Письмо отправлено", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
         }
     }
 }
