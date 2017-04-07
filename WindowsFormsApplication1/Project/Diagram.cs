@@ -15,6 +15,7 @@ namespace Project
     public partial class Diagram : Form
     {
         Reports report = new Reports();
+       
         public Diagram()
         {
             InitializeComponent();
@@ -57,13 +58,16 @@ namespace Project
                 t.Start();
                 //обработать, когда звершится
 
+
                 //progressBar1.Value = 100;
+
                 //label1.Text = "";
                 // sw.Stop();
 
                 //MessageBox.Show("Диаграмма в Excel построена \r\nФайл находится в папке 'Мои документы'" ,
-                  //  "Диаграмма", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                //  "Диаграмма", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                timer1.Start();
+                /*
                 DialogResult result1 = MessageBox.Show("Открыть папку?", "Диаграмма в Excel построена", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
                 if (result1 == DialogResult.Yes) //Если нажал Да
@@ -73,7 +77,7 @@ namespace Project
                     //Process.Start("explorer", "C:\\");
 
                 }
-
+                */
                 /*
                 result = MessageBox.Show("Желаете открыть?", "Диаграмма", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 
@@ -91,6 +95,49 @@ namespace Project
         {
             PBDiagr.Image =  report.DrawGrid();
 
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (DataForBD.iter == 0)
+            {
+                progressBar1.Value = 10;
+            }
+            else  if (DataForBD.iter == 1)
+            {
+                progressBar1.Value = 25;
+            }
+            else if (DataForBD.iter == 2)
+            {
+                progressBar1.Value = 40;
+            }
+            else if (DataForBD.iter == 3)
+            {
+                progressBar1.Value = 55;
+            }
+            else if (DataForBD.iter == 4)
+            {
+                progressBar1.Value = 70;
+            }
+            else if (DataForBD.iter == 5)
+            {
+                progressBar1.Value = 90;
+            }
+            else if (DataForBD.iter == 6)
+            {
+                timer1.Stop();
+                progressBar1.Value = 100;
+                DialogResult result1 = MessageBox.Show("Открыть папку?", "Диаграмма в Excel построена", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (result1 == DialogResult.Yes) //Если нажал Да
+                {
+                    //отрытие документа программой по умолчанию
+                    //Process.Start("Document.pdf");
+                    Process.Start("explorer", @"/select , " + Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\book.xlsx");
+
+
+                }
+            }
         }
     }
 }

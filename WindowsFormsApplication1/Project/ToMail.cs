@@ -34,13 +34,16 @@ namespace Project
             report.blank(Convert.ToInt32(dt.Rows[comboBox1.SelectedIndex][0]));
             try
             {
+                DataForBD.iter = 0;
                 Thread t = new Thread(toMail);
                 t.Start();
-                
 
+                //timer1.Start();
+                gdghf
                 //progressBar1.Value = 100;
 
-                MessageBox.Show("Письмо отправлено", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+
             }
             catch(Exception ex)
             {
