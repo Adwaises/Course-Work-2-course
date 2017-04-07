@@ -544,6 +544,7 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
 
         public void ExcelDiagr()
         {
+            DataForBD.iter = 0;
             try
             {
                 Excel.Application ObjExcel = new Excel.Application();
@@ -569,20 +570,17 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
                 throw exc;
             }
 
-
+            DataForBD.iter = 1;
             Excel.Application excelapp = new Excel.Application();
             try
             {
 
-                // if (checkBox1.Checked){
+                DataForBD.iter = 2;
                 ExcelDiagr1();
-                //}else if(checkBox2.Checked)
-                //{
+                DataForBD.iter = 4;
                 ExcelDiagr2();
-                //}
 
-
-               // MessageBox.Show("OK");
+                DataForBD.iter = 6;
 
 
             }
@@ -623,6 +621,8 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
                     Type.Missing, Type.Missing, Type.Missing);
                 excelapp.ActiveChart.HasTitle = true;
                 excelapp.ActiveChart.ChartTitle.Text = "Количество заказов";
+
+                DataForBD.iter = 5;
 
                 ((Excel.Axis)excelapp.ActiveChart.Axes(Excel.XlAxisType.xlCategory,
                 Excel.XlAxisGroup.xlPrimary)).HasTitle = true;
@@ -677,6 +677,7 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
                     Type.Missing, Type.Missing, Type.Missing);
                 excelapp.ActiveChart.HasTitle = true;
                 excelapp.ActiveChart.ChartTitle.Text = "Выручка";
+                DataForBD.iter = 3;
 
                 ((Excel.Axis)excelapp.ActiveChart.Axes(Excel.XlAxisType.xlCategory,
                 Excel.XlAxisGroup.xlPrimary)).HasTitle = true;

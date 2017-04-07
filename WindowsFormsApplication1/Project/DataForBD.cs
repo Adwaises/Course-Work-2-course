@@ -25,8 +25,13 @@ namespace Project
         public static string numTel;
         public static string mail;
 
+
         public static List<string> listZakazStroyMat = new List<string>();
         public static List<string> listZakazMebTeh = new List<string>();
+
+
+
+        public static int iter;
 
     }
 }
