@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,7 +18,15 @@ namespace Project
         public Diagram()
         {
             InitializeComponent();
-            label1.Text = "";
+            //label1.Text = "";
+        }
+
+        //Thread t = new Thread(report.ExcelDiagr());
+
+        void diagr()
+        {
+            report.ExcelDiagr();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -42,9 +51,12 @@ namespace Project
 
                 // System.Diagnostics.Stopwatch sw = new Stopwatch();
                 // sw.Start();
-                label1.Text = "Построение отчета в Excel";
-                report.ExcelDiagr();
-                label1.Text = "";
+                //label1.Text = "Построение отчета в Excel";
+                //report.ExcelDiagr();
+                Thread t = new Thread(diagr);
+                t.Start();
+                progressBar1.Value = 100;
+                //label1.Text = "";
                 // sw.Stop();
                 MessageBox.Show("Диаграмма в Excel построена \r\nФайл находится в папке 'Мои документы'" ,
                     "Диаграмма", MessageBoxButtons.OK, MessageBoxIcon.Information);
