@@ -27,7 +27,7 @@ namespace Project
             report.blank(Convert.ToInt32(dt.Rows[comboBox1.SelectedIndex][0]));
             try
             {
-                mail.SendMail(textBox1.Text);
+                mail.SendMail(textBox1.Text, Convert.ToInt32(dt.Rows[comboBox1.SelectedIndex][0]));
 
                 //progressBar1.Value = 100;
 

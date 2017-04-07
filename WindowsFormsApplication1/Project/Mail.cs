@@ -13,10 +13,10 @@ namespace Project
     class Mail
     {
 
-        public void SendMail(string s)
+        public void SendMail(string s,int id)
         {
 
-            int id = 1;
+            //int id = 1;
             DateTime second = DateTime.Now;
             SmtpClient Smtp = new SmtpClient("smtp.mail.ru", 587);
             Smtp.Credentials = new NetworkCredential("lexa2171@mail.ru", "123A456B789c!");
@@ -34,7 +34,7 @@ namespace Project
                 Smtp.Send(Message);
 
                 //нужно закрыть подключение, 2 раза не отправляет подряд
-                attach = null;
+                //attach = null;
             }
             catch (Exception ex)
             {

@@ -8,6 +8,8 @@ namespace Project
 {
     static class DataForBD
     {
+        public static int valuePrBar = 0;
+
         //заказ
         public static int idZakaz;
         public static int length;
