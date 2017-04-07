@@ -37,8 +37,8 @@ namespace Project
                 DataForBD.iter = 0;
                 Thread t = new Thread(toMail);
                 t.Start();
+                timer1.Start();
 
-                //timer1.Start();
                 //progressBar1.Value = 100;
 
                 
@@ -72,7 +72,25 @@ namespace Project
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            if (DataForBD.iter == 0)
+            {
+                progressBar1.Value = 10;
+            }
+            else if (DataForBD.iter == 1)
+            {
+                progressBar1.Value = 30;
+            }
+            else if (DataForBD.iter == 2)
+            {
+                progressBar1.Value = 90;
+            }
+            else if (DataForBD.iter == 2)
+            {
+                progressBar1.Value = 100;
+                timer1.Stop();
+                MessageBox.Show("Письмо отправлено", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            }
         }
     }
 }
