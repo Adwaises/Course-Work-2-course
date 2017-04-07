@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,18 +17,26 @@ namespace Project
         ManagerBD mbd = new ManagerBD();
         DataTable dt;
         Reports report = new Reports();
+        int index = 0;
         public ToMail()
         {
             InitializeComponent();
         }
 
+        void toMail()
+        {
+            mail.SendMail(textBox1.Text, Convert.ToInt32(dt.Rows[index][0]));
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-
+            index = comboBox1.SelectedIndex;
             report.blank(Convert.ToInt32(dt.Rows[comboBox1.SelectedIndex][0]));
             try
             {
-                mail.SendMail(textBox1.Text, Convert.ToInt32(dt.Rows[comboBox1.SelectedIndex][0]));
+                Thread t = new Thread(toMail);
+                t.Start();
+                
 
                 //progressBar1.Value = 100;
 

@@ -55,12 +55,25 @@ namespace Project
                 //report.ExcelDiagr();
                 Thread t = new Thread(diagr);
                 t.Start();
-                progressBar1.Value = 100;
+                //обработать, когда звершится
+
+                //progressBar1.Value = 100;
                 //label1.Text = "";
                 // sw.Stop();
-                MessageBox.Show("Диаграмма в Excel построена \r\nФайл находится в папке 'Мои документы'" ,
-                    "Диаграмма", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+
+                //MessageBox.Show("Диаграмма в Excel построена \r\nФайл находится в папке 'Мои документы'" ,
+                  //  "Диаграмма", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                DialogResult result1 = MessageBox.Show("Открыть папку?", "Диаграмма в Excel построена", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (result1 == DialogResult.Yes) //Если нажал Да
+                {
+                    //отрытие документа программой по умолчанию
+                    //Process.Start("Document.pdf");
+                    //Process.Start("explorer", "C:\\");
+
+                }
+
                 /*
                 result = MessageBox.Show("Желаете открыть?", "Диаграмма", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 

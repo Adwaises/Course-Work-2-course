@@ -32,10 +32,9 @@ namespace Project
             try
             {
                 Smtp.Send(Message);
-
-                //Message.Attachments.Clear();
-                //нужно закрыть подключение, 2 раза не отправляет подряд
                 //attach = null;
+                //Message.Attachments.Clear();
+                //нужно закрыть подключение, 2 раза не отправляет подряд, не закрывает поток на файл
             }
             catch (Exception ex)
             {
