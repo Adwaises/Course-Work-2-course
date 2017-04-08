@@ -14,7 +14,8 @@ namespace Project
     {
         ManagerBD mbd = new ManagerBD();
         DataTable dt;
-       // DataTable dt1;
+        DataTable dt1;
+        // DataTable dt1;
         public FormSave()
         {
             InitializeComponent();
@@ -24,8 +25,8 @@ namespace Project
             //заказ
             
             DataForBD.length = 400;
-            DataForBD.width = 400;
-            DataForBD.height = 300;
+            DataForBD.width = 300;
+            DataForBD.height = 250;
             //DataForBD.idCustomer = 1;
 
             //DataForBD.summa = 75000; // нужно рассчитать // вызвать report , он закинет в стат класс и оттуда взять уже сумму
@@ -42,19 +43,45 @@ namespace Project
                 CBCustomer.Items.Add(Convert.ToString(dt.Rows[i][1]) +" "+ dt.Rows[i][2] +" "+ dt.Rows[i][3] + " " + dt.Rows[i][4]);
             }
 
-            
+            dt1 = mbd.selectionquery("select * from zakaz;");
+            // поиск макс (присвоение id)
+            DataForBD.idZakaz = 1;
+            for (int i = 0; i < dt1.Rows.Count; i++)
+            {
+                if (Convert.ToInt32(dt1.Rows[i][0]) > DataForBD.idCustomer)
+                {
+                    DataForBD.idZakaz = Convert.ToInt32(dt1.Rows[i][0]);
+                }
+            }
+            DataForBD.idZakaz++;
 
 
             // список заказ_строймат
             DataForBD.listZakazStroyMat.Add(DataForBD.idZakaz + ",12");
             DataForBD.listZakazStroyMat.Add(DataForBD.idZakaz + ",22");
             // список заказ_мебтех
-            DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",11,1");
-            DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",21,1");
-            DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",21,1");
-            DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",21,1");
-            DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",21,1");
+            DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",11,1");//стол
+            //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",11,2");
+            //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",11,3");
+            //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",31,4"); //шкаф
+            //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",31,5");
 
+            //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",41,6"); //плита
+            //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",41,7");
+
+            //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",51,8"); //вытяжка
+            //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",51,9");
+            //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",51,10");
+
+            DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",61,11"); //холодильник
+            //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",61,12");
+
+            
+            DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",21,20"); // стул
+            DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",21,21");
+            //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",21,22");
+            //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",21,23");
+            
         }
 
        
@@ -62,7 +89,9 @@ namespace Project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(RBSelect.Checked)
+            
+
+            if (RBSelect.Checked)
             {
                 DataForBD.idCustomer = Convert.ToInt32( dt.Rows[CBCustomer.SelectedIndex][0]);
             } else if(RBNew.Checked)

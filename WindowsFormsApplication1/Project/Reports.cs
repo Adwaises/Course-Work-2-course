@@ -36,6 +36,9 @@ namespace Project
             dict.Add("stol", "Стул");
             dict.Add("plita", "Плита");
             dict.Add("icebox", "Холодильник");
+            dict.Add("shkaf", "Шкаф");
+            dict.Add("vytyazhka", "Вытяжка");
+
             mbd.Connection();
 
             DataTable dt = mbd.selectionquery("select naimenovanie,nazvanie,price from StroyMaterial join StroyMaterialZakaz on StroyMaterial.id_stroy_mater = StroyMaterialZakaz.id_StroyMaterial" +
