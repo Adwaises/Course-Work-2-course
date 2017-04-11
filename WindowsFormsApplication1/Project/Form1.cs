@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+
 namespace Project
 {
     public partial class Form1 : Form
@@ -82,7 +84,8 @@ namespace Project
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+
+        private void продукцииToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Profit pr = new Profit();
             pr.ShowDialog();

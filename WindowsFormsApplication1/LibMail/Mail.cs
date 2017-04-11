@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibDataForBD;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -6,14 +7,13 @@ using System.Net.Mail;
 using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 
-namespace Project
+
+namespace LibMail
 {
-    class Mail
+    public class Mail
     {
-
         public void SendMail(string s, int id)
         {
             DataForBD.iter = 0;
@@ -35,7 +35,7 @@ namespace Project
             try
             {
                 Smtp.Send(Message);
-                
+
                 attach.Dispose();
                 DataForBD.iter = 3;
 
@@ -46,5 +46,6 @@ namespace Project
                 throw ex;
             }
         }
+
     }
 }
