@@ -26,7 +26,7 @@ namespace Project
         private void FormBD_Load(object sender, EventArgs e)
         {
             mbd.Connection();
-            DataTable dt = mbd.selectionquery("select * from zakaz ");
+            DataTable dt = mbd.selectionquery("select naimenovanie,count(*) from FurnituraZakaz  join furnitura on furnitura.id_furnit = FurnituraZakaz.id_furnitura group by id_furnitura order by count(*) desc ");
             //DataTable dt = mbd.selectionquery("select * from StroyMaterialZakaz   ");
             //DataTable dt = mbd.selectionquery("select * from FurnituraZakaz    ");
             //DataTable dt = mbd.selectionquery("select sum(summa)from zakaz where month_Zakaz = 4");
