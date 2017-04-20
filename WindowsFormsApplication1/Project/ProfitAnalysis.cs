@@ -57,12 +57,7 @@ namespace Project
                 {
                     s += dict[1] + "\r\n";
                 }
-                /*
-                if (Convert.ToInt32(dt1.Rows[0][0])/ countOrder > 3)
-                {
-                    s += "Можно незначительно повысить цены на мебель\r\n";
-                }
-                */
+                
                 dt1 = mbd.selectionquery("select count(*) from FurnituraZakaz join zakaz on zakaz.id_zakaz = FurnituraZakaz.id_zakaz join Furnitura " +
                  "on Furnitura.id_furnit = FurnituraZakaz.id_Furnitura  where month_Zakaz =" + month + " and type = 'technics'");
 
@@ -70,12 +65,7 @@ namespace Project
                 {
                     s += dict[2]+"\r\n";
                 }
-                /*
-                if (Convert.ToInt32(dt1.Rows[0][0]) / countOrder > 3)
-                {
-                    s += "Можно незначительно повысить цены на технику\r\n";
-                }
-                */
+               
             }
 
             if (Convert.ToInt32(dt.Rows[0][0]) / countOrder > 3)
