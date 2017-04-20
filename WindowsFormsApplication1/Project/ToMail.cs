@@ -27,7 +27,13 @@ namespace Project
 
         void toMail()
         {
-            mail.SendMail(textBox1.Text, Convert.ToInt32(dt.Rows[index][0]));
+            try
+            {
+                mail.SendMail(textBox1.Text, Convert.ToInt32(dt.Rows[index][0]));
+            } catch(Exception ex) {
+                MessageBox.Show(ex+"", "Ошибка" + ex, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -48,7 +54,7 @@ namespace Project
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Введите правильный E-mail", "Ошибка: " + ex, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Введите правильный E-mail", "Ошибка" + ex, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

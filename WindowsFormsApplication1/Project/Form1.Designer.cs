@@ -38,9 +38,9 @@
             this.новыйToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.оформитьСохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.загрузитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
             this.анализПрибылиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.продукцииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -126,16 +126,6 @@
             this.загрузитьToolStripMenuItem.Text = "Загрузить";
             this.загрузитьToolStripMenuItem.Click += new System.EventHandler(this.загрузитьToolStripMenuItem_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(642, 457);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Вставка в бд";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // анализПрибылиToolStripMenuItem
             // 
             this.анализПрибылиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -147,9 +137,19 @@
             // продукцииToolStripMenuItem
             // 
             this.продукцииToolStripMenuItem.Name = "продукцииToolStripMenuItem";
-            this.продукцииToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.продукцииToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.продукцииToolStripMenuItem.Text = "Продукции";
             this.продукцииToolStripMenuItem.Click += new System.EventHandler(this.продукцииToolStripMenuItem_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(642, 457);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(94, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Вставка в бд";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -160,7 +160,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Дизайн кухни";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
