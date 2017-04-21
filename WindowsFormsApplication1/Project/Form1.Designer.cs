@@ -41,6 +41,7 @@
             this.анализПрибылиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.продукцииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
+            this.самаяПокупаемаяФурнитурасемСетиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -129,16 +130,17 @@
             // анализПрибылиToolStripMenuItem
             // 
             this.анализПрибылиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.продукцииToolStripMenuItem});
+            this.продукцииToolStripMenuItem,
+            this.самаяПокупаемаяФурнитурасемСетиToolStripMenuItem});
             this.анализПрибылиToolStripMenuItem.Name = "анализПрибылиToolStripMenuItem";
-            this.анализПрибылиToolStripMenuItem.Size = new System.Drawing.Size(113, 20);
-            this.анализПрибылиToolStripMenuItem.Text = "Анализ прибыли";
+            this.анализПрибылиToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.анализПрибылиToolStripMenuItem.Text = "Знания";
             // 
             // продукцииToolStripMenuItem
             // 
             this.продукцииToolStripMenuItem.Name = "продукцииToolStripMenuItem";
-            this.продукцииToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.продукцииToolStripMenuItem.Text = "Продукции";
+            this.продукцииToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.продукцииToolStripMenuItem.Text = "Анализ прибыли (Продукции)";
             this.продукцииToolStripMenuItem.Click += new System.EventHandler(this.продукцииToolStripMenuItem_Click);
             // 
             // button1
@@ -150,6 +152,13 @@
             this.button1.Text = "Вставка в бд";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // самаяПокупаемаяФурнитурасемСетиToolStripMenuItem
+            // 
+            this.самаяПокупаемаяФурнитурасемСетиToolStripMenuItem.Name = "самаяПокупаемаяФурнитурасемСетиToolStripMenuItem";
+            this.самаяПокупаемаяФурнитурасемСетиToolStripMenuItem.Size = new System.Drawing.Size(303, 22);
+            this.самаяПокупаемаяФурнитурасемСетиToolStripMenuItem.Text = "Самая покупаемая фурнитура (сем. сети)";
+            this.самаяПокупаемаяФурнитурасемСетиToolStripMenuItem.Click += new System.EventHandler(this.самаяПокупаемаяФурнитурасемСетиToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -183,6 +192,7 @@
         private System.Windows.Forms.ToolStripMenuItem новыйToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem анализПрибылиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem продукцииToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem самаяПокупаемаяФурнитурасемСетиToolStripMenuItem;
     }
 }
 

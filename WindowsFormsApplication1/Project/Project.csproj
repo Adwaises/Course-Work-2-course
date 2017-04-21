@@ -127,6 +127,13 @@
     <Compile Include="ToMail.Designer.cs">
       <DependentUpon>ToMail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Semantic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Semantic.Designer.cs">
+      <DependentUpon>Semantic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SemanticNetworks.cs" />
     <EmbeddedResource Include="Diagram.resx">
       <DependentUpon>Diagram.cs</DependentUpon>
     </EmbeddedResource>
@@ -159,6 +166,9 @@
     </Compile>
     <EmbeddedResource Include="ToMail.resx">
       <DependentUpon>ToMail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Semantic.resx">
+      <DependentUpon>Semantic.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

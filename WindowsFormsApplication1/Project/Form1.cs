@@ -90,5 +90,11 @@ namespace Project
             Profit pr = new Profit();
             pr.ShowDialog();
         }
+
+        private void самаяПокупаемаяФурнитурасемСетиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Semantic sem = new Semantic();
+            sem.ShowDialog();
+        }
     }
 }
