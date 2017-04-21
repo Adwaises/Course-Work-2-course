@@ -156,5 +156,18 @@ namespace Project
 
             MessageBox.Show("OK");
         }
+
+        private void FormSave_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            for (int i = 0; i < dt1.Rows.Count; i++)
+            {
+                if (Convert.ToInt32(dt1.Rows[i][0]) > DataForBD.idCustomer)
+                {
+                    DataForBD.idZakaz = Convert.ToInt32(dt1.Rows[i][0]);
+                }
+            }
+            DataForBD.idZakaz++;
+
+        }
     }
 }
