@@ -59,8 +59,10 @@ namespace Project
 
 
             // список заказ_строймат
-            DataForBD.listZakazStroyMat.Add(DataForBD.idZakaz + ",12");
-            DataForBD.listZakazStroyMat.Add(DataForBD.idZakaz + ",22");
+            //DataForBD.listZakazStroyMat.Add(DataForBD.idZakaz + ",12");
+            //DataForBD.listZakazStroyMat.Add(DataForBD.idZakaz + ",22");
+            DataForBD.idOboi = 12;
+            DataForBD.idPlitka = 22;
             // список заказ_мебтех
             //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",11,1");//стол
             //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",11,2");
@@ -129,10 +131,14 @@ namespace Project
             }
 
             // вставка в заказ стр мат
-            foreach (var n in DataForBD.listZakazStroyMat)
+            /*foreach (var n in DataForBD.listZakazStroyMat)
             {
                 mbd.controlquery("insert into StroyMaterialZakaz values ( " + Convert.ToString(n) + ");");
             }
+            */
+
+            mbd.controlquery("insert into StroyMaterialZakaz values ( " +DataForBD.idZakaz+""+DataForBD.idOboi + ");");
+            mbd.controlquery("insert into StroyMaterialZakaz values ( " + DataForBD.idZakaz + "" + DataForBD.idPlitka + ");");
 
             // вставка в фурнит
 

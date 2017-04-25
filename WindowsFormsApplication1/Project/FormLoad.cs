@@ -41,12 +41,15 @@ namespace Project
 
 
             DataForBD.listZakazMebTeh.Clear();
-            DataForBD.listZakazStroyMat.Clear();
+            //DataForBD.listZakazStroyMat.Clear();
             dt = mbd.selectionquery("select * from StroyMaterialZakaz where id_zakaz = "+ DataForBD.idZakaz+ ";");
-            for(int i=0; i< dt.Rows.Count;i++)
-            {
-                DataForBD.listZakazStroyMat.Add(dt.Rows[i][0] + "," + dt.Rows[i][1]);
-            }
+            //for(int i=0; i< dt.Rows.Count;i++)
+            //{
+            // DataForBD.listZakazStroyMat.Add(dt.Rows[i][0] + "," + dt.Rows[i][1]);
+            //}
+
+            DataForBD.idOboi = Convert.ToInt32(dt.Rows[0][1]);
+            DataForBD.idPlitka = Convert.ToInt32(dt.Rows[1][1]);
 
             dt = mbd.selectionquery("select * from FurnituraZakaz  where id_zakaz = " + DataForBD.idZakaz + ";");
             for (int i = 0; i < dt.Rows.Count; i++)

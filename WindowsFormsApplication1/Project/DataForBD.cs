@@ -26,7 +26,11 @@ namespace Project
         public static string mail;
 
 
-        public static List<string> listZakazStroyMat = new List<string>();
+        //public static List<string> listZakazStroyMat = new List<string>();
+        public static int idOboi;
+        public static int idPlitka; 
+
+
         public static List<string> listZakazMebTeh = new List<string>();
 
 
