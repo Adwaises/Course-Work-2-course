@@ -17,14 +17,12 @@ using System.Reflection;
 namespace Project 
 {
     /// <summary>
-    /// отчеты
+    /// Отчеты
     /// </summary>
     class Reports
     {
-
         ManagerBD mbd = new ManagerBD();
         Dictionary<string, string> dict;
-        //int id = 2;
 
         Dictionary<int, int> dictSum;
         Dictionary<int, int> dictCount;

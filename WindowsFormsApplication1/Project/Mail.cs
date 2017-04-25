@@ -13,7 +13,6 @@ namespace Project
 {
     class Mail
     {
-
         public void SendMail(string s, int id)
         {
             DataForBD.iter = 0;
@@ -23,11 +22,11 @@ namespace Project
             Smtp.Credentials = new NetworkCredential("lexa2171@mail.ru", "123A456B789c!");
             Smtp.EnableSsl = true;
             MailMessage Message = new MailMessage();
-            Message.From = new MailAddress("lexa2171@mail.ru");//от кого
-            Message.To.Add(new MailAddress(s));//кому
+            Message.From = new MailAddress("lexa2171@mail.ru");
+            Message.To.Add(new MailAddress(s));
             DataForBD.iter = 1;
-            Message.Subject = "Заказ №" + Convert.ToString(id);//тема
-            Message.Body = "Бланк заказа №" + Convert.ToString(id) + Environment.NewLine + "Дата формирования письма: " + second;//текст письма
+            Message.Subject = "Заказ №" + Convert.ToString(id);
+            Message.Body = "Бланк заказа №" + Convert.ToString(id) + Environment.NewLine + "Дата формирования письма: " + second;
             string file = "Document.pdf";
             Attachment attach = new Attachment(file, MediaTypeNames.Application.Octet);
             Message.Attachments.Add(attach);
@@ -35,11 +34,8 @@ namespace Project
             try
             {
                 Smtp.Send(Message);
-                
                 attach.Dispose();
                 DataForBD.iter = 3;
-
-                //нужно закрыть подключение, 2 раза не отправляет подряд, не закрывает поток на файл
             }
             catch (Exception ex)
             {
