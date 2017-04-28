@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApplication1"
         mc:Ignorable="d"
         xmlns:wpf="clr-namespace:SharpGL.WPF;assembly=SharpGL.WPF"
-        Title="MainWindow" Height="350" Width="620.243">
+        Title="MainWindow" Height="377" Width="679">
     <Grid Margin="0,0,238,0">
         <wpf:OpenGLControl OpenGLDraw="OpenGLControl_OpenGLDraw"
                                OpenGLInitialized="OpenGLControl_OpenGLInitialized"
