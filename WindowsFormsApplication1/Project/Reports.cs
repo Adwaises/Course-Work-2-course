@@ -27,6 +27,8 @@ namespace Project
         Dictionary<int, int> dictSum;
         Dictionary<int, int> dictCount;
 
+         
+
         public void blank(int id)
         {
             dict = new Dictionary<string, string>();

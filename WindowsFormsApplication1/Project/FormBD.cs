@@ -32,7 +32,10 @@ namespace Project
             //DataTable dt = mbd.selectionquery("select sum(summa)from zakaz where month_Zakaz = 4");
             //DataTable dt = mbd.selectionquery("select count(*) from zakaz where month_zakaz = 5");
             //DataTable dt = mbd.selectionquery("select Famil,Name,otchestvo, month_zakaz,count(*) from zakaz join customer on zakaz.id_customer = customer.id_customer join FurnituraZakaz on zakaz.id_zakaz = FurnituraZakaz.id_zakaz where id_furnitura = 21 group by zakaz.id_zakaz order by famil");
-            DataTable dt = mbd.selectionquery("select * from StroyMaterialZakaz where id_zakaz = " +"2" + ";");
+            //mbd.controlquery("ALTER TABLE FurnituraZakaz add Z double");
+            //mbd.controlquery("update FurnituraZakaz set x = 1.51151, y=1.5985955, z=1.5595 where id_zakaz=1 and id_furnitura = 21");
+            DataTable dt = mbd.selectionquery("select * from FurnituraZakaz ; ");
+            
             dataGridView1.DataSource = dt;
         }
 
