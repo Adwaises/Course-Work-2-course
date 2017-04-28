@@ -47,11 +47,6 @@ namespace Project
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            FormBD fBD = new FormBD();
-            fBD.ShowDialog();
-        }
 
         private void оформитьСохранитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -95,6 +90,12 @@ namespace Project
         {
             Semantic sem = new Semantic();
             sem.ShowDialog();
+        }
+
+        private void просмотрвременноToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormBD fBD = new FormBD();
+            fBD.ShowDialog();
         }
     }
 }
