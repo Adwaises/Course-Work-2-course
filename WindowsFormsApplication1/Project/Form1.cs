@@ -90,6 +90,7 @@ namespace Project
         {
             Semantic sem = new Semantic();
             sem.ShowDialog();
+
         }
 
         private void просмотрвременноToolStripMenuItem_Click(object sender, EventArgs e)
