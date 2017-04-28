@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibMail", "LibMail\LibMail.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibDataForBD", "LibDataForBD\LibDataForBD.csproj", "{69DD7CE8-7872-4EA2-92FE-CA38DF65F962}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkPlace", "WorkPlace\WorkPlace.csproj", "{9F5A0473-2CE5-4092-B8A1-D27FBD4FAC8A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{69DD7CE8-7872-4EA2-92FE-CA38DF65F962}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69DD7CE8-7872-4EA2-92FE-CA38DF65F962}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69DD7CE8-7872-4EA2-92FE-CA38DF65F962}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F5A0473-2CE5-4092-B8A1-D27FBD4FAC8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F5A0473-2CE5-4092-B8A1-D27FBD4FAC8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F5A0473-2CE5-4092-B8A1-D27FBD4FAC8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F5A0473-2CE5-4092-B8A1-D27FBD4FAC8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
