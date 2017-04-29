@@ -35,7 +35,7 @@ namespace WorkPlace
 
             DateTime data = DateTime.Now;
             DataForBD.mounth = data.Month;
-            DataForBD.mounth = 3;
+           // DataForBD.mounth = 3;
             // заказчик если есть
 
 
@@ -64,7 +64,7 @@ namespace WorkPlace
             DataForBD.idOboi = 12;
             DataForBD.idPlitka = 22;
             // список заказ_мебтех
-            //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",11,1");//стол
+            DataForBD.listZakazMebTeh.Add(new ObjFurnit(DataForBD.idZakaz,11,1,1));//стол
             //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",11,2");
             //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",11,3");
             //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",31,4"); //шкаф
@@ -81,7 +81,7 @@ namespace WorkPlace
             //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",61,12");
 
             
-            //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",21,20"); // стул
+            DataForBD.listZakazMebTeh.Add(new ObjFurnit(DataForBD.idZakaz, 21, 1, 1)); // стул
             //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",21,21");
             //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",21,22");
             //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",21,23");
@@ -137,14 +137,14 @@ namespace WorkPlace
             }
             */
 
-            mbd.controlquery("insert into StroyMaterialZakaz values ( " +DataForBD.idZakaz+""+DataForBD.idOboi + ");");
-            mbd.controlquery("insert into StroyMaterialZakaz values ( " + DataForBD.idZakaz + "" + DataForBD.idPlitka + ");");
+            mbd.controlquery("insert into StroyMaterialZakaz values ( " +DataForBD.idZakaz+","+DataForBD.idOboi + ");");
+            mbd.controlquery("insert into StroyMaterialZakaz values ( " + DataForBD.idZakaz + "," + DataForBD.idPlitka + ");");
 
             // вставка в фурнит
 
             foreach (var n in DataForBD.listZakazMebTeh)
             {
-                mbd.controlquery("insert into FurnituraZakaz  values ( " + Convert.ToString(n) + ");");
+                mbd.controlquery("insert into FurnituraZakaz  values ( " +n.IdZakaz +","+ n.IdFurnit+"," +n.CoordX + "," + n.CoordY+");");
             }
 
             //вставка в заказ
