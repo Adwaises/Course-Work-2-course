@@ -34,6 +34,17 @@ namespace WorkPlace
             //DataTable dt = mbd.selectionquery("select Famil,Name,otchestvo, month_zakaz,count(*) from zakaz join customer on zakaz.id_customer = customer.id_customer join FurnituraZakaz on zakaz.id_zakaz = FurnituraZakaz.id_zakaz where id_furnitura = 21 group by zakaz.id_zakaz order by famil");
             //mbd.controlquery("ALTER TABLE FurnituraZakaz add Z double");
             //mbd.controlquery("update FurnituraZakaz set x = 1.51151, y=1.5985955, z=1.5595 where id_zakaz=1 and id_furnitura = 21");
+
+            //mbd.controlquery("drop table FurnituraZakaz");
+
+            //mbd.controlquery("create table FurnituraZakaz (id_zakaz INTEGER,id_Furnitura INTEGER ,coordX INTEGER,coordY INTEGER, FOREIGN KEY (id_Furnitura) REFERENCES Furnitura (id_furnit),FOREIGN KEY (id_zakaz) REFERENCES Zakaz (id_zakaz))");
+
+            //mbd.controlquery("insert into FurnituraZakaz values (1, 11, 1, 1)");
+
+
+           
+
+
             DataTable dt = mbd.selectionquery("select * from FurnituraZakaz ; ");
             
             dataGridView1.DataSource = dt;
