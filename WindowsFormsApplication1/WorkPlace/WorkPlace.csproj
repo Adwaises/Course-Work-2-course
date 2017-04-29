@@ -151,6 +151,7 @@
     </Compile>
     <Compile Include="Mail.cs" />
     <Compile Include="ManagerBD.cs" />
+    <Compile Include="ObjFurnit.cs" />
     <Compile Include="ProfitAnalysis.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

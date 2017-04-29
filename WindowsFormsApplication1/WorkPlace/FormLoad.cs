@@ -54,7 +54,9 @@ namespace WorkPlace
             dt = mbd.selectionquery("select * from FurnituraZakaz  where id_zakaz = " + DataForBD.idZakaz + ";");
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                DataForBD.listZakazMebTeh.Add(dt.Rows[i][0] + "," + dt.Rows[i][1]+"," + dt.Rows[i][2]);
+                DataForBD.listZakazMebTeh.Add(new ObjFurnit(Convert.ToInt32( dt.Rows[i][0]) , Convert.ToInt32(dt.Rows[i][1]) ,
+                    Convert.ToInt32(dt.Rows[i][2]), Convert.ToInt32(dt.Rows[i][3])));
+
             }
 
             //наверное нужно присвоить новый id, т к пользователь будет изменять

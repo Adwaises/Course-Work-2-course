@@ -31,7 +31,7 @@ namespace WorkPlace
         public static int idPlitka; 
 
 
-        public static List<string> listZakazMebTeh = new List<string>();
+        public static List<ObjFurnit> listZakazMebTeh = new List<ObjFurnit>();
 
 
 

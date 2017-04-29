@@ -37,7 +37,7 @@ namespace WorkPlace
 
             //mbd.controlquery("drop table FurnituraZakaz");
 
-            //mbd.controlquery("create table FurnituraZakaz (id_zakaz INTEGER,id_Furnitura INTEGER ,coordX INTEGER,coordY INTEGER, FOREIGN KEY (id_Furnitura) REFERENCES Furnitura (id_furnit),FOREIGN KEY (id_zakaz) REFERENCES Zakaz (id_zakaz))");
+            //mbd.controlquery("create table FurnituraZakaz (id_zakaz INTEGER,id_Furnitura INTEGER ,coordX DOUBLE,coordY DOUBLE, FOREIGN KEY (id_Furnitura) REFERENCES Furnitura (id_furnit),FOREIGN KEY (id_zakaz) REFERENCES Zakaz (id_zakaz))");
 
             //mbd.controlquery("insert into FurnituraZakaz values (1, 11, 1, 1)");
 
