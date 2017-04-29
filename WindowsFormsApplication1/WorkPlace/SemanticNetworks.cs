@@ -31,9 +31,9 @@ namespace WorkPlace
             {
                 s += "Наименование: " + dict[Convert.ToString(dt.Rows[i][0])] + "\t\t"+"Название: " + dt.Rows[i][1] +  "   \tЦена: " + dt.Rows[i][2]  +" \tКоличество заказов: " + dt.Rows[i][3] + "\r\n";
                 DataTable dt1 = mbd.selectionquery("select Famil,Name,otchestvo, month_zakaz,count(*) from zakaz join customer on zakaz.id_customer = customer.id_customer join FurnituraZakaz on zakaz.id_zakaz = FurnituraZakaz.id_zakaz where id_furnitura = "+ dt.Rows[i][4] + " group by zakaz.id_zakaz order by famil");
-                for(int j=0;j < dt1.Columns.Count;j++)
+                for(int j=0;j < dt1.Rows.Count;j++)
                 {
-                    s += "Заказал: " + dt1.Rows[j][0] + " "+ dt1.Rows[j][1] +" "+ dt1.Rows[j][2] + "\tВ месяце: " + months[Convert.ToInt32( dt1.Rows[j][3])] + "       \tВ количестве: " + dt1.Rows[j][4] + "\r\n";
+                    s += "Заказал: " + dt1.Rows[j][0] + " "+ dt1.Rows[j][1] +" "+ dt1.Rows[j][2] + "\tВ месяце: " + months[Convert.ToInt32( dt1.Rows[j][3])-1] + "       \tВ количестве: " + dt1.Rows[j][4] + "\r\n";
                 }
             }
             return s;
@@ -50,11 +50,11 @@ namespace WorkPlace
 
             gr.DrawString("Покупатель", new System.Drawing.Font("Arial", 10), Brushes.Red, 600, 100);
             gr.DrawString("Количество", new System.Drawing.Font("Arial", 10), Brushes.Red, 600, 200);
-            gr.DrawString("Месяц", new System.Drawing.Font("Arial", 10), Brushes.Red, 600, 300);
+            gr.DrawString("Месяц", new System.Drawing.Font("Arial", 10), Brushes.Red, 650, 300);
 
             for (int i=0; i<12;i++)
             {
-                gr.DrawString((i+1).ToString(), new System.Drawing.Font("Arial", 10), Brushes.Black, 50*i, 300);
+                gr.DrawString((i+1).ToString(), new System.Drawing.Font("Arial", 10), Brushes.Black,50 +50*i, 300);
             }
 
             Pen p = new Pen(Brushes.Green, 3);
@@ -75,7 +75,7 @@ namespace WorkPlace
                 int num = 0;
                 listFamil = new List<string>();
                 DataTable dt1 = mbd.selectionquery("select Famil,Name,otchestvo, month_zakaz,count(*) from zakaz join customer on zakaz.id_customer = customer.id_customer join FurnituraZakaz on zakaz.id_zakaz = FurnituraZakaz.id_zakaz where id_furnitura = " + dt.Rows[i][4] + " group by zakaz.id_zakaz order by famil");
-                for (int j = 0; j < dt1.Columns.Count; j++)
+                for (int j = 0; j < dt1.Rows.Count; j++)
                 {
                     if (!listFamil.Contains(dt1.Rows[j][0].ToString()))
                     {

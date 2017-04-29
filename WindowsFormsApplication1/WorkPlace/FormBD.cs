@@ -39,14 +39,20 @@ namespace WorkPlace
 
             //mbd.controlquery("create table FurnituraZakaz (id_zakaz INTEGER,id_Furnitura INTEGER ,coordX DOUBLE,coordY DOUBLE, FOREIGN KEY (id_Furnitura) REFERENCES Furnitura (id_furnit),FOREIGN KEY (id_zakaz) REFERENCES Zakaz (id_zakaz))");
 
-            //mbd.controlquery("insert into FurnituraZakaz values (1, 11, 1, 1)");
+            //mbd.controlquery("insert into FurnituraZakaz values (1, 61, -3, -3.5)");
+
+            //mbd.controlquery("delete from FurnituraZakaz where id_zakaz = 4 and id_furnitura = 11");
+            //mbd.controlquery("delete from FurnituraZakaz where id_zakaz = 4 and id_furnitura = 61");
 
 
-            DataTable dt = mbd.selectionquery("select * from FurnituraZakaz ; ");
+            //DataTable dt = mbd.selectionquery("select * from zakaz join customer on zakaz.id_customer = customer.id_customer ; ");
 
+           DataTable dt = mbd.selectionquery("select * from FurnituraZakaz ; ");
+
+            //DataTable dt = mbd.selectionquery("select Famil, Name, otchestvo, month_zakaz, count(*),id_zakaz from zakaz join customer on zakaz.id_customer = customer.id_customer join FurnituraZakaz on zakaz.id_zakaz = FurnituraZakaz.id_zakaz where id_furnitura = " + "61" + " group by zakaz.id_zakaz order by famil");
 
             //DataTable dt = mbd.selectionquery("select Famil,Name,otchestvo, month_zakaz,count(*) from zakaz join customer on zakaz.id_customer = customer.id_customer join FurnituraZakaz on zakaz.id_zakaz = FurnituraZakaz.id_zakaz where id_furnitura = " + "11"+ " group by zakaz.id_zakaz order by famil");
-            
+
             dataGridView1.DataSource = dt;
         }
 

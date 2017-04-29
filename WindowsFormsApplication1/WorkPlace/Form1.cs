@@ -266,6 +266,8 @@ public Form1()
                 //     ray_n.Normalize();
                 Console.WriteLine((ray_n.X * secret) + "  " + (ray_n.Y * secret) + "  " + ray_n.Z);
 
+              
+
                 for (int i = 0; i < room.GetSize(); i++)
                 {
                     //      ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)(p2[2] - room.GetObj(i).Height));
@@ -280,12 +282,12 @@ public Form1()
 
                             /*-------------Взаимодействие с БД (тем классом)------------------*/
 
-                            for (int k=0; k<DataForBD.listZakazMebTeh.Count;k++)
+                            for (int k = 0; k < DataForBD.listZakazMebTeh.Count; k++)
                             {
-                                if(DataForBD.listZakazMebTeh[i].CoordX == room.GetObj(i).X && DataForBD.listZakazMebTeh[i].CoordY == room.GetObj(i).Y)
+                                if (DataForBD.listZakazMebTeh[k].CoordX == room.GetObj(indexOfObj).X && DataForBD.listZakazMebTeh[k].CoordY == room.GetObj(indexOfObj).Y)
                                 {
                                     Console.WriteLine("Есть конакт");
-                                    index = i;
+                                    index = k;
                                 }
                             }
 
@@ -310,12 +312,15 @@ public Form1()
 
                     //      room.GetObj(i).Draw(gl);
                 }
+
+                
+
             }
             //   gl.Project(1, 0, 0, modelMatrix, projMatrix, viewport,  p3[0],  p3[1],  p3[2]);
             //        ray_m.Normalize();
 
             //    Console.WriteLine(x + "  " + y);
-            
+
         }
 
         private void редактированиеToolStripMenuItem_Click(object sender, EventArgs e)
@@ -395,7 +400,10 @@ public Form1()
 
                 DataForBD.listZakazMebTeh[index].CoordX = room.GetObj(indexOfObj).X;
                 DataForBD.listZakazMebTeh[index].CoordY = room.GetObj(indexOfObj).Y;
-                Console.WriteLine(DataForBD.listZakazMebTeh[index].CoordX + " " + DataForBD.listZakazMebTeh[index].CoordY + "");
+                foreach(var n in DataForBD.listZakazMebTeh) {
+                    Console.WriteLine(n.CoordX+" " + n.CoordY + "");
+                }
+                
 
                 /*----------------------------------------------------------------*/
             }
