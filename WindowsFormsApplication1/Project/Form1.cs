@@ -27,7 +27,7 @@ namespace Project
 
         private void графическийОтчетToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Diagram diag = new Diagram();
+            FDiagram diag = new FDiagram();
             diag.ShowDialog();
         }
 
@@ -42,7 +42,7 @@ namespace Project
         private void отправитьНаПочтуToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //report.blank(DataForBD.idZakaz);
-            ToMail tm = new ToMail();
+            FToMail tm = new FToMail();
             tm.ShowDialog();
 
         }
@@ -82,13 +82,13 @@ namespace Project
 
         private void продукцииToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Profit pr = new Profit();
+            FProfit pr = new FProfit();
             pr.ShowDialog();
         }
 
         private void самаяПокупаемаяФурнитурасемСетиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Semantic sem = new Semantic();
+            FSemantic sem = new FSemantic();
             sem.ShowDialog();
 
         }

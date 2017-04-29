@@ -1,6 +1,6 @@
-﻿namespace Project
+﻿namespace WorkPlace
 {
-    partial class Diagram
+    partial class FDiagram
     {
         /// <summary>
         /// Required designer variable.

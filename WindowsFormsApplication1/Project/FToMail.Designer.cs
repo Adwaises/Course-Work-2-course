@@ -1,6 +1,6 @@
 ﻿namespace Project
 {
-    partial class ToMail
+    partial class FToMail
     {
         /// <summary>
         /// Required designer variable.

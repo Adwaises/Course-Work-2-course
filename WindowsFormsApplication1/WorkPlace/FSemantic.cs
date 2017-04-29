@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Project
+namespace WorkPlace
 {
-    public partial class Semantic : Form
+    public partial class FSemantic : Form
     {
-        public Semantic()
+        public FSemantic()
         {
             InitializeComponent();
         }

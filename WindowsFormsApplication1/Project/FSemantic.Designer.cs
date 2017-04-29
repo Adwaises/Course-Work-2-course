@@ -1,6 +1,6 @@
 ﻿namespace Project
 {
-    partial class Semantic
+    partial class FSemantic
     {
         /// <summary>
         /// Required designer variable.

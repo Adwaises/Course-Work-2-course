@@ -15,6 +15,8 @@ namespace WorkPlace
 {
     public partial class Form1 : Form
     {
+        ManagerBD mbd = new ManagerBD();
+
         private double rotation = 0;
         private double centX = 0;
         private double centY = 0;
@@ -364,6 +366,71 @@ namespace WorkPlace
             {
                 objMove = false;
             }
+        }
+
+        private void графическиеОтчетыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FDiagram diag = new FDiagram();
+            diag.ShowDialog();
+        }
+
+        private void создатьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormPDF pdf = new FormPDF();
+            pdf.ShowDialog();
+        }
+
+        private void отправитьНаПочтуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FToMail tm = new FToMail();
+            tm.ShowDialog();
+        }
+
+        private void новыйToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // присвоение нового id
+            mbd.Connection();
+            DataTable dt1 = mbd.selectionquery("select * from zakaz;");
+
+            DataForBD.idZakaz = 1;
+            for (int i = 0; i < dt1.Rows.Count; i++)
+            {
+                if (Convert.ToInt32(dt1.Rows[i][0]) > DataForBD.idZakaz)
+                {
+                    DataForBD.idZakaz = Convert.ToInt32(dt1.Rows[i][0]);
+                }
+            }
+            DataForBD.idZakaz++;
+        }
+
+        private void оформитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSave fs = new FormSave();
+            fs.ShowDialog();
+        }
+
+        private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormLoad fl = new FormLoad();
+            fl.ShowDialog();
+        }
+
+        private void просмотрыременноToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormBD fBD = new FormBD();
+            fBD.ShowDialog();
+        }
+
+        private void анализПрибылиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FProfit pr = new FProfit();
+            pr.ShowDialog();
+        }
+
+        private void самаяПокупаемаяФурнитураToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FSemantic sem = new FSemantic();
+            sem.ShowDialog();
         }
     }
 }
