@@ -42,7 +42,12 @@ namespace WorkPlace
         Vertex ray_m = new Vertex(0, 0, 0);
         Vertex ray_n = new Vertex(0, 0, 0);
 
-        public Form1()
+
+        /*-------------Взаимодействие с БД (тем классом)------------------*/
+        int index = 0;
+        /*----------------------------------------------------------------*/
+
+public Form1()
         {
             InitializeComponent();
             openGLControl.MouseWheel += new System.Windows.Forms.MouseEventHandler(openGLControl_MouseWheel);
@@ -118,6 +123,12 @@ namespace WorkPlace
             //SceneControl sc = new SceneControl();
             //s.SaveData(sc.Scene, "save.xml");
             room.AddObj((new Cupboard(0, 0, -1, 1, 1, 2)));
+
+            /*-------------Взаимодействие с БД (тем классом)------------------*/
+
+            DataForBD.listZakazMebTeh.Add(new ObjFurnit(DataForBD.idCustomer,11,0,0));
+
+            /*----------------------------------------------------------------*/
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -266,6 +277,20 @@ namespace WorkPlace
                             otstup = room.GetObj(i).Height;
                             objMove = true;
                             indexOfObj = i;
+
+                            /*-------------Взаимодействие с БД (тем классом)------------------*/
+
+                            for (int k=0; k<DataForBD.listZakazMebTeh.Count;k++)
+                            {
+                                if(DataForBD.listZakazMebTeh[i].CoordX == room.GetObj(i).X && DataForBD.listZakazMebTeh[i].CoordY == room.GetObj(i).Y)
+                                {
+                                    Console.WriteLine("Есть конакт");
+                                    index = i;
+                                }
+                            }
+
+                            /*----------------------------------------------------------------*/
+
                             return;
                             Console.WriteLine("Попали");
                         }
@@ -365,6 +390,14 @@ namespace WorkPlace
             if (objMove)
             {
                 objMove = false;
+
+                /*-------------Взаимодействие с БД (тем классом)------------------*/
+
+                DataForBD.listZakazMebTeh[index].CoordX = room.GetObj(indexOfObj).X;
+                DataForBD.listZakazMebTeh[index].CoordY = room.GetObj(indexOfObj).Y;
+                Console.WriteLine(DataForBD.listZakazMebTeh[index].CoordX + " " + DataForBD.listZakazMebTeh[index].CoordY + "");
+
+                /*----------------------------------------------------------------*/
             }
         }
 

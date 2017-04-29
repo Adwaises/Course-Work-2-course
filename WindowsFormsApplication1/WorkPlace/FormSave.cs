@@ -78,10 +78,12 @@ namespace WorkPlace
             //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",51,10");
 
             //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",61,11"); //холодильник
-            //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",61,12");
+            DataForBD.listZakazMebTeh.Add(new ObjFurnit(DataForBD.idZakaz, 61, 3, 3));
+            DataForBD.listZakazMebTeh.Add(new ObjFurnit(DataForBD.idZakaz, 61, 4, 3));
+            DataForBD.listZakazMebTeh.Add(new ObjFurnit(DataForBD.idZakaz, 61, 5, 3));
+            DataForBD.listZakazMebTeh.Add(new ObjFurnit(DataForBD.idZakaz, 61, 3, 5));
 
-            
-            DataForBD.listZakazMebTeh.Add(new ObjFurnit(DataForBD.idZakaz, 21, 1, 1)); // стул
+            DataForBD.listZakazMebTeh.Add(new ObjFurnit(DataForBD.idZakaz, 21, 2, 2)); // стул
             //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",21,21");
             //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",21,22");
             //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",21,23");

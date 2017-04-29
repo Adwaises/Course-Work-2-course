@@ -10,10 +10,10 @@ namespace WorkPlace
     {
         private int idZakaz;
         private int idFurnit;
-        private int coordX;
-        private int coordY;
+        private double coordX;
+        private double coordY;
 
-        public ObjFurnit(int _idZakaz, int _idFurnit, int _coordX, int _coordY)
+        public ObjFurnit(int _idZakaz, int _idFurnit, double _coordX, double _coordY)
         {
             this.IdZakaz = _idZakaz;
             this.IdFurnit = _idFurnit;
@@ -47,7 +47,7 @@ namespace WorkPlace
             }
         }
 
-        public int CoordX
+        public double CoordX
         {
             get
             {
@@ -60,7 +60,7 @@ namespace WorkPlace
             }
         }
 
-        public int CoordY
+        public double CoordY
         {
             get
             {

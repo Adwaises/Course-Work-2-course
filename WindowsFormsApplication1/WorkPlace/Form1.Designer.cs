@@ -56,12 +56,12 @@ namespace WorkPlace
             this.загрузитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.бДToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.просмотрыременноToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.pBControl = new System.Windows.Forms.PictureBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.информацияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.анализПрибылиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.самаяПокупаемаяФурнитураToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.pBControl = new System.Windows.Forms.PictureBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBControl)).BeginInit();
@@ -288,28 +288,6 @@ namespace WorkPlace
             this.просмотрыременноToolStripMenuItem.Text = "Просмотр (временно)";
             this.просмотрыременноToolStripMenuItem.Click += new System.EventHandler(this.просмотрыременноToolStripMenuItem_Click);
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // pBControl
-            // 
-            this.pBControl.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.pBControl.Location = new System.Drawing.Point(721, 435);
-            this.pBControl.Name = "pBControl";
-            this.pBControl.Size = new System.Drawing.Size(214, 196);
-            this.pBControl.TabIndex = 3;
-            this.pBControl.TabStop = false;
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(741, 250);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 95);
-            this.listBox1.TabIndex = 4;
-            // 
             // информацияToolStripMenuItem
             // 
             this.информацияToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -332,6 +310,28 @@ namespace WorkPlace
             this.самаяПокупаемаяФурнитураToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.самаяПокупаемаяФурнитураToolStripMenuItem.Text = "Самая покупаемая фурнитура";
             this.самаяПокупаемаяФурнитураToolStripMenuItem.Click += new System.EventHandler(this.самаяПокупаемаяФурнитураToolStripMenuItem_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // pBControl
+            // 
+            this.pBControl.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.pBControl.Location = new System.Drawing.Point(721, 435);
+            this.pBControl.Name = "pBControl";
+            this.pBControl.Size = new System.Drawing.Size(214, 196);
+            this.pBControl.TabIndex = 3;
+            this.pBControl.TabStop = false;
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(741, 250);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(120, 95);
+            this.listBox1.TabIndex = 4;
             // 
             // Form1
             // 
