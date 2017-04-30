@@ -15,6 +15,8 @@ namespace WorkPlace
 {
     public partial class Form1 : Form
     {
+        ManagerBD mbd = new ManagerBD();
+
         private double rotation = 0;
         private double centX = 0;
         private double centY = 0;
@@ -39,7 +41,12 @@ namespace WorkPlace
         Vertex ray_m = new Vertex(0, 0, 0);
         Vertex ray_n = new Vertex(0, 0, 0);
 
-        public Form1()
+
+        /*-------------Взаимодействие с БД (тем классом)------------------*/
+        int index = 0;
+        /*----------------------------------------------------------------*/
+
+public Form1()
         {
             InitializeComponent();
             openGLControl.MouseWheel += new System.Windows.Forms.MouseEventHandler(openGLControl_MouseWheel);
@@ -115,6 +122,12 @@ namespace WorkPlace
             //SceneControl sc = new SceneControl();
             //s.SaveData(sc.Scene, "save.xml");
             room.AddObj((new Cupboard(0, 0, -1, 1, 1, 2)));
+
+            /*-------------Взаимодействие с БД (тем классом)------------------*/
+
+            DataForBD.listZakazMebTeh.Add(new ObjFurnit(DataForBD.idCustomer,11,0,0));
+
+            /*----------------------------------------------------------------*/
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -252,6 +265,8 @@ namespace WorkPlace
                 //     ray_n.Normalize();
                 Console.WriteLine((ray_n.X * secret) + "  " + (ray_n.Y * secret) + "  " + ray_n.Z);
 
+              
+
                 for (int i = 0; i < room.GetSize(); i++)
                 {
                     //      ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)(p2[2] - room.GetObj(i).Height));
@@ -263,6 +278,20 @@ namespace WorkPlace
                             otstup = room.GetObj(i).Height;
                             objMove = true;
                             indexOfObj = i;
+
+                            /*-------------Взаимодействие с БД (тем классом)------------------*/
+
+                            for (int k = 0; k < DataForBD.listZakazMebTeh.Count; k++)
+                            {
+                                if (DataForBD.listZakazMebTeh[k].CoordX == room.GetObj(indexOfObj).X && DataForBD.listZakazMebTeh[k].CoordY == room.GetObj(indexOfObj).Y)
+                                {
+                                    Console.WriteLine("Есть конакт");
+                                    index = k;
+                                }
+                            }
+
+                            /*----------------------------------------------------------------*/
+
                             return;
                             Console.WriteLine("Попали");
                         }
@@ -282,12 +311,15 @@ namespace WorkPlace
 
                     //      room.GetObj(i).Draw(gl);
                 }
+
+                
+
             }
             //   gl.Project(1, 0, 0, modelMatrix, projMatrix, viewport,  p3[0],  p3[1],  p3[2]);
             //        ray_m.Normalize();
 
             //    Console.WriteLine(x + "  " + y);
-            
+
         }
 
         private void редактированиеToolStripMenuItem_Click(object sender, EventArgs e)
@@ -362,7 +394,83 @@ namespace WorkPlace
             if (objMove)
             {
                 objMove = false;
+
+                /*-------------Взаимодействие с БД (тем классом)------------------*/
+
+                DataForBD.listZakazMebTeh[index].CoordX = room.GetObj(indexOfObj).X;
+                DataForBD.listZakazMebTeh[index].CoordY = room.GetObj(indexOfObj).Y;
+                foreach(var n in DataForBD.listZakazMebTeh) {
+                    Console.WriteLine(n.CoordX+" " + n.CoordY + "");
+                }
+                
+
+                /*----------------------------------------------------------------*/
             }
+        }
+
+        private void графическиеОтчетыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FDiagram diag = new FDiagram();
+            diag.ShowDialog();
+        }
+
+        private void создатьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormPDF pdf = new FormPDF();
+            pdf.ShowDialog();
+        }
+
+        private void отправитьНаПочтуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FToMail tm = new FToMail();
+            tm.ShowDialog();
+        }
+
+        private void новыйToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // присвоение нового id
+            mbd.Connection();
+            DataTable dt1 = mbd.selectionquery("select * from zakaz;");
+
+            DataForBD.idZakaz = 1;
+            for (int i = 0; i < dt1.Rows.Count; i++)
+            {
+                if (Convert.ToInt32(dt1.Rows[i][0]) > DataForBD.idZakaz)
+                {
+                    DataForBD.idZakaz = Convert.ToInt32(dt1.Rows[i][0]);
+                }
+            }
+            DataForBD.idZakaz++;
+        }
+
+        private void оформитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSave fs = new FormSave();
+            fs.ShowDialog();
+        }
+
+        private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormLoad fl = new FormLoad();
+            fl.ShowDialog();
+        }
+
+        private void просмотрыременноToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormBD fBD = new FormBD();
+            fBD.ShowDialog();
+        }
+
+        private void анализПрибылиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FProfit pr = new FProfit();
+            pr.ShowDialog();
+        }
+
+        private void самаяПокупаемаяФурнитураToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FSemantic sem = new FSemantic();
+            sem.ShowDialog();
         }
     }
 }

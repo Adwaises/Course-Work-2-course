@@ -1,6 +1,6 @@
 ﻿namespace Project
 {
-    partial class Profit
+    partial class FProfit
     {
         /// <summary>
         /// Required designer variable.

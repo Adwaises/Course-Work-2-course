@@ -11,16 +11,16 @@ using System.Windows.Forms;
 
 
 
-namespace Project
+namespace WorkPlace
 {
-    public partial class ToMail : Form
+    public partial class FToMail : Form
     {
         Mail mail = new Mail();
         ManagerBD mbd = new ManagerBD();
         DataTable dt;
         Reports report = new Reports();
         int index = 0;
-        public ToMail()
+        public FToMail()
         {
             InitializeComponent();
         }

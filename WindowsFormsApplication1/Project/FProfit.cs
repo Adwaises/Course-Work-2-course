@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Project
 {
-    public partial class Profit : Form
+    public partial class FProfit : Form
     {
-        public Profit()
+        public FProfit()
         {
             InitializeComponent();
         }

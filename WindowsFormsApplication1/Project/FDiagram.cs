@@ -13,11 +13,11 @@ using System.Windows.Forms;
 
 namespace Project
 {
-    public partial class Diagram : Form
+    public partial class FDiagram : Form
     {
         Reports report = new Reports();
        
-        public Diagram()
+        public FDiagram()
         {
             InitializeComponent();
             //label1.Text = "";
