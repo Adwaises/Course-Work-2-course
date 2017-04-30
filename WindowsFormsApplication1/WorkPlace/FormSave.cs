@@ -65,6 +65,7 @@ namespace WorkPlace
             DataForBD.idPlitka = 22;
             // список заказ_мебтех
             //DataForBD.listZakazMebTeh.Add(new ObjFurnit(DataForBD.idZakaz,21,1,1));//стол
+
             //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",11,2");
             //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",11,3");
             //DataForBD.listZakazMebTeh.Add(DataForBD.idZakaz + ",31,4"); //шкаф

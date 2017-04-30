@@ -19,6 +19,10 @@ namespace WorkPlace
             InitializeComponent();
             this.room = room;
             butCancle.Click += (object sender, EventArgs e) => { Close(); };
+
+            tBLength.Text = room.length.ToString();
+            tBWidth.Text = room.width.ToString();
+            tBHeigth.Text = room.height.ToString();
         }
 
         private void butOk_Click(object sender, EventArgs e)
