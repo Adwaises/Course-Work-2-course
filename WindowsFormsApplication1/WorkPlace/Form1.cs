@@ -17,36 +17,35 @@ namespace WorkPlace
     {
         ManagerBD mbd = new ManagerBD();
 
-        private double rotation = 0;
-        private double centX = 0;
+        private double rotation = 0; //временно
+        private double centX = 0; // важно
         private double centY = 0;
         private double centZ = 0;
-        private double otstup = 0;
-        private int indexOfObj;
-        private Room room;
-        private double radius = 6;
-        private double CamX = 0;
+        private int indexOfObj; // важно
+        private Room room;// важно
+        private double radius = 6;// важно
+        private double CamX = 0;//временно
         private double CamY = 0;
         private double CamZ = 0;
-        private double secret = 20;
+        private double secret = 20;// важно
         private double perspective = 1f;
 
-        private double mouseX = 0;
-        private double mouseY = 0;
-        private double sigma = 0;
-        private double fi = 0;
-        private bool editing = false;
-        private bool mouseDown = false;
-        private bool objMove = false;
-        Vertex ray_m = new Vertex(0, 0, 0);
-        Vertex ray_n = new Vertex(0, 0, 0);
+        private double mouseX = 0;// важно
+        private double mouseY = 0;// важно
+        private double sigma = 0;// важно
+        private double fi = 0;// важно
+        private bool editing = false;// важно
+        private bool mouseDown = false;// важно
+        private bool objMove = false;// важно
+        Vertex ray_m = new Vertex(0, 0, 0);//временно
+        Vertex ray_n = new Vertex(0, 0, 0);// важно
 
 
         /*-------------Взаимодействие с БД (тем классом)------------------*/
         int index = 0;
         /*----------------------------------------------------------------*/
 
-public Form1()
+        public Form1()
         {
             InitializeComponent();
             openGLControl.MouseWheel += new System.Windows.Forms.MouseEventHandler(openGLControl_MouseWheel);
@@ -59,14 +58,14 @@ public Form1()
             //  Get the OpenGL object.
             OpenGL gl = openGLControl.OpenGL;
 
-            gl.ClearColor(0.4f, 0.4f, 0.4f, 0);
+            gl.ClearColor(0.4f, 0.4f, 0.4f, 0); // задний фон
         }
 
         private void openGLControl_OpenGLDraw(object sender, RenderEventArgs e)
         {
             var gl = openGLControl.OpenGL;
-            gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
- 
+            gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);//очистка сцены
+
             gl.Begin(OpenGL.GL_LINES);
             gl.Color(1f, 0f, 0f); // X Green
             gl.Vertex(0f, 0f, 0f);
@@ -83,26 +82,25 @@ public Form1()
             {
                 room.GetObj(i).Draw(gl);
             }
-            float zsd;
-            if (editing)
+            float zsd;//временно
+            if (editing)//временно
             {
-                zsd = (float)(ray_n.Z - radius);
+                zsd = (float)(ray_n.Z - radius);//временно
             }
             else
             {
-                zsd = -1;
+                zsd = -1;//временно
             }
-            gl.Begin(OpenGL.GL_LINES);
-            gl.Color(0f, 1f, 0f);
-            gl.Vertex(CamX, CamY, CamZ);
-            gl.Vertex(-(ray_n.X * secret), -(ray_n.Y * secret), zsd + otstup);
+            gl.Begin(OpenGL.GL_LINES);//временно
+            gl.Color(0f, 1f, 0f);//временно
+            gl.Vertex(CamX, CamY, CamZ);//временно
+            gl.Vertex(-(ray_n.X * secret), -(ray_n.Y * secret), zsd);//временно
 
             //    gl.Vertex(ray_m.X, ray_m.Y, ray_m.Z);
-            gl.End();
-            gl.PopMatrix();
-            DrawPlane(gl);
-            room.DrawRoom(gl);
-            gl.Flush();
+            gl.End();//временно
+            DrawPlane(gl); // рисуем пол
+            room.DrawRoom(gl); // рисуем комнату
+            gl.Flush();// говорят, что эта штука для оптимизации
         }
         private void openGLControl_Resized(object sender, EventArgs e)
         {
@@ -125,7 +123,7 @@ public Form1()
 
             /*-------------Взаимодействие с БД (тем классом)------------------*/
 
-            DataForBD.listZakazMebTeh.Add(new ObjFurnit(DataForBD.idCustomer,11,0,0));
+            DataForBD.listZakazMebTeh.Add(new ObjFurnit(DataForBD.idCustomer, 11, 0, 0));
 
             /*----------------------------------------------------------------*/
         }
@@ -133,10 +131,10 @@ public Form1()
         private void button2_Click(object sender, EventArgs e)
         {
             //     openGLControl_Resized(sender, e);
-      //      SharpGLXmlFormat s = new SharpGLXmlFormat();
-    //        SceneControl sc = new SceneControl();
+            //      SharpGLXmlFormat s = new SharpGLXmlFormat();
+            //        SceneControl sc = new SceneControl();
 
-      //      sc.Scene = s.LoadData("save.xml");
+            //      sc.Scene = s.LoadData("save.xml");
 
         }
 
@@ -187,6 +185,7 @@ public Form1()
             {
                 room.GetObj(indexOfObj).Y = room.GetObj(indexOfObj).Y + (mouseY - e.Y) / 70;
                 room.GetObj(indexOfObj).X = room.GetObj(indexOfObj).X + (e.X - mouseX) / 70;
+                
                 mouseY = e.Y;
                 mouseX = e.X;
             }
@@ -221,64 +220,45 @@ public Form1()
             if (editing)
             {
                 OpenGL gl = openGLControl.OpenGL;
-                double NMouseX, NMouseY;
-                double x, y, z;
-                NMouseX = -1.0 + 2.0 * e.X / openGLControl.Width;
-                NMouseY = 1.0 - 2.0 * e.Y / openGLControl.Height;
+                //     double NMouseX, NMouseY;
+                //     double x, y, z;
+                //     NMouseX = -1.0 + 2.0 * e.X / openGLControl.Width;                                                    //временно
+                //    NMouseY = 1.0 - 2.0 * e.Y / openGLControl.Height;
                 //     Console.WriteLine(NMouseX + "  " + NMouseY);
                 //is FOV in radians 
-                y = (NMouseY * Math.Tan(40 / 2.0));
-                x = ((NMouseX / (openGLControl.Width / openGLControl.Height)) * Math.Tan(40 / 2.0));
-                CamX = ((radius - 0.5) * Math.Cos(sigma * Math.PI / 180) * Math.Cos(fi * Math.PI / 180));
-                CamY = ((radius - 0.5) * Math.Cos(sigma * Math.PI / 180) * Math.Sin(fi * Math.PI / 180));
-                CamZ = ((radius - 0.5) * Math.Sin(sigma * Math.PI / 180));
-
+                //    y = (NMouseY * Math.Tan(40 / 2.0));
+                //      x = ((NMouseX / (openGLControl.Width / openGLControl.Height)) * Math.Tan(40 / 2.0));
+                CamX = ((radius - 0.5) * Math.Cos(sigma * Math.PI / 180) * Math.Cos(fi * Math.PI / 180));                   //временно, луча отрисовки скоро не будет
+                CamY = ((radius - 0.5) * Math.Cos(sigma * Math.PI / 180) * Math.Sin(fi * Math.PI / 180));                   //временно
+                CamZ = ((radius - 0.5) * Math.Sin(sigma * Math.PI / 180));                                                  //временно
+                ///////////////////////////////////////// лютая хрень
                 double[] modelMatrix = new double[16];
                 gl.GetDouble(OpenGL.GL_MODELVIEW_MATRIX, modelMatrix);
-
                 double[] projMatrix = new double[16];
                 gl.GetDouble(OpenGL.GL_PROJECTION_MATRIX, projMatrix);
-
                 int[] viewport = new int[4];
                 gl.GetInteger(OpenGL.GL_VIEWPORT, viewport);
-                //  gl.Viewport(e.X, e.Y, openGLControl.Width, openGLControl.Height);
-
-                //координаты по оси Y отсчитываются снизу вверх
                 int _yw = openGLControl.Height - e.Y - 1;
-
-                //первая точка будет в центре объема отсечения
-                //winX = (float)x;
-                //winY = (float)viewport[3] - (float)y - 1;
-
                 double[] p1 = new double[3];
                 gl.UnProject(e.X, _yw, -0.8, modelMatrix, projMatrix, viewport, ref p1[0], ref p1[1], ref p1[2]);
-               // p1 = gl.UnProject(e.X, _yw, -1);
-                //       gl.UnProject(winX, winY, -1, modelMatrix, projMatrix, viewport, ref p1[0], ref p1[1], ref p1[2]);
-
-                //         Console.WriteLine(p1[0] + "  " + p1[1] + "  " + p1[2]);
-                //вторая - с отступом на 10 единиц от центра объема отсечения
                 double[] p2 = new double[3];
                 gl.UnProject(e.X, _yw, 10, modelMatrix, projMatrix, viewport, ref p2[0], ref p2[1], ref p2[2]);
-           //     Console.WriteLine(p2[0] + "  " + p2[1] + "  " + p2[2]);
                 ray_m = new Vertex((float)p1[0], (float)p1[1], (float)p1[2]);
                 ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)p2[2]);
-                //     ray_n.Normalize();
-                Console.WriteLine("луч");
-               Console.WriteLine(-(ray_n.X * secret) + "  " + (-ray_n.Y * secret) + "  " + ray_n.Z);
-
-              
-
+                Console.WriteLine("луч");                                                                                   //временно
+                Console.WriteLine(-(ray_n.X * secret) + "  " + (-ray_n.Y * secret) + "  " + ray_n.Z);                       //временно
                 for (int i = 0; i < room.GetSize(); i++)
                 {
-                    //      ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)(p2[2] - room.GetObj(i).Height));
-                    Console.WriteLine("объект");
-                    Console.WriteLine(room.GetObj(i).X + "  " + room.GetObj(i).Y + "  " + ray_n.Z);
+                    Console.WriteLine("объект");                                                                            //временно
+                    Console.WriteLine(room.GetObj(i).X + "  " + room.GetObj(i).Y + "  " + ray_n.Z);                         //временно
                     if (room.GetObj(i).X < -((float)(p2[0] - p1[0]) * secret) && (room.GetObj(i).X + room.GetObj(i).Length) > -((float)(p2[0] - p1[0]) * secret))
                     {
                         if (room.GetObj(i).Y < -((float)(p2[1] - p1[1]) * secret) && (room.GetObj(i).Y + room.GetObj(i).Width) > -((float)(p2[1] - p1[1]) * secret))
                         {
                             ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)(p2[2]));
-                        //    otstup = room.GetObj(i).Height;
+                            //    otstup = room.GetObj(i).Height;
+                            if(e.Clicks == 2)
+                                Cursor.Hide();
                             objMove = true;
                             indexOfObj = i;
 
@@ -301,28 +281,19 @@ public Form1()
                         else
                         {
                             Console.WriteLine("Не попали");
-                            otstup = 0;
+                            //        otstup = 0;
                             ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)(p2[2]));
                         }
                     }
                     else
                     {
                         Console.WriteLine("Не попали");
-                        otstup = 0;
+                        //       otstup = 0;
                         ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)(p2[2]));
                     }
-
-                    //      room.GetObj(i).Draw(gl);
                 }
-
-                
-
+                ///////////////////////////////////////// конец лютой хрени
             }
-            //   gl.Project(1, 0, 0, modelMatrix, projMatrix, viewport,  p3[0],  p3[1],  p3[2]);
-            //        ray_m.Normalize();
-
-            //    Console.WriteLine(x + "  " + y);
-
         }
 
         private void редактированиеToolStripMenuItem_Click(object sender, EventArgs e)
@@ -397,15 +368,16 @@ public Form1()
             if (objMove)
             {
                 objMove = false;
-
+                Cursor.Show();
                 /*-------------Взаимодействие с БД (тем классом)------------------*/
 
                 DataForBD.listZakazMebTeh[index].CoordX = room.GetObj(indexOfObj).X;
                 DataForBD.listZakazMebTeh[index].CoordY = room.GetObj(indexOfObj).Y;
-                foreach(var n in DataForBD.listZakazMebTeh) {
-                    Console.WriteLine(n.CoordX+" " + n.CoordY + "");
+                foreach (var n in DataForBD.listZakazMebTeh)
+                {
+                    Console.WriteLine(n.CoordX + " " + n.CoordY + "");
                 }
-                
+
 
                 /*----------------------------------------------------------------*/
             }
