@@ -268,7 +268,7 @@ namespace WorkPlace
                             {
                                 if (DataForBD.listZakazMebTeh[k].CoordX == room.GetObj(indexOfObj).X && DataForBD.listZakazMebTeh[k].CoordY == room.GetObj(indexOfObj).Y)
                                 {
-                                    Console.WriteLine("Есть конакт");
+                                    Console.WriteLine("Есть конакт"); // потом уберу
                                     index = k;
                                 }
                             }
