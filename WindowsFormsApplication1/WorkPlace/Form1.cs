@@ -27,7 +27,6 @@ namespace WorkPlace
         private double CamY = 0;
         private double CamZ = 0;
         private double secret = 20;
-
         private double perspective = 1f;
 
         private double mouseX = 0;
