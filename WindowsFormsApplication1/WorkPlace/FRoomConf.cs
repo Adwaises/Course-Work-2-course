@@ -20,8 +20,8 @@ namespace WorkPlace
             this.room = room;
             butCancle.Click += (object sender, EventArgs e) => { Close(); };
 
-            tBLength.Text = room.length.ToString();
-            tBWidth.Text = room.width.ToString();
+            tBLength.Text = (room.length/2).ToString();
+            tBWidth.Text = (room.width/2).ToString();
             tBHeigth.Text = room.height.ToString();
         }
 
