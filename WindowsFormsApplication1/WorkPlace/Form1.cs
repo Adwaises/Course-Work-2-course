@@ -185,8 +185,8 @@ public Form1()
             }
             if (objMove)
             {
-                room.GetObj(indexOfObj).Y = room.GetObj(indexOfObj).Y + (e.Y - mouseY) / 100;
-                room.GetObj(indexOfObj).X = room.GetObj(indexOfObj).X + (mouseX - e.X) / 100;
+                room.GetObj(indexOfObj).Y = room.GetObj(indexOfObj).Y + (mouseY - e.Y) / 70;
+                room.GetObj(indexOfObj).X = room.GetObj(indexOfObj).X + (e.X - mouseX) / 70;
                 mouseY = e.Y;
                 mouseX = e.X;
             }
@@ -251,31 +251,34 @@ public Form1()
                 //winY = (float)viewport[3] - (float)y - 1;
 
                 double[] p1 = new double[3];
-                //           gl.UnProject(e.X, _yw, -1, modelMatrix, projMatrix, viewport, ref p1[0], ref p1[1], ref p1[2]);
-                p1 = gl.UnProject(e.X, _yw, -1);
+                gl.UnProject(e.X, _yw, -0.8, modelMatrix, projMatrix, viewport, ref p1[0], ref p1[1], ref p1[2]);
+               // p1 = gl.UnProject(e.X, _yw, -1);
                 //       gl.UnProject(winX, winY, -1, modelMatrix, projMatrix, viewport, ref p1[0], ref p1[1], ref p1[2]);
 
                 //         Console.WriteLine(p1[0] + "  " + p1[1] + "  " + p1[2]);
                 //вторая - с отступом на 10 единиц от центра объема отсечения
                 double[] p2 = new double[3];
                 gl.UnProject(e.X, _yw, 10, modelMatrix, projMatrix, viewport, ref p2[0], ref p2[1], ref p2[2]);
-                Console.WriteLine(p2[0] + "  " + p2[1] + "  " + p2[2]);
+           //     Console.WriteLine(p2[0] + "  " + p2[1] + "  " + p2[2]);
                 ray_m = new Vertex((float)p1[0], (float)p1[1], (float)p1[2]);
                 ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)p2[2]);
                 //     ray_n.Normalize();
-                Console.WriteLine((ray_n.X * secret) + "  " + (ray_n.Y * secret) + "  " + ray_n.Z);
+                Console.WriteLine("луч");
+               Console.WriteLine(-(ray_n.X * secret) + "  " + (-ray_n.Y * secret) + "  " + ray_n.Z);
 
               
 
                 for (int i = 0; i < room.GetSize(); i++)
                 {
                     //      ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)(p2[2] - room.GetObj(i).Height));
-                    if (room.GetObj(i).X < -((float)(p2[0] - p1[0])) && (room.GetObj(i).X + room.GetObj(i).Length) > -((float)(p2[0] - p1[0]) * secret))
+                    Console.WriteLine("объект");
+                    Console.WriteLine(room.GetObj(i).X + "  " + room.GetObj(i).Y + "  " + ray_n.Z);
+                    if (room.GetObj(i).X < -((float)(p2[0] - p1[0]) * secret) && (room.GetObj(i).X + room.GetObj(i).Length) > -((float)(p2[0] - p1[0]) * secret))
                     {
                         if (room.GetObj(i).Y < -((float)(p2[1] - p1[1]) * secret) && (room.GetObj(i).Y + room.GetObj(i).Width) > -((float)(p2[1] - p1[1]) * secret))
                         {
                             ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)(p2[2]));
-                            otstup = room.GetObj(i).Height;
+                        //    otstup = room.GetObj(i).Height;
                             objMove = true;
                             indexOfObj = i;
 
@@ -334,7 +337,7 @@ public Form1()
             secret = 26;
             Console.WriteLine(radius);
             sigma = 90;
-            fi = 90;
+            fi = 270;
             openGLControl_Resized(sender, e);
         }
 
