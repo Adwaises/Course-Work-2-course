@@ -447,5 +447,16 @@ namespace WorkPlace
             FSemantic sem = new FSemantic();
             sem.ShowDialog();
         }
+
+        private void структураТоваровToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormFrame ff = new FormFrame();
+            ff.ShowDialog();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

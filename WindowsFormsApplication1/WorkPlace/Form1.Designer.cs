@@ -59,6 +59,7 @@ namespace WorkPlace
             this.информацияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.анализПрибылиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.самаяПокупаемаяФурнитураToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.структураТоваровToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pBControl = new System.Windows.Forms.PictureBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
@@ -292,7 +293,8 @@ namespace WorkPlace
             // 
             this.информацияToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.анализПрибылиToolStripMenuItem,
-            this.самаяПокупаемаяФурнитураToolStripMenuItem});
+            this.самаяПокупаемаяФурнитураToolStripMenuItem,
+            this.структураТоваровToolStripMenuItem});
             this.информацияToolStripMenuItem.Name = "информацияToolStripMenuItem";
             this.информацияToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
             this.информацияToolStripMenuItem.Text = "Информация";
@@ -310,6 +312,13 @@ namespace WorkPlace
             this.самаяПокупаемаяФурнитураToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.самаяПокупаемаяФурнитураToolStripMenuItem.Text = "Самая покупаемая фурнитура";
             this.самаяПокупаемаяФурнитураToolStripMenuItem.Click += new System.EventHandler(this.самаяПокупаемаяФурнитураToolStripMenuItem_Click);
+            // 
+            // структураТоваровToolStripMenuItem
+            // 
+            this.структураТоваровToolStripMenuItem.Name = "структураТоваровToolStripMenuItem";
+            this.структураТоваровToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.структураТоваровToolStripMenuItem.Text = "Структура товаров";
+            this.структураТоваровToolStripMenuItem.Click += new System.EventHandler(this.структураТоваровToolStripMenuItem_Click);
             // 
             // contextMenuStrip1
             // 
@@ -349,6 +358,7 @@ namespace WorkPlace
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -392,6 +402,7 @@ namespace WorkPlace
         private System.Windows.Forms.ToolStripMenuItem информацияToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem анализПрибылиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem самаяПокупаемаяФурнитураToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem структураТоваровToolStripMenuItem;
     }
 }
 

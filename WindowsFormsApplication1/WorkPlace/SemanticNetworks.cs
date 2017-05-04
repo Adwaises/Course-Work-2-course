@@ -56,9 +56,14 @@ namespace WorkPlace
             {
                 gr.DrawString((i+1).ToString(), new System.Drawing.Font("Arial", 10), Brushes.Black,50 +50*i, 300);
             }
-
             Pen p = new Pen(Brushes.Green, 3);
             p.EndCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor;
+
+            gr.DrawLine(p, 70, 60, 250, 60);
+            gr.DrawLine(p, 300, 60, 470, 60);
+
+            gr.DrawString("Выгоднее", new System.Drawing.Font("Arial", 10), Brushes.Black, 150, 40);
+            gr.DrawString("Выгоднее", new System.Drawing.Font("Arial", 10), Brushes.Black, 350, 40);
 
             mbd.Connection();
             DataTable dt = mbd.selectionquery("select naimenovanie,nazvanie,price, count(*), id_furnitura from FurnituraZakaz  join furnitura on furnitura.id_furnit = FurnituraZakaz.id_furnitura group by id_furnitura order by count(*) desc ");
