@@ -19,15 +19,34 @@ namespace WorkPlace
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Frame fr = new Frame();
+            if (radioButton1.Checked)
+            {
+                pictureBox1.Image = fr.draw(pictureBox1.Width, pictureBox1.Height, 1);
+            } else if (radioButton2.Checked)
+            {
+                pictureBox1.Image = fr.draw(pictureBox1.Width, pictureBox1.Height, 2);
+            }
+            else if (radioButton3.Checked)
+            {
+                pictureBox1.Image = fr.draw(pictureBox1.Width, pictureBox1.Height, 3);
+            }
+            else if (radioButton4.Checked)
+            {
+                pictureBox1.Image = fr.draw(pictureBox1.Width, pictureBox1.Height, 4);
+            }
+            else if (radioButton5.Checked)
+            {
+                pictureBox1.Image = fr.draw(pictureBox1.Width, pictureBox1.Height, 5);
+            }
+
 
         }
 
         private void FormFrame_Load(object sender, EventArgs e)
         {
             Frame fr = new Frame();
-
-            pictureBox1.Image = fr.drawStruct(pictureBox1.Width, pictureBox1.Height);
-
+            pictureBox1.Image = fr.draw(pictureBox1.Width, pictureBox1.Height, 0);
         }
     }
 }
