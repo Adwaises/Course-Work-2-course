@@ -8,6 +8,16 @@ namespace WorkPlace
 {
     class Logic
     {
+        public List<string> list1 = new List<string>() {
+            "Дерево хорошо горит",
+            "Металл не горит",
+            "Дорогие товары качественные",
+            "Товары из металла долго служат" };
+
+        public List<string> list2 = new List<string>() {
+            "Мебель сделана из дерева",
+            "Техника сделана из металла",
+            "Холодильник дорогой"};
 
         public string result(int num1, int num2)
         {
@@ -29,6 +39,5 @@ namespace WorkPlace
 
             return "Выбранные суждения разного рода";
         }
-
     }
 }

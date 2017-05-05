@@ -13,7 +13,6 @@ namespace WorkPlace
         Graphics gr;
         private void drawStruct()
         {
-            //bmp = new Bitmap(w, h);
             gr = Graphics.FromImage(bmp);
             Pen p = new Pen(Brushes.Black, 2);
             gr.DrawString("Фурнитура", new System.Drawing.Font("Arial", 10), Brushes.Blue, 275, 5);
@@ -23,8 +22,6 @@ namespace WorkPlace
             gr.DrawString("Вид", new System.Drawing.Font("Arial", 10), Brushes.Green, 260, 45);
             gr.DrawRectangle(p, 250, 65, 120, 20);
             gr.DrawString("Цена", new System.Drawing.Font("Arial", 10), Brushes.Green, 260, 65);
-
-
 
             gr.DrawString("Мебель", new System.Drawing.Font("Arial", 10), Brushes.Blue, 125, 115);
             gr.DrawRectangle(p, 100, 135, 120, 20);
@@ -36,7 +33,6 @@ namespace WorkPlace
             gr.DrawRectangle(p, 100, 195, 120, 20);
             gr.DrawString("Материал", new System.Drawing.Font("Arial", 10), Brushes.Green, 110, 195);
 
-
             gr.DrawString("Техника", new System.Drawing.Font("Arial", 10), Brushes.Blue, 475, 115);
             gr.DrawRectangle(p, 450, 135, 120, 20);
             gr.DrawString("Наименование", new System.Drawing.Font("Arial", 10), Brushes.Green, 460, 135);
@@ -47,20 +43,16 @@ namespace WorkPlace
             gr.DrawRectangle(p, 450, 195, 120, 20);
             gr.DrawString("Производитель", new System.Drawing.Font("Arial", 10), Brushes.Green, 460, 195);
 
-
             p = new Pen(Brushes.Red, 3);
             p.EndCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor;
             gr.DrawLine(p,  160, 115, 310, 87);
             gr.DrawLine(p,  510, 115,310, 87);
-
-            //return bmp;
         }
 
         private void drawTable()
         {
             gr = Graphics.FromImage(bmp);
             Pen p = new Pen(Brushes.Black, 2);
-
             gr.DrawString("Экземпляр", new System.Drawing.Font("Arial", 10), Brushes.Blue, 125, 265);
             gr.DrawRectangle(p, 100, 285, 120, 20);
             gr.DrawString("Стол", new System.Drawing.Font("Arial", 10), Brushes.Green, 110, 285);
@@ -70,7 +62,6 @@ namespace WorkPlace
             gr.DrawString("2500", new System.Drawing.Font("Arial", 10), Brushes.Green, 110, 325);
             gr.DrawRectangle(p, 100, 345, 120, 20);
             gr.DrawString("Дерево", new System.Drawing.Font("Arial", 10), Brushes.Green, 110, 345);
-
             p = new Pen(Brushes.Red, 3);
             p.EndCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor;
             gr.DrawLine(p, 160, 260, 160, 220);
@@ -80,7 +71,6 @@ namespace WorkPlace
         {
             gr = Graphics.FromImage(bmp);
             Pen p = new Pen(Brushes.Black, 2);
-
             gr.DrawString("Экземпляр", new System.Drawing.Font("Arial", 10), Brushes.Blue, 125, 265);
             gr.DrawRectangle(p, 100, 285, 120, 20);
             gr.DrawString("Стул", new System.Drawing.Font("Arial", 10), Brushes.Green, 110, 285);
@@ -90,7 +80,6 @@ namespace WorkPlace
             gr.DrawString("700", new System.Drawing.Font("Arial", 10), Brushes.Green, 110, 325);
             gr.DrawRectangle(p, 100, 345, 120, 20);
             gr.DrawString("Дерево", new System.Drawing.Font("Arial", 10), Brushes.Green, 110, 345);
-
             p = new Pen(Brushes.Red, 3);
             p.EndCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor;
             gr.DrawLine(p, 160, 260, 160, 220);
@@ -100,7 +89,6 @@ namespace WorkPlace
         {
             gr = Graphics.FromImage(bmp);
             Pen p = new Pen(Brushes.Black, 2);
-
             gr.DrawString("Экземпляр", new System.Drawing.Font("Arial", 10), Brushes.Blue, 125, 265);
             gr.DrawRectangle(p, 100, 285, 120, 20);
             gr.DrawString("Шкаф", new System.Drawing.Font("Arial", 10), Brushes.Green, 110, 285);
@@ -110,7 +98,6 @@ namespace WorkPlace
             gr.DrawString("2000", new System.Drawing.Font("Arial", 10), Brushes.Green, 110, 325);
             gr.DrawRectangle(p, 100, 345, 120, 20);
             gr.DrawString("Дерево", new System.Drawing.Font("Arial", 10), Brushes.Green, 110, 345);
-
             p = new Pen(Brushes.Red, 3);
             p.EndCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor;
             gr.DrawLine(p, 160, 260, 160, 220);
@@ -120,7 +107,6 @@ namespace WorkPlace
         {
             gr = Graphics.FromImage(bmp);
             Pen p = new Pen(Brushes.Black, 2);
-
             gr.DrawString("Экземпляр", new System.Drawing.Font("Arial", 10), Brushes.Blue, 475, 265);
             gr.DrawRectangle(p, 450, 285, 120, 20);
             gr.DrawString("Холодильник", new System.Drawing.Font("Arial", 10), Brushes.Green, 460, 285);
@@ -130,7 +116,6 @@ namespace WorkPlace
             gr.DrawString("11000", new System.Drawing.Font("Arial", 10), Brushes.Green, 460, 325);
             gr.DrawRectangle(p, 450, 345, 120, 20);
             gr.DrawString("Китай", new System.Drawing.Font("Arial", 10), Brushes.Green, 460, 345);
-
             p = new Pen(Brushes.Red, 3);
             p.EndCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor;
             gr.DrawLine(p, 510, 260, 510, 220);
@@ -140,7 +125,6 @@ namespace WorkPlace
         {
             gr = Graphics.FromImage(bmp);
             Pen p = new Pen(Brushes.Black, 2);
-
             gr.DrawString("Экземпляр", new System.Drawing.Font("Arial", 10), Brushes.Blue, 475, 265);
             gr.DrawRectangle(p, 450, 285, 120, 20);
             gr.DrawString("Плита", new System.Drawing.Font("Arial", 10), Brushes.Green, 460, 285);
@@ -150,7 +134,6 @@ namespace WorkPlace
             gr.DrawString("6000", new System.Drawing.Font("Arial", 10), Brushes.Green, 460, 325);
             gr.DrawRectangle(p, 450, 345, 120, 20);
             gr.DrawString("Тайвань", new System.Drawing.Font("Arial", 10), Brushes.Green, 460, 345);
-
             p = new Pen(Brushes.Red, 3);
             p.EndCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor;
             gr.DrawLine(p, 510, 260, 510, 220);
@@ -180,8 +163,6 @@ namespace WorkPlace
             {
                 drawPlita();
             }
-
-
             return bmp;
         }
 
