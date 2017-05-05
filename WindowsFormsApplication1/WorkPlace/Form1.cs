@@ -458,5 +458,11 @@ namespace WorkPlace
         {
 
         }
+
+        private void логическиеВыводыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormLogic fl = new FormLogic();
+            fl.ShowDialog();
+        }
     }
 }

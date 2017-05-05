@@ -63,6 +63,7 @@ namespace WorkPlace
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pBControl = new System.Windows.Forms.PictureBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.логическиеВыводыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBControl)).BeginInit();
@@ -294,7 +295,8 @@ namespace WorkPlace
             this.информацияToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.анализПрибылиToolStripMenuItem,
             this.самаяПокупаемаяФурнитураToolStripMenuItem,
-            this.структураТоваровToolStripMenuItem});
+            this.структураТоваровToolStripMenuItem,
+            this.логическиеВыводыToolStripMenuItem});
             this.информацияToolStripMenuItem.Name = "информацияToolStripMenuItem";
             this.информацияToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
             this.информацияToolStripMenuItem.Text = "Информация";
@@ -341,6 +343,13 @@ namespace WorkPlace
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(120, 95);
             this.listBox1.TabIndex = 4;
+            // 
+            // логическиеВыводыToolStripMenuItem
+            // 
+            this.логическиеВыводыToolStripMenuItem.Name = "логическиеВыводыToolStripMenuItem";
+            this.логическиеВыводыToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.логическиеВыводыToolStripMenuItem.Text = "Логические выводы";
+            this.логическиеВыводыToolStripMenuItem.Click += new System.EventHandler(this.логическиеВыводыToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -403,6 +412,7 @@ namespace WorkPlace
         private System.Windows.Forms.ToolStripMenuItem анализПрибылиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem самаяПокупаемаяФурнитураToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem структураТоваровToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem логическиеВыводыToolStripMenuItem;
     }
 }
 
