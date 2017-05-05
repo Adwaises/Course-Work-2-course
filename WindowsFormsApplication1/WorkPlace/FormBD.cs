@@ -41,7 +41,7 @@ namespace WorkPlace
 
             //mbd.controlquery("insert into FurnituraZakaz values (1, 61, -3, -3.5)");
 
-            //mbd.controlquery("delete from FurnituraZakaz where id_zakaz = 4 and id_furnitura = 11");
+            //mbd.controlquery("delete from Furnitura where id_furnit = 51");
             //mbd.controlquery("delete from FurnituraZakaz where id_zakaz = 4 and id_furnitura = 61");
 
 
