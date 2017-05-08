@@ -300,7 +300,7 @@ namespace LibReports
 
             doc.Close();
 
-            DataForBD.summa = allSum;
+            DataForBD.Summa = allSum;
 
         }
         /// <summary>
@@ -457,7 +457,7 @@ namespace LibReports
 
         public void ExcelDiagr()
         {
-            DataForBD.iter = 0;
+            DataForBD.Iter = 0;
             try
             {
                 Excel.Application ObjExcel = new Excel.Application();
@@ -481,16 +481,16 @@ namespace LibReports
                 throw exc;
             }
 
-            DataForBD.iter = 1;
+            DataForBD.Iter = 1;
             Excel.Application excelapp = new Excel.Application();
             try
             {
 
-                DataForBD.iter = 2;
+                DataForBD.Iter = 2;
                 ExcelDiagr1();
-                DataForBD.iter = 4;
+                DataForBD.Iter = 4;
                 ExcelDiagr2();
-                DataForBD.iter = 6;
+                DataForBD.Iter = 6;
             }
             catch (Exception exc)
             {
@@ -522,7 +522,7 @@ namespace LibReports
                 excelapp.ActiveChart.HasTitle = true;
                 excelapp.ActiveChart.ChartTitle.Text = "Количество заказов";
 
-                DataForBD.iter = 5;
+                DataForBD.Iter = 5;
 
                 ((Excel.Axis)excelapp.ActiveChart.Axes(Excel.XlAxisType.xlCategory,
                 Excel.XlAxisGroup.xlPrimary)).HasTitle = true;
@@ -572,7 +572,7 @@ namespace LibReports
                     Type.Missing, Type.Missing, Type.Missing);
                 excelapp.ActiveChart.HasTitle = true;
                 excelapp.ActiveChart.ChartTitle.Text = "Выручка";
-                DataForBD.iter = 3;
+                DataForBD.Iter = 3;
 
                 ((Excel.Axis)excelapp.ActiveChart.Axes(Excel.XlAxisType.xlCategory,
                 Excel.XlAxisGroup.xlPrimary)).HasTitle = true;

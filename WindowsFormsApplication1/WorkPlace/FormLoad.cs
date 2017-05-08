@@ -77,7 +77,7 @@ namespace WorkPlace
 
             slo.loadOrder(CBorder.SelectedIndex);
 
-            foreach(var n in DataForBD.listZakazMebTeh)
+            foreach(var n in DataForBD.ListZakazMebTeh)
             {
                 Console.WriteLine(n.IdFurnit +" "+ n.IdZakaz);
             }

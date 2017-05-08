@@ -14,7 +14,7 @@ namespace LibMail
     {
         public void SendMail(string s, int id)
         {
-            DataForBD.iter = 0;
+            DataForBD.Iter = 0;
             //int id = 1;
             DateTime second = DateTime.Now;
             SmtpClient Smtp = new SmtpClient("smtp.mail.ru", 587);
@@ -23,18 +23,18 @@ namespace LibMail
             MailMessage Message = new MailMessage();
             Message.From = new MailAddress("lexa2171@mail.ru");
             Message.To.Add(new MailAddress(s));
-            DataForBD.iter = 1;
+            DataForBD.Iter = 1;
             Message.Subject = "Заказ №" + Convert.ToString(id);
             Message.Body = "Бланк заказа №" + Convert.ToString(id) + Environment.NewLine + "Дата формирования письма: " + second;
             string file = "Document.pdf";
             Attachment attach = new Attachment(file, MediaTypeNames.Application.Octet);
             Message.Attachments.Add(attach);
-            DataForBD.iter = 2;
+            DataForBD.Iter = 2;
             try
             {
                 Smtp.Send(Message);
                 attach.Dispose();
-                DataForBD.iter = 3;
+                DataForBD.Iter = 3;
             }
             catch (Exception ex)
             {

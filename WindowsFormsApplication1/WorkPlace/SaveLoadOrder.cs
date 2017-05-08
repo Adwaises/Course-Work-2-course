@@ -21,26 +21,26 @@ namespace WorkPlace
         {
             if (rbNum == 1)
             {
-                DataForBD.idCustomer = Convert.ToInt32(dt.Rows[index][0]);
+                DataForBD.IdCustomer = Convert.ToInt32(dt.Rows[index][0]);
             }
             else if (rbNum ==2)
             {
                 // поиск макс (присвоение id)
-                DataForBD.idCustomer = 1;
+                DataForBD.IdCustomer = 1;
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    if (Convert.ToInt32(dt.Rows[i][0]) > DataForBD.idCustomer)
+                    if (Convert.ToInt32(dt.Rows[i][0]) > DataForBD.IdCustomer)
                     {
-                        DataForBD.idCustomer = Convert.ToInt32(dt.Rows[i][0]);
+                        DataForBD.IdCustomer = Convert.ToInt32(dt.Rows[i][0]);
                     }
                 }
-                DataForBD.idCustomer++;
+                DataForBD.IdCustomer++;
 
-                DataForBD.famil = famil;
-                DataForBD.name = name;
-                DataForBD.otchestvo = otch;
-                DataForBD.numTel = numTel; ;
-                DataForBD.mail = mail;
+                DataForBD.Famil = famil;
+                DataForBD.Name = name;
+                DataForBD.Otchestvo = otch;
+                DataForBD.NumTel = numTel; ;
+                DataForBD.Mail = mail;
 
             }
 
@@ -49,17 +49,17 @@ namespace WorkPlace
             if (rbNum == 2)
             {
                 mbd.controlquery("insert into 'customer' (id_customer, Famil ,Name , otchestvo , num_tel, mail )" +
-                    "values (" + DataForBD.idCustomer.ToString() + ", '" + DataForBD.famil + "' ,'" + DataForBD.name +
-                    "','" + DataForBD.otchestvo + "', " + DataForBD.numTel + " , '" + DataForBD.mail + "' )");
+                    "values (" + DataForBD.IdCustomer.ToString() + ", '" + DataForBD.Famil + "' ,'" + DataForBD.Name +
+                    "','" + DataForBD.Otchestvo + "', " + DataForBD.NumTel + " , '" + DataForBD.Mail + "' )");
             }
 
 
-            mbd.controlquery("insert into StroyMaterialZakaz values ( " + DataForBD.idZakaz + "," + DataForBD.idOboi + ");");
-            mbd.controlquery("insert into StroyMaterialZakaz values ( " + DataForBD.idZakaz + "," + DataForBD.idPlitka + ");");
+            mbd.controlquery("insert into StroyMaterialZakaz values ( " + DataForBD.IdZakaz + "," + DataForBD.IdOboi + ");");
+            mbd.controlquery("insert into StroyMaterialZakaz values ( " + DataForBD.IdZakaz + "," + DataForBD.IdPlitka + ");");
 
             // вставка в фурнит
 
-            foreach (var n in DataForBD.listZakazMebTeh)
+            foreach (var n in DataForBD.ListZakazMebTeh)
             {
                 mbd.controlquery("insert into FurnituraZakaz  values ( " + n.IdZakaz + "," + n.IdFurnit + "," + n.CoordX + "," + n.CoordY + ");");
             }
@@ -69,13 +69,13 @@ namespace WorkPlace
             //присвоение id заказа
 
 
-            mbd.controlquery("insert into Zakaz  values (" + DataForBD.idZakaz.ToString() + ", " + DataForBD.length.ToString()
-                + " ," + DataForBD.width.ToString() + " ," + DataForBD.height.ToString() + " ," + DataForBD.idCustomer.ToString()
-                + " ," + DataForBD.mounth.ToString() + " ," + DataForBD.summa.ToString() + ")");
+            mbd.controlquery("insert into Zakaz  values (" + DataForBD.IdZakaz.ToString() + ", " + DataForBD.Length.ToString()
+                + " ," + DataForBD.Width.ToString() + " ," + DataForBD.Height.ToString() + " ," + DataForBD.IdCustomer.ToString()
+                + " ," + DataForBD.Mounth.ToString() + " ," + DataForBD.Summa.ToString() + ")");
 
             Reports rep = new Reports();
-            rep.blank(DataForBD.idZakaz);
-            mbd.controlquery("update zakaz set summa = " + Convert.ToString(DataForBD.summa) + " where id_zakaz = " + Convert.ToString(DataForBD.idZakaz));
+            rep.blank(DataForBD.IdZakaz);
+            mbd.controlquery("update zakaz set summa = " + Convert.ToString(DataForBD.Summa) + " where id_zakaz = " + Convert.ToString(DataForBD.IdZakaz));
         }
 
         public void initIdOrder()
@@ -84,12 +84,12 @@ namespace WorkPlace
             dt1 = mbd.selectionquery("select * from zakaz;");
             for (int i = 0; i < dt1.Rows.Count; i++)
             {
-                if (Convert.ToInt32(dt1.Rows[i][0]) > DataForBD.idCustomer)
+                if (Convert.ToInt32(dt1.Rows[i][0]) > DataForBD.IdZakaz)
                 {
-                    DataForBD.idZakaz = Convert.ToInt32(dt1.Rows[i][0]);
+                    DataForBD.IdZakaz = Convert.ToInt32(dt1.Rows[i][0]);
                 }
             }
-            DataForBD.idZakaz++;
+            DataForBD.IdZakaz++;
         }
 
         public List<string> initCBCustomer()
@@ -126,24 +126,24 @@ namespace WorkPlace
         public void loadOrder(int index)
         {
             dt = mbd.selectionquery("select * from zakaz;");
-            DataForBD.length = Convert.ToInt32(dt.Rows[index][1]);
-            DataForBD.width = Convert.ToInt32(dt.Rows[index][2]);
-            DataForBD.height = Convert.ToInt32(dt.Rows[index][3]);
-            DataForBD.summa = Convert.ToInt32(dt.Rows[index][6]);
-            DataForBD.idZakaz = Convert.ToInt32(dt.Rows[index][0]);
+            DataForBD.Length = Convert.ToInt32(dt.Rows[index][1]);
+            DataForBD.Width = Convert.ToInt32(dt.Rows[index][2]);
+            DataForBD.Height = Convert.ToInt32(dt.Rows[index][3]);
+            DataForBD.Summa = Convert.ToInt32(dt.Rows[index][6]);
+            DataForBD.IdZakaz = Convert.ToInt32(dt.Rows[index][0]);
 
 
-            DataForBD.listZakazMebTeh.Clear();
-            dt = mbd.selectionquery("select * from StroyMaterialZakaz where id_zakaz = " + DataForBD.idZakaz + ";");
+            DataForBD.ListZakazMebTeh.Clear();
+            dt = mbd.selectionquery("select * from StroyMaterialZakaz where id_zakaz = " + DataForBD.IdZakaz + ";");
 
 
-            DataForBD.idOboi = Convert.ToInt32(dt.Rows[0][1]);
-            DataForBD.idPlitka = Convert.ToInt32(dt.Rows[1][1]);
+            DataForBD.IdOboi = Convert.ToInt32(dt.Rows[0][1]);
+            DataForBD.IdPlitka = Convert.ToInt32(dt.Rows[1][1]);
 
-            dt = mbd.selectionquery("select * from FurnituraZakaz  where id_zakaz = " + DataForBD.idZakaz + ";");
+            dt = mbd.selectionquery("select * from FurnituraZakaz  where id_zakaz = " + DataForBD.IdZakaz + ";");
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                DataForBD.listZakazMebTeh.Add(new ObjFurnit(Convert.ToInt32(dt.Rows[i][0]), Convert.ToInt32(dt.Rows[i][1]),
+                DataForBD.ListZakazMebTeh.Add(new ObjFurnit(Convert.ToInt32(dt.Rows[i][0]), Convert.ToInt32(dt.Rows[i][1]),
                     Convert.ToInt32(dt.Rows[i][2]), Convert.ToInt32(dt.Rows[i][3])));
 
             }
@@ -152,15 +152,15 @@ namespace WorkPlace
             // поиск макс (присвоение id)
 
             DataTable dt1 = mbd.selectionquery("select * from zakaz;");
-            DataForBD.idZakaz = 1;
+            DataForBD.IdZakaz = 1;
             for (int i = 0; i < dt1.Rows.Count; i++)
             {
-                if (Convert.ToInt32(dt1.Rows[i][0]) > DataForBD.idCustomer)
+                if (Convert.ToInt32(dt1.Rows[i][0]) > DataForBD.IdZakaz)
                 {
-                    DataForBD.idZakaz = Convert.ToInt32(dt1.Rows[i][0]);
+                    DataForBD.IdZakaz = Convert.ToInt32(dt1.Rows[i][0]);
                 }
             }
-            DataForBD.idZakaz++;
+            DataForBD.IdZakaz++;
         }
 
     }

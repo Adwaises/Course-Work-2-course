@@ -45,7 +45,7 @@ namespace WorkPlace
             report.blank(Convert.ToInt32(dt.Rows[comboBox1.SelectedIndex][0]));
             try
             {
-                DataForBD.iter = 0;
+                DataForBD.Iter = 0;
                 Thread t = new Thread(toMail);
                 t.Start();
                 timer1.Start();
@@ -84,19 +84,19 @@ namespace WorkPlace
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (DataForBD.iter == 0)
+            if (DataForBD.Iter == 0)
             {
                 progressBar1.Value = 10;
             }
-            else if (DataForBD.iter == 1)
+            else if (DataForBD.Iter == 1)
             {
                 progressBar1.Value = 30;
             }
-            else if (DataForBD.iter == 2)
+            else if (DataForBD.Iter == 2)
             {
                 progressBar1.Value = 90;
             }
-            else if (DataForBD.iter == 3)
+            else if (DataForBD.Iter == 3)
             {
                 progressBar1.Value = 100;
                 timer1.Stop();

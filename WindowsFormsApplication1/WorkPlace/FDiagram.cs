@@ -101,31 +101,31 @@ namespace WorkPlace
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (DataForBD.iter == 0)
+            if (DataForBD.Iter == 0)
             {
                 progressBar1.Value = 10;
             }
-            else  if (DataForBD.iter == 1)
+            else  if (DataForBD.Iter == 1)
             {
                 progressBar1.Value = 25;
             }
-            else if (DataForBD.iter == 2)
+            else if (DataForBD.Iter == 2)
             {
                 progressBar1.Value = 40;
             }
-            else if (DataForBD.iter == 3)
+            else if (DataForBD.Iter == 3)
             {
                 progressBar1.Value = 55;
             }
-            else if (DataForBD.iter == 4)
+            else if (DataForBD.Iter == 4)
             {
                 progressBar1.Value = 70;
             }
-            else if (DataForBD.iter == 5)
+            else if (DataForBD.Iter == 5)
             {
                 progressBar1.Value = 90;
             }
-            else if (DataForBD.iter == 6)
+            else if (DataForBD.Iter == 6)
             {
                 timer1.Stop();
                 progressBar1.Value = 100;

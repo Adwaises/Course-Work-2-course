@@ -55,9 +55,9 @@ namespace WorkPlace
             room = new Room(8, 4, 2.5);
 
             /*-------------Взаимодействие с БД (тем классом)------------------*/
-            DataForBD.length = Convert.ToInt32(room.length/2*100);
-            DataForBD.width = Convert.ToInt32(room.width/2 * 100);
-            DataForBD.height = Convert.ToInt32(room.height * 100);
+            DataForBD.Length = Convert.ToInt32(room.length/2*100);
+            DataForBD.Width = Convert.ToInt32(room.width/2 * 100);
+            DataForBD.Height = Convert.ToInt32(room.height * 100);
             /*----------------------------------------------------------------*/
             просмотрToolStripMenuItem.Checked = true;
         }
@@ -132,7 +132,7 @@ namespace WorkPlace
 
             /*-------------Взаимодействие с БД (тем классом)------------------*/
 
-            DataForBD.listZakazMebTeh.Add(new ObjFurnit(DataForBD.idCustomer, 61, 0, 0));
+            DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdCustomer, 61, 0, 0));
 
             /*----------------------------------------------------------------*/
         }
@@ -273,9 +273,9 @@ namespace WorkPlace
 
                             /*-------------Взаимодействие с БД (тем классом)------------------*/
 
-                            for (int k = 0; k < DataForBD.listZakazMebTeh.Count; k++)
+                            for (int k = 0; k < DataForBD.ListZakazMebTeh.Count; k++)
                             {
-                                if (DataForBD.listZakazMebTeh[k].CoordX == room.GetObj(indexOfObj).X && DataForBD.listZakazMebTeh[k].CoordY == room.GetObj(indexOfObj).Y)
+                                if (DataForBD.ListZakazMebTeh[k].CoordX == room.GetObj(indexOfObj).X && DataForBD.ListZakazMebTeh[k].CoordY == room.GetObj(indexOfObj).Y)
                                 {
                                     Console.WriteLine("Есть конакт"); // потом уберу
                                     index = k;
@@ -380,9 +380,9 @@ namespace WorkPlace
                 Cursor.Show();
                 /*-------------Взаимодействие с БД (тем классом)------------------*/
 
-                DataForBD.listZakazMebTeh[index].CoordX = room.GetObj(indexOfObj).X;
-                DataForBD.listZakazMebTeh[index].CoordY = room.GetObj(indexOfObj).Y;
-                foreach (var n in DataForBD.listZakazMebTeh)
+                DataForBD.ListZakazMebTeh[index].CoordX = room.GetObj(indexOfObj).X;
+                DataForBD.ListZakazMebTeh[index].CoordY = room.GetObj(indexOfObj).Y;
+                foreach (var n in DataForBD.ListZakazMebTeh)
                 {
                     Console.WriteLine(n.IdFurnit +" "+n.CoordX + " " + n.CoordY + " ");
                 }
@@ -416,15 +416,15 @@ namespace WorkPlace
             mbd.Connection();
             DataTable dt1 = mbd.selectionquery("select * from zakaz;");
 
-            DataForBD.idZakaz = 1;
+            DataForBD.IdZakaz = 1;
             for (int i = 0; i < dt1.Rows.Count; i++)
             {
-                if (Convert.ToInt32(dt1.Rows[i][0]) > DataForBD.idZakaz)
+                if (Convert.ToInt32(dt1.Rows[i][0]) > DataForBD.IdZakaz)
                 {
-                    DataForBD.idZakaz = Convert.ToInt32(dt1.Rows[i][0]);
+                    DataForBD.IdZakaz = Convert.ToInt32(dt1.Rows[i][0]);
                 }
             }
-            DataForBD.idZakaz++;
+            DataForBD.IdZakaz++;
 
         }
 
@@ -471,17 +471,17 @@ namespace WorkPlace
             //присвоение id
             mbd.Connection();
             DataTable dt1 = mbd.selectionquery("select * from zakaz;");
-            DataForBD.idZakaz = 1;
+            DataForBD.IdZakaz = 1;
             for (int i = 0; i < dt1.Rows.Count; i++)
             {
-                if (Convert.ToInt32(dt1.Rows[i][0]) > DataForBD.idCustomer)
+                if (Convert.ToInt32(dt1.Rows[i][0]) > DataForBD.IdCustomer)
                 {
-                    DataForBD.idZakaz = Convert.ToInt32(dt1.Rows[i][0]);
+                    DataForBD.IdZakaz = Convert.ToInt32(dt1.Rows[i][0]);
                 }
             }
-            DataForBD.idZakaz++;
+            DataForBD.IdZakaz++;
 
-            label1.Text ="Заказ №"+ DataForBD.idZakaz.ToString();
+            label1.Text ="Заказ №"+ DataForBD.IdZakaz.ToString();
         }
 
       
@@ -494,7 +494,7 @@ namespace WorkPlace
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            label1.Text = "Заказ №" + DataForBD.idZakaz.ToString();
+            label1.Text = "Заказ №" + DataForBD.IdZakaz.ToString();
         }
     }
 }

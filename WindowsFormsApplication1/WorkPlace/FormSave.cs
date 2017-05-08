@@ -32,7 +32,7 @@ namespace WorkPlace
             
 
             DateTime data = DateTime.Now;
-            DataForBD.mounth = data.Month;
+            DataForBD.Mounth = data.Month;
             // заказчик если есть
             /*
             mbd.Connection();
@@ -63,8 +63,8 @@ namespace WorkPlace
             // список заказ_строймат
             //DataForBD.listZakazStroyMat.Add(DataForBD.idZakaz + ",12");
             //DataForBD.listZakazStroyMat.Add(DataForBD.idZakaz + ",22");
-            DataForBD.idOboi = 12;
-            DataForBD.idPlitka = 22;
+            DataForBD.IdOboi = 12;
+            DataForBD.IdPlitka = 22;
             // список заказ_мебтех
             //DataForBD.listZakazMebTeh.Add(new ObjFurnit(DataForBD.idZakaz,21,1,1));//стул
 
