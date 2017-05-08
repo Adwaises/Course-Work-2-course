@@ -66,7 +66,8 @@ namespace WorkPlace
             dt = mbd.selectionquery("select * from zakaz;");
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                comboBox1.Items.Add(Convert.ToString(dt.Rows[i][0]) + " " + dt.Rows[i][1] + " " + dt.Rows[i][2] + " " + dt.Rows[i][3] + " " + dt.Rows[i][6]);
+                comboBox1.Items.Add("Заказ №" + dt.Rows[i][0] + "" + " Размеры:" + Convert.ToDouble(dt.Rows[i][1]) / 100 + "*" + Convert.ToDouble(dt.Rows[i][2]) / 100 +
+                    "*" + Convert.ToDouble(dt.Rows[i][3]) / 100 + " Сумма:" + dt.Rows[i][6]);
             }
 
         }

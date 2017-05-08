@@ -45,7 +45,7 @@
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Location = new System.Drawing.Point(12, 72);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(184, 54);
+            this.groupBox1.Size = new System.Drawing.Size(281, 54);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Введите почту";
@@ -54,12 +54,12 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(19, 19);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(144, 20);
+            this.textBox1.Size = new System.Drawing.Size(256, 20);
             this.textBox1.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(62, 152);
+            this.button1.Location = new System.Drawing.Point(113, 152);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 27);
             this.button1.TabIndex = 1;
@@ -72,7 +72,7 @@
             this.groupBox2.Controls.Add(this.comboBox1);
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(184, 54);
+            this.groupBox2.Size = new System.Drawing.Size(281, 54);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Выберите заказ";
@@ -82,7 +82,7 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(19, 19);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(144, 21);
+            this.comboBox1.Size = new System.Drawing.Size(256, 21);
             this.comboBox1.TabIndex = 0;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -94,19 +94,19 @@
             // 
             this.progressBar1.Location = new System.Drawing.Point(12, 132);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(184, 14);
+            this.progressBar1.Size = new System.Drawing.Size(281, 14);
             this.progressBar1.TabIndex = 2;
             // 
-            // ToMail
+            // FToMail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(205, 188);
+            this.ClientSize = new System.Drawing.Size(305, 188);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
-            this.Name = "ToMail";
+            this.Name = "FToMail";
             this.Text = "ToMail";
             this.Load += new System.EventHandler(this.ToMail_Load);
             this.groupBox1.ResumeLayout(false);

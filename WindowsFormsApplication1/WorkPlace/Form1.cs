@@ -50,6 +50,12 @@ namespace WorkPlace
             InitializeComponent();
             openGLControl.MouseWheel += new System.Windows.Forms.MouseEventHandler(openGLControl_MouseWheel);
             room = new Room(8, 4, 2.5);
+
+            /*-------------Взаимодействие с БД (тем классом)------------------*/
+            DataForBD.length = Convert.ToInt32(room.length/2*100);
+            DataForBD.width = Convert.ToInt32(room.width/2 * 100);
+            DataForBD.height = Convert.ToInt32(room.height * 100);
+            /*----------------------------------------------------------------*/
             просмотрToolStripMenuItem.Checked = true;
         }
 
@@ -416,6 +422,7 @@ namespace WorkPlace
                 }
             }
             DataForBD.idZakaz++;
+
         }
 
         private void оформитьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -456,13 +463,35 @@ namespace WorkPlace
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //тут будет заполнение комбобоксов
 
+            //присвоение id
+            mbd.Connection();
+            DataTable dt1 = mbd.selectionquery("select * from zakaz;");
+            DataForBD.idZakaz = 1;
+            for (int i = 0; i < dt1.Rows.Count; i++)
+            {
+                if (Convert.ToInt32(dt1.Rows[i][0]) > DataForBD.idCustomer)
+                {
+                    DataForBD.idZakaz = Convert.ToInt32(dt1.Rows[i][0]);
+                }
+            }
+            DataForBD.idZakaz++;
+
+            label1.Text ="Заказ №"+ DataForBD.idZakaz.ToString();
         }
+
+      
 
         private void логическиеВыводыToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormLogic fl = new FormLogic();
             fl.ShowDialog();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            label1.Text = "Заказ №" + DataForBD.idZakaz.ToString();
         }
     }
 }

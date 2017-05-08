@@ -32,6 +32,13 @@ namespace WorkPlace
                 room.length = 2 * Convert.ToDouble(tBLength.Text);
                 room.width = 2 * Convert.ToDouble(tBWidth.Text);
                 room.height = Convert.ToDouble(tBHeigth.Text);
+
+                /*-------------Взаимодействие с БД (тем классом)------------------*/
+                DataForBD.length = Convert.ToInt32(room.length/2 * 100);
+                DataForBD.width = Convert.ToInt32(room.width/2 * 100);
+                DataForBD.height = Convert.ToInt32(room.height * 100);
+                /*----------------------------------------------------------------*/
+
                 Close();
             }
             catch (FormatException ex)

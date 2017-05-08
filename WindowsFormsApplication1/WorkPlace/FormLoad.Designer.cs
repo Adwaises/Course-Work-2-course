@@ -70,6 +70,7 @@
             this.Controls.Add(this.CBorder);
             this.Name = "FormLoad";
             this.Text = "FormLoad";
+            this.Load += new System.EventHandler(this.FormLoad_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

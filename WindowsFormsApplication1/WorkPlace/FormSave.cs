@@ -13,10 +13,8 @@ namespace WorkPlace
 {
     public partial class FormSave : Form
     {
-        ManagerBD mbd = new ManagerBD();
-        DataTable dt;
-        DataTable dt1;
-        // DataTable dt1;
+        SaveLoadOrder slo = new SaveLoadOrder();
+
         public FormSave()
         {
             InitializeComponent();
@@ -24,29 +22,32 @@ namespace WorkPlace
 
             //заполнение стат класса (тестово)
             //заказ
-            
+            /*
             DataForBD.length = 400;
             DataForBD.width = 300;
             DataForBD.height = 250;
-            //DataForBD.idCustomer = 1;
-
-            //DataForBD.summa = 75000; // нужно рассчитать // вызвать report , он закинет в стат класс и оттуда взять уже сумму
+            */
+            
             
 
             DateTime data = DateTime.Now;
             DataForBD.mounth = data.Month;
-           // DataForBD.mounth = 3;
             // заказчик если есть
-
-
+            /*
             mbd.Connection();
             dt = mbd.selectionquery("select * from customer;");
             for (int i=0; i<dt.Rows.Count; i++) {
                 CBCustomer.Items.Add(Convert.ToString(dt.Rows[i][1]) +" "+ dt.Rows[i][2] +" "+ dt.Rows[i][3] + " " + dt.Rows[i][4]);
             }
+            */
+            foreach (var n in slo.initCBCustomer())
+            {
+                CBCustomer.Items.Add(n);
+            }
 
-            dt1 = mbd.selectionquery("select * from zakaz;");
+            
             // поиск макс (присвоение id)
+            /*
             DataForBD.idZakaz = 1;
             for (int i = 0; i < dt1.Rows.Count; i++)
             {
@@ -56,7 +57,7 @@ namespace WorkPlace
                 }
             }
             DataForBD.idZakaz++;
-
+            **/
 
             // список заказ_строймат
             //DataForBD.listZakazStroyMat.Add(DataForBD.idZakaz + ",12");
@@ -96,8 +97,18 @@ namespace WorkPlace
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            if (RBSelect.Checked)
+            {
+                slo.saveOrder(1, CBCustomer.SelectedIndex, TBFamil.Text,TBName.Text, TBOtch.Text, TBTel.Text, TBmail.Text);
+            }
+            else if (RBNew.Checked)
+            {
+                slo.saveOrder(2, CBCustomer.SelectedIndex, TBFamil.Text, TBName.Text, TBOtch.Text, TBTel.Text, TBmail.Text);
+            }
 
+
+
+            /*
             if (RBSelect.Checked)
             {
                 DataForBD.idCustomer = Convert.ToInt32( dt.Rows[CBCustomer.SelectedIndex][0]);
@@ -122,8 +133,6 @@ namespace WorkPlace
 
             }
 
-            //dt.Rows[0][0];
-            //dataGridView1.DataSource = dt;
 
             // вставка заказчика
             if (RBNew.Checked)
@@ -133,12 +142,6 @@ namespace WorkPlace
                     "','" + DataForBD.otchestvo + "', " + DataForBD.numTel + " , '" + DataForBD.mail + "' )");
             }
 
-            // вставка в заказ стр мат
-            /*foreach (var n in DataForBD.listZakazStroyMat)
-            {
-                mbd.controlquery("insert into StroyMaterialZakaz values ( " + Convert.ToString(n) + ");");
-            }
-            */
 
             mbd.controlquery("insert into StroyMaterialZakaz values ( " +DataForBD.idZakaz+","+DataForBD.idOboi + ");");
             mbd.controlquery("insert into StroyMaterialZakaz values ( " + DataForBD.idZakaz + "," + DataForBD.idPlitka + ");");
@@ -162,20 +165,19 @@ namespace WorkPlace
             Reports rep = new Reports();
             rep.blank(DataForBD.idZakaz);
             mbd.controlquery("update zakaz set summa = " + Convert.ToString(DataForBD.summa) + " where id_zakaz = " + Convert.ToString(DataForBD.idZakaz));
-
-            MessageBox.Show("OK");
+            */
+            slo.initIdOrder();
+            MessageBox.Show("Заказ оформлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void FormSave_FormClosed(object sender, FormClosedEventArgs e)
         {
-            for (int i = 0; i < dt1.Rows.Count; i++)
-            {
-                if (Convert.ToInt32(dt1.Rows[i][0]) > DataForBD.idCustomer)
-                {
-                    DataForBD.idZakaz = Convert.ToInt32(dt1.Rows[i][0]);
-                }
-            }
-            DataForBD.idZakaz++;
+            slo.initIdOrder();
+
+        }
+
+        private void FormSave_Load(object sender, EventArgs e)
+        {
 
         }
     }
