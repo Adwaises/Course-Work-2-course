@@ -82,6 +82,7 @@ namespace WorkPlace
         {
             mbd.Connection();
             dt1 = mbd.selectionquery("select * from zakaz;");
+            DataForBD.IdZakaz = 1;
             for (int i = 0; i < dt1.Rows.Count; i++)
             {
                 if (Convert.ToInt32(dt1.Rows[i][0]) > DataForBD.IdZakaz)
@@ -151,16 +152,7 @@ namespace WorkPlace
             //наверное нужно присвоить новый id, т к пользователь будет изменять
             // поиск макс (присвоение id)
 
-            DataTable dt1 = mbd.selectionquery("select * from zakaz;");
-            DataForBD.IdZakaz = 1;
-            for (int i = 0; i < dt1.Rows.Count; i++)
-            {
-                if (Convert.ToInt32(dt1.Rows[i][0]) > DataForBD.IdZakaz)
-                {
-                    DataForBD.IdZakaz = Convert.ToInt32(dt1.Rows[i][0]);
-                }
-            }
-            DataForBD.IdZakaz++;
+            initIdOrder();
         }
 
     }
