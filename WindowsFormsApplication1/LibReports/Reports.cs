@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,15 +10,17 @@ using iTextSharp.text.pdf;
 using System.Drawing;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Reflection;
+using LibDataForBD;
+using LibraryManagerBD;
+using System.Data;
 
 
-
-namespace WorkPlace 
+namespace LibReports
 {
     /// <summary>
     /// Отчеты
     /// </summary>
-    class Reports
+    public class Reports
     {
         ManagerBD mbd = new ManagerBD();
         Dictionary<string, string> dict;
@@ -27,12 +28,10 @@ namespace WorkPlace
         Dictionary<int, int> dictSum;
         Dictionary<int, int> dictCount;
 
-         
-
         public void blank(int id)
         {
             dict = new Dictionary<string, string>();
-            dict.Add("oboi","Обои");
+            dict.Add("oboi", "Обои");
             dict.Add("plitka", "Плитка");
             dict.Add("table", "Стол");
             dict.Add("stol", "Стул");
@@ -47,10 +46,10 @@ namespace WorkPlace
                 " join Zakaz on StroyMaterialZakaz.id_zakaz = Zakaz.id_zakaz  where zakaz.id_zakaz = " + Convert.ToString(id) + ";");
 
             DataTable dt1 = mbd.selectionquery("select naimenovanie,nazvanie,price from Furnitura  join FurnituraZakaz  on FurnituraZakaz.id_Furnitura = Furnitura.id_furnit " +
-                " join Zakaz on FurnituraZakaz.id_zakaz = Zakaz.id_zakaz  where zakaz.id_zakaz = " + Convert.ToString(id) +" AND type = 'mebel';");
+                " join Zakaz on FurnituraZakaz.id_zakaz = Zakaz.id_zakaz  where zakaz.id_zakaz = " + Convert.ToString(id) + " AND type = 'mebel';");
 
             DataTable dt2 = mbd.selectionquery("select naimenovanie,nazvanie,price from Furnitura  join FurnituraZakaz  on FurnituraZakaz.id_Furnitura = Furnitura.id_furnit " +
-               " join Zakaz on FurnituraZakaz.id_zakaz = Zakaz.id_zakaz  where zakaz.id_zakaz = "+ Convert.ToString(id) + " AND type = 'technics';");
+               " join Zakaz on FurnituraZakaz.id_zakaz = Zakaz.id_zakaz  where zakaz.id_zakaz = " + Convert.ToString(id) + " AND type = 'technics';");
 
             DataTable dt3 = mbd.selectionquery("select length,width,height from zakaz where id_zakaz = " + Convert.ToString(id) + ";");
 
@@ -58,7 +57,7 @@ namespace WorkPlace
             PdfWriter.GetInstance(doc, new FileStream(@"Document.pdf", FileMode.Create));
             doc.Open();
 
-            BaseFont baseFont = BaseFont.CreateFont(@"ARIAL.TTF", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+            BaseFont baseFont = BaseFont.CreateFont(@"lib/ARIAL.TTF", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
             iTextSharp.text.Phrase p = new Phrase("Бланк заказа №" + Convert.ToString(id),
             new iTextSharp.text.Font(baseFont, 14,
             iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black)));
@@ -70,21 +69,9 @@ namespace WorkPlace
 
             PdfPTable table = new PdfPTable(4);
 
-
-            /*
-             cell = new PdfPCell(new Phrase("Строительные материалы", new iTextSharp.text.Font(baseFont,
-                12, iTextSharp.text.Font.BOLD, new BaseColor(Color.Black))));
-
-            //cell.BackgroundColor = new BaseColor(Color.Yellow);
-            cell.Padding = 3; //отступ
-            cell.Colspan = 3;
-            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-            table.AddCell(cell);
-            */
-
             p = new Phrase("Строительные материалы",
-new iTextSharp.text.Font(baseFont, 12,
-iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
+            new iTextSharp.text.Font(baseFont, 12,
+            iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
             a1 = new Paragraph(p);
             a1.Alignment = Element.ALIGN_CENTER;
             a1.Add(Environment.NewLine);
@@ -94,15 +81,13 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
             PdfPCell cell = new PdfPCell(new Phrase("Наименование", new iTextSharp.text.Font(baseFont,
                12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
 
-            //cell.BackgroundColor = new BaseColor(Color.Yellow);
-            //cell.Padding = 3; //отступ
             cell.Colspan = 1;
             cell.HorizontalAlignment = Element.ALIGN_CENTER;
             cell.VerticalAlignment = PdfPCell.ALIGN_MIDDLE;
             table.AddCell(cell);
 
             cell = new PdfPCell(new Phrase("Название", new iTextSharp.text.Font(baseFont,
-                12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
+            12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
             cell.HorizontalAlignment = Element.ALIGN_CENTER;
             table.AddCell(cell);
 
@@ -118,19 +103,17 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
             cell.HorizontalAlignment = Element.ALIGN_CENTER;
             table.AddCell(cell);
 
-            //PdfPCell cell1 = new PdfPCell(new Phrase("14"));
-            //cell1.Rowspan = 1;
-            //table.AddCell(cell1);
             double sumSM = 0;
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 for (int j = 0; j < dt.Columns.Count; j++)
                 {
-                    //string s = Convert.ToString(dt.Rows[i][j]);
-                    if (j == 0) {
+                    if (j == 0)
+                    {
                         cell = new PdfPCell(new Phrase(dict[Convert.ToString(dt.Rows[i][j])], new iTextSharp.text.Font(baseFont,
                             12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
-                    } else
+                    }
+                    else
                     {
                         cell = new PdfPCell(new Phrase(Convert.ToString(dt.Rows[i][j]), new iTextSharp.text.Font(baseFont,
                             12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
@@ -138,37 +121,35 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
 
                     table.AddCell(cell);
                 }
-                double S=0;
-                if (Convert.ToString( dt.Rows[i][0]) == "plitka") {
-                  S = (Convert.ToDouble(dt3.Rows[0][0]) / 100) * (Convert.ToDouble(dt3.Rows[0][1]) / 100);
-                    cell = new PdfPCell(new Phrase(Convert.ToString(S), new iTextSharp.text.Font(baseFont,
-                                12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
-                    table.AddCell(cell);
-                }  else if(Convert.ToString(dt.Rows[i][0]) == "oboi")
+                double S = 0;
+                if (Convert.ToString(dt.Rows[i][0]) == "plitka")
                 {
-                    S = (Convert.ToDouble(dt3.Rows[0][0]) / 100) * (Convert.ToDouble(dt3.Rows[0][2]) / 100) * 2;
-                    S+= (Convert.ToDouble(dt3.Rows[0][1]) / 100) * (Convert.ToDouble(dt3.Rows[0][2]) / 100) * 2;
+                    S = (Convert.ToDouble(dt3.Rows[0][0]) / 100) * (Convert.ToDouble(dt3.Rows[0][1]) / 100);
                     cell = new PdfPCell(new Phrase(Convert.ToString(S), new iTextSharp.text.Font(baseFont,
                                 12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
                     table.AddCell(cell);
                 }
-
-
+                else if (Convert.ToString(dt.Rows[i][0]) == "oboi")
+                {
+                    S = (Convert.ToDouble(dt3.Rows[0][0]) / 100) * (Convert.ToDouble(dt3.Rows[0][2]) / 100) * 2;
+                    S += (Convert.ToDouble(dt3.Rows[0][1]) / 100) * (Convert.ToDouble(dt3.Rows[0][2]) / 100) * 2;
+                    cell = new PdfPCell(new Phrase(Convert.ToString(S), new iTextSharp.text.Font(baseFont,
+                                12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
+                    table.AddCell(cell);
+                }
                 sumSM += Convert.ToInt32(dt.Rows[i][2]) * S;
-                
+
             }
 
             doc.Add(table);
 
-           
-
             table = new PdfPTable(3);
             int sumM = 0;
-            if (dt1.Rows.Count !=0) {
-
+            if (dt1.Rows.Count != 0)
+            {
                 p = new Phrase("Мебель",
-           new iTextSharp.text.Font(baseFont, 12,
-           iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
+                new iTextSharp.text.Font(baseFont, 12,
+                iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
                 a1 = new Paragraph(p);
                 a1.Alignment = Element.ALIGN_CENTER;
                 a1.Add(Environment.NewLine);
@@ -176,10 +157,7 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
                 doc.Add(a1);
 
                 cell = new PdfPCell(new Phrase("Наименование", new iTextSharp.text.Font(baseFont,
-  12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
-
-                //cell.BackgroundColor = new BaseColor(Color.Yellow);
-                //cell.Padding = 3; //отступ
+                12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
                 cell.Colspan = 1;
                 cell.HorizontalAlignment = Element.ALIGN_CENTER;
                 cell.VerticalAlignment = PdfPCell.ALIGN_MIDDLE;
@@ -189,21 +167,11 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
                 cell.HorizontalAlignment = Element.ALIGN_CENTER;
                 table.AddCell(cell);
 
-
-
                 cell = new PdfPCell(new Phrase("Цена", new iTextSharp.text.Font(baseFont,
                     12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
                 cell.HorizontalAlignment = Element.ALIGN_CENTER;
                 table.AddCell(cell);
-                /*
-                cell = new PdfPCell(new Phrase("Мебель", new iTextSharp.text.Font(baseFont,
-                   12, iTextSharp.text.Font.BOLD, new BaseColor(Color.Black))));
 
-                cell.Padding = 3; //отступ
-                cell.Colspan = 3;
-                cell.HorizontalAlignment = Element.ALIGN_CENTER;
-                table.AddCell(cell);
-                */
                 for (int i = 0; i < dt1.Rows.Count; i++)
                 {
                     for (int j = 0; j < dt1.Columns.Count; j++)
@@ -212,7 +180,8 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
                         {
                             cell = new PdfPCell(new Phrase(dict[Convert.ToString(dt1.Rows[i][j])], new iTextSharp.text.Font(baseFont, 12,
                             iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
-                        } else
+                        }
+                        else
                         {
                             cell = new PdfPCell(new Phrase(Convert.ToString(dt1.Rows[i][j]), new iTextSharp.text.Font(baseFont, 12,
                          iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
@@ -233,8 +202,8 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
             {
 
                 p = new Phrase("Техника",
-new iTextSharp.text.Font(baseFont, 12,
-iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
+                new iTextSharp.text.Font(baseFont, 12,
+                iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
                 a1 = new Paragraph(p);
                 a1.Alignment = Element.ALIGN_CENTER;
                 a1.Add(Environment.NewLine);
@@ -242,10 +211,7 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
                 doc.Add(a1);
 
                 cell = new PdfPCell(new Phrase("Наименование", new iTextSharp.text.Font(baseFont,
-12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
-
-                //cell.BackgroundColor = new BaseColor(Color.Yellow);
-                //cell.Padding = 3; //отступ
+                12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
                 cell.Colspan = 1;
                 cell.HorizontalAlignment = Element.ALIGN_CENTER;
                 cell.VerticalAlignment = PdfPCell.ALIGN_MIDDLE;
@@ -255,22 +221,10 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
                 cell.HorizontalAlignment = Element.ALIGN_CENTER;
                 table.AddCell(cell);
 
-
-
                 cell = new PdfPCell(new Phrase("Цена", new iTextSharp.text.Font(baseFont,
                     12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
                 cell.HorizontalAlignment = Element.ALIGN_CENTER;
                 table.AddCell(cell);
-
-                /*
-                cell = new PdfPCell(new Phrase("Техника", new iTextSharp.text.Font(baseFont,
-             12, iTextSharp.text.Font.BOLD, new BaseColor(Color.Black))));
-                
-                cell.Padding = 3; //отступ
-                cell.Colspan = 3;
-                cell.HorizontalAlignment = Element.ALIGN_CENTER;
-                table.AddCell(cell);
-                */
 
                 for (int i = 0; i < dt2.Rows.Count; i++)
                 {
@@ -292,35 +246,16 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
                     sumT += Convert.ToInt32(dt2.Rows[i][2]);
                 }
             }
-            //table.AddCell("Обои");
-            //table.AddCell("Col 3 Row 1");
-            //table.AddCell("Col 2 Row 2");
-
-
-            //jpg = iTextSharp.text.Image.GetInstance(@"G:/left.jpg");
-            //cell = new PdfPCell(jpg);
-            //cell.Padding = 5;
-            //cell.HorizontalAlignment = PdfPCell.ALIGN_LEFT;
-            //table.AddCell(cell);
-
-            //jpg = iTextSharp.text.Image.GetInstance(@"G:/right.jpg");
-            //cell = new PdfPCell(jpg);
-            //cell.Padding = 5;
-            //cell.HorizontalAlignment = PdfPCell.ALIGN_RIGHT;
-            //table.AddCell(cell);
-
 
             doc.Add(table);
 
-
-            Phrase p1 = new Phrase("             Параметры комнаты: " + Convert.ToString(Convert.ToDouble(dt3.Rows[0][0])/100) + " м * "+
+            Phrase p1 = new Phrase("             Параметры комнаты: " + Convert.ToString(Convert.ToDouble(dt3.Rows[0][0]) / 100) + " м * " +
                  Convert.ToString(Convert.ToDouble(dt3.Rows[0][1]) / 100) + " м * " + Convert.ToString(Convert.ToDouble(dt3.Rows[0][2]) / 100) + " м",
             new iTextSharp.text.Font(baseFont, 14,
             iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black)));
             Paragraph a2 = new Paragraph(p1);
             a2.Alignment = Element.ALIGN_LEFT;
             a2.Add(Environment.NewLine);
-            //a2.SpacingAfter = 5;
             doc.Add(a2);
 
             p1 = new Phrase("             Сумма строительных материалов: " + Convert.ToString(sumSM),
@@ -329,37 +264,36 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
             a2 = new Paragraph(p1);
             a2.Alignment = Element.ALIGN_LEFT;
             a2.Add(Environment.NewLine);
-            //a2.SpacingAfter = 5;
             doc.Add(a2);
 
             p1 = new Phrase("             Сумма техники: " + Convert.ToString(sumT),
-           new iTextSharp.text.Font(baseFont, 14,
-           iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black)));
+            new iTextSharp.text.Font(baseFont, 14,
+            iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black)));
             a2 = new Paragraph(p1);
             doc.Add(a2);
 
             p1 = new Phrase("             Сумма мебели: " + Convert.ToString(sumM),
-           new iTextSharp.text.Font(baseFont, 14,
-           iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black)));
+            new iTextSharp.text.Font(baseFont, 14,
+            iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black)));
             a2 = new Paragraph(p1);
-            
+
             doc.Add(a2);
 
-            int allSum =Convert.ToInt32(  sumM + sumT + sumSM);
+            int allSum = Convert.ToInt32(sumM + sumT + sumSM);
 
             p1 = new Phrase("             Общая сумма: " + Convert.ToString(allSum),
-           new iTextSharp.text.Font(baseFont, 14,
-           iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
+            new iTextSharp.text.Font(baseFont, 14,
+            iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
             a2 = new Paragraph(p1);
-            
+
             a2.SpacingAfter = 30;
             doc.Add(a2);
             a2.SpacingAfter = 30;
             DateTime second = DateTime.Now;
 
             Phrase p2 = new Phrase("Дата формирования заказа: " + second,
-           new iTextSharp.text.Font(baseFont, 12,
-           iTextSharp.text.Font.ITALIC, new BaseColor(Color.Black)));
+            new iTextSharp.text.Font(baseFont, 12,
+            iTextSharp.text.Font.ITALIC, new BaseColor(Color.Black)));
             a2 = new Paragraph(p2);
             a2.Alignment = Element.ALIGN_RIGHT;
             doc.Add(a2);
@@ -367,10 +301,10 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
             doc.Close();
 
             DataForBD.summa = allSum;
-            
+
         }
         /// <summary>
-        /// рисует сетку
+        /// Рисует сетку
         /// </summary>
         /// <returns></returns>
         public Bitmap DrawGrid()
@@ -423,18 +357,13 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
                 dictSum[Convert.ToInt32(dt.Rows[i][0])] = Convert.ToInt32(dt.Rows[i][1]) / 1000;
                 dictCount[Convert.ToInt32(dt.Rows[i][0])] = Convert.ToInt32(dt.Rows[i][2]);
             }
-            //dictCount[11] = 3; dictCount[12] = 8; dictCount[5] = 2;
-
-
-            //int w = pictureBox1.Width;
-            //int h = pictureBox1.Height;
-            int w = 570;    // внимание
-            int h = 455;   //
+            int w = 570;
+            int h = 455;
             int maxX = 12;
             int maxY = 1000;
             int max = h - 25;
 
-            Bitmap bmp = new Bitmap(760, 500); // внимание
+            Bitmap bmp = new Bitmap(760, 500);
             Graphics gr = Graphics.FromImage(bmp);
             float cdx = (w - 90) / maxX;
             float cdy = (h - 50) / maxY;
@@ -446,7 +375,6 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
 
             if (check)
             {
-                // сетка
                 for (float x = 0; x < maxX; x++)
                 {
                     gr.DrawString((x + 1).ToString(), new System.Drawing.Font("Arial", 10), Brushes.Green, (int)(x * cdx) + 40, max + 10);
@@ -460,19 +388,15 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
                     gr.DrawLine(Pens.Green, 0, (int)(max - (int)(y * cy)), (int)w - 50, (int)(max - (int)(y * cy)));
                 }
 
-                //гист
                 for (int i = 1; i <= dictSum.Count; i++)
                 {
                     gr.FillRectangle(Brushes.Red, 40 * (i - 1) + 40, (int)(maxY * 0.43) - (int)(dictSum[i] * 0.4), 10, (int)(dictSum[i] * 0.4));
-                    //gr.DrawString(Convert.ToString(dictCount[i]), new Font("Arial", 10), Brushes.Red,
-                    //40 * (i - 1) + 40, (int)(maxY * 0.43) - (int)(dictSum[i] * 0.4) -20);
                 }
 
 
             }
             else if (!check)
             {
-                //сетка
                 for (float x = 0; x < maxX; x++)
                 {
                     gr.DrawString((x + 1).ToString(), new System.Drawing.Font("Arial", 10), Brushes.Green, (int)(x * cdx) + 40, max + 10);
@@ -489,30 +413,14 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
                 for (int i = 1; i <= dictCount.Count; i++)
                 {
                     gr.FillRectangle(Brushes.Red, 40 * (i - 1) + 40, (int)(maxY * 0.43) - dictCount[i] * 40, 10, (int)(dictCount[i] * 40));
-                    //gr.DrawString(Convert.ToString(dictCount[i]), new Font("Arial", 10), Brushes.Red,
-                    //40 * (i - 1) + 40, (int)(maxY * 0.43) - (int)(dictSum[i] * 0.4) -20);
                 }
 
             }
 
-
-            //w = pictureBox2.Width;
-            //h = pictureBox2.Height;
-            //Bitmap bmpD = new Bitmap(w, h);
-            //Graphics grD = Graphics.FromImage(bmp);
-
             gr.DrawString("Месяц", new System.Drawing.Font("Arial", 10), Brushes.Black, 250, 470);
 
-            //pictureBox2.Image = bmpD;
-
-
-
-
-
-            w = 184; //  внимание
-            h = 56; //
-            //Bitmap bmpLeg = new Bitmap(w, h);
-            //Graphics grLeg = Graphics.FromImage(bmpLeg);
+            w = 184;
+            h = 56;
             gr.DrawRectangle(new Pen(Brushes.Black), 550, 180, w - 1, h - 1);
 
             gr.FillRectangle(Brushes.Red, 560, 203, 10, 10);
@@ -562,8 +470,6 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
                     ObjWorkSheet.Cells[i, 1] = Convert.ToString(dictSum[i]);
                     ObjWorkSheet.Cells[i, 2] = Convert.ToString(dictCount[i]);
                 }
-                //ObjWorkSheet.Cells[3, 1] = "51";
-                //ObjExcel.Application.DisplayAlerts = true;
                 ObjExcel.DisplayAlerts = false;
                 ObjWorkBook.SaveAs("book.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Excel.XlSaveAsAccessMode.xlExclusive,
                 Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
@@ -584,10 +490,7 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
                 ExcelDiagr1();
                 DataForBD.iter = 4;
                 ExcelDiagr2();
-
                 DataForBD.iter = 6;
-
-
             }
             catch (Exception exc)
             {
@@ -602,9 +505,6 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
             Excel.Application excelapp = new Excel.Application();
             try
             {
-
-
-                // excelapp.Visible = true;
                 Excel.Workbooks excelappworkbooks = excelapp.Workbooks;
                 Excel.Workbook excelappworkbook = excelapp.Workbooks.Open("book.xlsx",
                 Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
@@ -612,13 +512,8 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
                 Type.Missing, Type.Missing, Type.Missing, Type.Missing);
                 Excel.Sheets excelsheets = excelappworkbook.Worksheets;
 
-                //excelappworkbook = excelappworkbooks[2];
-                //excelappworkbook.Activate();
-                //excelsheets = excelapp.ActiveWorkbook.Worksheets;
-
                 Excel.Worksheet excelworksheet = (Excel.Worksheet)excelsheets.get_Item(1);
                 excelworksheet.Activate();
-                //Excel.Worksheet excelworksheet = (Excel.Worksheet)excelappworkbook.Sheets[2];
                 Excel.Range excelcells = excelworksheet.get_Range("B1", "B12");
                 excelcells.Select();
 
@@ -643,11 +538,9 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
                 Excel.Series series = seriesCollection.Item(1);
                 series.Name = "Количество заказов";
 
-                //excelworksheet.Name = "Количество заказов";
-
                 excelapp.DisplayAlerts = false;
                 excelappworkbook.SaveAs("book.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Excel.XlSaveAsAccessMode.xlExclusive,
-               Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
+                Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
 
                 excelapp.Quit();
 
@@ -656,7 +549,7 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
             {
                 excelapp.Quit();
                 throw exc;
-               
+
             }
         }
 
@@ -665,9 +558,6 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
             Excel.Application excelapp = new Excel.Application();
             try
             {
-
-
-                // excelapp.Visible = true;
                 Excel.Workbooks excelappworkbooks = excelapp.Workbooks;
                 Excel.Workbook excelappworkbook = excelapp.Workbooks.Open("book.xlsx",
                 Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
@@ -677,7 +567,7 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
                 Excel.Worksheet excelworksheet = (Excel.Worksheet)excelsheets.get_Item(1);
                 Excel.Range excelcells = excelworksheet.get_Range("A1", "A12");
                 excelcells.Select();
-                //выручка
+
                 Excel.Chart excelchart = (Excel.Chart)excelapp.Charts.Add(Type.Missing,
                     Type.Missing, Type.Missing, Type.Missing);
                 excelapp.ActiveChart.HasTitle = true;
@@ -701,17 +591,14 @@ iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
 
                 excelapp.DisplayAlerts = false;
                 excelappworkbook.SaveAs("book.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Excel.XlSaveAsAccessMode.xlExclusive,
-               Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
+                Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
                 excelapp.Quit();
-
-
-
             }
             catch (Exception exc)
             {
                 excelapp.Quit();
                 throw exc;
-                
+
             }
         }
 

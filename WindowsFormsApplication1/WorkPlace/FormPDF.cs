@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using LibraryManagerBD;
+using LibReports;
 
 
 namespace WorkPlace

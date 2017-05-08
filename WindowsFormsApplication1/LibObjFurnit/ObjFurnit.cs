@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WorkPlace
+namespace LibObjFurnit
 {
-    class ObjFurnit
+    public class ObjFurnit
     {
         private int idZakaz;
         private int idFurnit;

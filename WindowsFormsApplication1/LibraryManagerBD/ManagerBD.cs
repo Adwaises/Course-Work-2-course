@@ -10,13 +10,12 @@ namespace LibraryManagerBD
 {
     public class ManagerBD
     {
-        
             SQLiteConnection sql;
             public void Connection()
             {
                 try
                 {
-                    sql = new SQLiteConnection(@"Data Source= mydb.sqlite;Version=3");
+                    sql = new SQLiteConnection(@"Data Source= database/mydb.sqlite;Version=3");
                 }
                 catch (Exception ex)
                 {
@@ -52,15 +51,12 @@ namespace LibraryManagerBD
                 DataTable dt;
                 try
                 {
-                    //SQLiteConnection sqlcon = new SQLiteConnection(@"Data Source= mydb.sqlite;Version=3");
                     sql.Open();
                     SQLiteCommand sc = new SQLiteCommand(sql);
                     sc.CommandText = @sq;
-
                     SQLiteDataReader sdr = sc.ExecuteReader();
                     dt = new DataTable();
                     dt.Load(sdr);
-                    //dataGridView1.DataSource = dt;
                     sql.Close();
                 }
                 catch (Exception ex)
@@ -86,7 +82,6 @@ namespace LibraryManagerBD
                     SQLiteDataReader sdr = sc.ExecuteReader();
                     dt = new DataTable();
                     dt.Load(sdr);
-                    //dataGridView1.DataSource = dt;
                     sql.Close();
                 }
                 catch (Exception ex)
