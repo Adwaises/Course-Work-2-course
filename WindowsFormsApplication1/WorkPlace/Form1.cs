@@ -132,7 +132,7 @@ namespace WorkPlace
 
             /*-------------Взаимодействие с БД (тем классом)------------------*/
 
-            DataForBD.listZakazMebTeh.Add(new ObjFurnit(DataForBD.idCustomer, 11, 0, 0));
+            DataForBD.listZakazMebTeh.Add(new ObjFurnit(DataForBD.idCustomer, 61, 0, 0));
 
             /*----------------------------------------------------------------*/
         }
@@ -384,7 +384,7 @@ namespace WorkPlace
                 DataForBD.listZakazMebTeh[index].CoordY = room.GetObj(indexOfObj).Y;
                 foreach (var n in DataForBD.listZakazMebTeh)
                 {
-                    Console.WriteLine(n.CoordX + " " + n.CoordY + "");
+                    Console.WriteLine(n.IdFurnit +" "+n.CoordX + " " + n.CoordY + " ");
                 }
 
 
