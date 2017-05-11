@@ -27,13 +27,19 @@ namespace WorkPlace
 
         private void button1_Click(object sender, EventArgs e)
         {
-            report.blank(Convert.ToInt32(dt.Rows[comboBox1.SelectedIndex][0]));
-            DialogResult result = MessageBox.Show("Открыть?", "Отчет сформирован", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
-            if (result == DialogResult.Yes) //Если нажал Да
+            if (comboBox1.SelectedIndex > -1)
             {
-                //отрытие документа программой по умолчанию
-                Process.Start("Document.pdf");
+                report.blank(Convert.ToInt32(dt.Rows[comboBox1.SelectedIndex][0]));
+                DialogResult result = MessageBox.Show("Открыть?", "Отчет сформирован", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (result == DialogResult.Yes) //Если нажал Да
+                {
+                    //отрытие документа программой по умолчанию
+                    Process.Start("Document.pdf");
+                }
+            } else
+            {
+                MessageBox.Show("Выберите заказ");
             }
         }
 
