@@ -17,6 +17,12 @@ namespace WorkPlace
         "Шкаф будет размещен",
         "Стул будет размещен"};
 
+        private List<string> listSint = new List<string>()
+        {
+            "должны располагаться подальше друг от друга",
+            "должны располагаться рядом"
+        };
+
         string s = "";
 
         public string result(string num1, string num2)
@@ -32,23 +38,19 @@ namespace WorkPlace
             }
         }
 
-
-
-
         public string predicat(string str1, string str2)
         {
             if(str1 == "Плита" && str2 == "Холодильник" || str1 == "Плита" && str2 == "Шкаф" ||
                 str1 == "Стол" && str2 == "Холодильник" || str1 == "Стол" && str2 == "Шкаф")
             {
-                return "должны распологаться подальше друг от друга";
+                return listSint[0] ;
             } else if (str1 == "Стол" && str2 == "Стул")
             {
-                return "должны распологаться рядом";
+                return listSint[1];
             } else
             {
                 return "0";
             }
-            
         }
     }
 }
