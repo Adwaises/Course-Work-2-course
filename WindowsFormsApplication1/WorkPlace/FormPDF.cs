@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using LibraryManagerBD;
+using LibReports;
 
 
 namespace WorkPlace
@@ -25,13 +27,19 @@ namespace WorkPlace
 
         private void button1_Click(object sender, EventArgs e)
         {
-            report.blank(Convert.ToInt32(dt.Rows[comboBox1.SelectedIndex][0]));
-            DialogResult result = MessageBox.Show("Открыть?", "Отчет сформирован", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
-            if (result == DialogResult.Yes) //Если нажал Да
+            if (comboBox1.SelectedIndex > -1)
             {
-                //отрытие документа программой по умолчанию
-                Process.Start("Document.pdf");
+                report.blank(Convert.ToInt32(dt.Rows[comboBox1.SelectedIndex][0]));
+                DialogResult result = MessageBox.Show("Открыть?", "Отчет сформирован", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (result == DialogResult.Yes) //Если нажал Да
+                {
+                    //отрытие документа программой по умолчанию
+                    Process.Start("Document.pdf");
+                }
+            } else
+            {
+                MessageBox.Show("Выберите заказ","Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -41,7 +49,8 @@ namespace WorkPlace
             dt = mbd.selectionquery("select * from zakaz;");
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                comboBox1.Items.Add(Convert.ToString(dt.Rows[i][0]) + " " + dt.Rows[i][1] + " " + dt.Rows[i][2] + " " + dt.Rows[i][3] + " " + dt.Rows[i][6]);
+                comboBox1.Items.Add("Заказ №" + dt.Rows[i][0] + "" + " Размеры:" + Convert.ToDouble(dt.Rows[i][1]) / 100 + "*" + Convert.ToDouble(dt.Rows[i][2]) / 100 +
+                    "*" + Convert.ToDouble(dt.Rows[i][3]) / 100 + " Сумма:" + dt.Rows[i][6]);
             }
         }
     }

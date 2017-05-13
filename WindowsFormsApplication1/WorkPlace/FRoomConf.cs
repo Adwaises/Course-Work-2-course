@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LibDataForBD;
 
 namespace WorkPlace
 {
@@ -32,6 +33,13 @@ namespace WorkPlace
                 room.length = 2 * Convert.ToDouble(tBLength.Text);
                 room.width = 2 * Convert.ToDouble(tBWidth.Text);
                 room.height = Convert.ToDouble(tBHeigth.Text);
+
+                /*-------------Взаимодействие с БД (тем классом)------------------*/
+                DataForBD.Length = Convert.ToInt32(room.length/2 * 100);
+                DataForBD.Width = Convert.ToInt32(room.width/2 * 100);
+                DataForBD.Height = Convert.ToInt32(room.height * 100);
+                /*----------------------------------------------------------------*/
+
                 Close();
             }
             catch (FormatException ex)

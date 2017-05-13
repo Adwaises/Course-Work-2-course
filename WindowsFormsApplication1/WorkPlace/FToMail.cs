@@ -8,8 +8,11 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-
+using LibDataForBD;
+using LibMail;
+using LibraryManagerBD;
+using LibraryManagerBD;
+using LibReports;
 
 namespace WorkPlace
 {
@@ -42,7 +45,7 @@ namespace WorkPlace
             report.blank(Convert.ToInt32(dt.Rows[comboBox1.SelectedIndex][0]));
             try
             {
-                DataForBD.iter = 0;
+                DataForBD.Iter = 0;
                 Thread t = new Thread(toMail);
                 t.Start();
                 timer1.Start();
@@ -66,7 +69,8 @@ namespace WorkPlace
             dt = mbd.selectionquery("select * from zakaz;");
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                comboBox1.Items.Add(Convert.ToString(dt.Rows[i][0]) + " " + dt.Rows[i][1] + " " + dt.Rows[i][2] + " " + dt.Rows[i][3] + " " + dt.Rows[i][6]);
+                comboBox1.Items.Add("Заказ №" + dt.Rows[i][0] + "" + " Размеры:" + Convert.ToDouble(dt.Rows[i][1]) / 100 + "*" + Convert.ToDouble(dt.Rows[i][2]) / 100 +
+                    "*" + Convert.ToDouble(dt.Rows[i][3]) / 100 + " Сумма:" + dt.Rows[i][6]);
             }
 
         }
@@ -80,19 +84,19 @@ namespace WorkPlace
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (DataForBD.iter == 0)
+            if (DataForBD.Iter == 0)
             {
                 progressBar1.Value = 10;
             }
-            else if (DataForBD.iter == 1)
+            else if (DataForBD.Iter == 1)
             {
                 progressBar1.Value = 30;
             }
-            else if (DataForBD.iter == 2)
+            else if (DataForBD.Iter == 2)
             {
                 progressBar1.Value = 90;
             }
-            else if (DataForBD.iter == 3)
+            else if (DataForBD.Iter == 3)
             {
                 progressBar1.Value = 100;
                 timer1.Stop();

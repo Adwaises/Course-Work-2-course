@@ -10,6 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LibDataForBD;
+using LibObjFurnit;
+using LibraryManagerBD;
 
 namespace WorkPlace
 {
@@ -52,6 +55,12 @@ namespace WorkPlace
             InitializeComponent();
             openGLControl.MouseWheel += new System.Windows.Forms.MouseEventHandler(openGLControl_MouseWheel);
             room = new Room(8, 4, 2.5);
+
+            /*-------------Взаимодействие с БД (тем классом)------------------*/
+            DataForBD.Length = Convert.ToInt32(room.length/2*100);
+            DataForBD.Width = Convert.ToInt32(room.width/2 * 100);
+            DataForBD.Height = Convert.ToInt32(room.height * 100);
+            /*----------------------------------------------------------------*/
             просмотрToolStripMenuItem.Checked = true;
         }
 
@@ -140,7 +149,7 @@ namespace WorkPlace
 
             /*-------------Взаимодействие с БД (тем классом)------------------*/
 
-            DataForBD.listZakazMebTeh.Add(new ObjFurnit(DataForBD.idCustomer, 11, 0, 0));
+            DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdCustomer, 61, 0, 0));
 
             /*----------------------------------------------------------------*/
         }
@@ -278,9 +287,9 @@ namespace WorkPlace
 
                             /*-------------Взаимодействие с БД (тем классом)------------------*/
 
-                            for (int k = 0; k < DataForBD.listZakazMebTeh.Count; k++)
+                            for (int k = 0; k < DataForBD.ListZakazMebTeh.Count; k++)
                             {
-                                if (DataForBD.listZakazMebTeh[k].CoordX == room.GetObj(indexOfObj).X && DataForBD.listZakazMebTeh[k].CoordY == room.GetObj(indexOfObj).Y)
+                                if (DataForBD.ListZakazMebTeh[k].CoordX == room.GetObj(indexOfObj).X && DataForBD.ListZakazMebTeh[k].CoordY == room.GetObj(indexOfObj).Y)
                                 {
                                     Console.WriteLine("Есть конакт"); // потом уберу
                                     index = k;
@@ -385,11 +394,11 @@ namespace WorkPlace
                 Cursor.Show();
                 /*-------------Взаимодействие с БД (тем классом)------------------*/
 
-                DataForBD.listZakazMebTeh[index].CoordX = room.GetObj(indexOfObj).X;
-                DataForBD.listZakazMebTeh[index].CoordY = room.GetObj(indexOfObj).Y;
-                foreach (var n in DataForBD.listZakazMebTeh)
+                DataForBD.ListZakazMebTeh[index].CoordX = room.GetObj(indexOfObj).X;
+                DataForBD.ListZakazMebTeh[index].CoordY = room.GetObj(indexOfObj).Y;
+                foreach (var n in DataForBD.ListZakazMebTeh)
                 {
-                    Console.WriteLine(n.CoordX + " " + n.CoordY + "");
+                    Console.WriteLine(n.IdFurnit +" "+n.CoordX + " " + n.CoordY + " ");
                 }
 
 
@@ -421,15 +430,16 @@ namespace WorkPlace
             mbd.Connection();
             DataTable dt1 = mbd.selectionquery("select * from zakaz;");
 
-            DataForBD.idZakaz = 1;
+            DataForBD.IdZakaz = 1;
             for (int i = 0; i < dt1.Rows.Count; i++)
             {
-                if (Convert.ToInt32(dt1.Rows[i][0]) > DataForBD.idZakaz)
+                if (Convert.ToInt32(dt1.Rows[i][0]) > DataForBD.IdZakaz)
                 {
-                    DataForBD.idZakaz = Convert.ToInt32(dt1.Rows[i][0]);
+                    DataForBD.IdZakaz = Convert.ToInt32(dt1.Rows[i][0]);
                 }
             }
-            DataForBD.idZakaz++;
+            DataForBD.IdZakaz++;
+
         }
 
         private void оформитьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -462,15 +472,63 @@ namespace WorkPlace
             sem.ShowDialog();
         }
 
-        private void загрузкаОбъектоввременноToolStripMenuItem_Click(object sender, EventArgs e)
+        private void структураТоваровToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            FormFrame ff = new FormFrame();
+            ff.ShowDialog();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            //тут будет заполнение комбобоксов
+            cbOboi.Items.Add("Fiji - 600");
+            cbOboi.Items.Add("Vernissage - 700");
+
+            cbPlitka.Items.Add("Florence - 300");
+            cbPlitka.Items.Add("Magma - 500");
+
+            cbFurnit.Items.Add("Стол European - 1500");
+            cbFurnit.Items.Add("Стол Premiere - 2000");
+
+            cbFurnit.Items.Add("Стул Victoria - 700");
+            cbFurnit.Items.Add("Стул Bravo - 1700");
+            cbFurnit.Items.Add("Стул Iris - 1000");
+
+            cbFurnit.Items.Add("Шкаф Brusali - 3000");
+            cbFurnit.Items.Add("Шкаф Wyspaa - 2000");
+
+            cbFurnit.Items.Add("Плита Mora - 6000");
+
+            cbFurnit.Items.Add("Холодильник LG - 11000");
+            cbFurnit.Items.Add("Холодильник BEKO - 13000");
+
+            //присвоение нового id
+            mbd.Connection();
+            DataTable dt1 = mbd.selectionquery("select * from zakaz;");
+            DataForBD.IdZakaz = 1;
+            for (int i = 0; i < dt1.Rows.Count; i++)
             {
-                Model m = new Model();
-                m.LoadModel(openFileDialog1.FileName);
-                list.Add(m);
+                if (Convert.ToInt32(dt1.Rows[i][0]) > DataForBD.IdCustomer)
+                {
+                    DataForBD.IdZakaz = Convert.ToInt32(dt1.Rows[i][0]);
+                }
             }
-            
+            DataForBD.IdZakaz++;
+
+            label1.Text ="Заказ №"+ DataForBD.IdZakaz.ToString();
+        }
+
+      
+
+        private void логическиеВыводыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormLogic fl = new FormLogic();
+            fl.ShowDialog();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            label1.Text = "Заказ №" + DataForBD.IdZakaz.ToString();
         }
     }
 }
