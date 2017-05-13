@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using LibDataForBD;
 using LibObjFurnit;
 using LibraryManagerBD;
+using System.IO;
 
 namespace WorkPlace
 {
@@ -487,6 +488,16 @@ namespace WorkPlace
 
             cbFurnit.Items.Add("Холодильник LG - 11000");
             cbFurnit.Items.Add("Холодильник BEKO - 13000");
+
+
+            int nImageCounter = 0;
+            List<string> path = new List<string>();
+            path.Add("picture\\image.jpg");
+            //path.Add("res\\Obj2.bmp");
+            //path.Add("res\\Obj3.bmp");
+            //path.Add("res\\Obj4.bmp");
+            //path.Add("res\\Obj5.bmp");
+            //path.Add("res\\Obj6.bmp");
 
             //присвоение нового id
             mbd.Connection();
