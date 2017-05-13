@@ -61,25 +61,36 @@ namespace WorkPlace
             this.самаяПокупаемаяФурнитураToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.структураТоваровToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.логическиеВыводыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.cbOboi = new System.Windows.Forms.ComboBox();
+            this.bOboiR = new System.Windows.Forms.Button();
+            this.bOboiAdd = new System.Windows.Forms.Button();
+            this.bOboiL = new System.Windows.Forms.Button();
+            this.pbOboi = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.cbPlitka = new System.Windows.Forms.ComboBox();
+            this.bPlitkaR = new System.Windows.Forms.Button();
+            this.bPlitkaAdd = new System.Windows.Forms.Button();
+            this.bPlitkaL = new System.Windows.Forms.Button();
+            this.pbPlitka = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.cbFurnit = new System.Windows.Forms.ComboBox();
+            this.bFurnitR = new System.Windows.Forms.Button();
+            this.bFurnitL = new System.Windows.Forms.Button();
+            this.pbFurnit = new System.Windows.Forms.PictureBox();
+            this.bFurnitAdd = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBControl)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOboi)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPlitka)).BeginInit();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFurnit)).BeginInit();
             this.SuspendLayout();
             // 
             // openGLControl
@@ -117,11 +128,11 @@ namespace WorkPlace
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1139, 217);
+            this.button2.Location = new System.Drawing.Point(1038, 178);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
+            this.button2.Text = "Очистить";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -135,7 +146,7 @@ namespace WorkPlace
             this.заказToolStripMenuItem,
             this.бДToolStripMenuItem,
             this.информацияToolStripMenuItem,
-            this.парсерToolStripMenuItem});
+            this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1263, 24);
@@ -343,19 +354,25 @@ namespace WorkPlace
             this.логическиеВыводыToolStripMenuItem.Text = "Логические выводы";
             this.логическиеВыводыToolStripMenuItem.Click += new System.EventHandler(this.логическиеВыводыToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem3});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(25, 20);
+            this.toolStripMenuItem1.Text = "1";
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(80, 22);
+            this.toolStripMenuItem3.Text = "1";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
+            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // pBControl
-            // 
-            this.pBControl.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.pBControl.Location = new System.Drawing.Point(1037, 435);
-            this.pBControl.Name = "pBControl";
-            this.pBControl.Size = new System.Drawing.Size(214, 196);
-            this.pBControl.TabIndex = 3;
-            this.pBControl.TabStop = false;
             // 
             // listBox1
             // 
@@ -367,87 +384,153 @@ namespace WorkPlace
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.cbOboi);
-            this.groupBox1.Location = new System.Drawing.Point(730, 27);
+            this.groupBox1.Controls.Add(this.bOboiR);
+            this.groupBox1.Controls.Add(this.bOboiAdd);
+            this.groupBox1.Controls.Add(this.bOboiL);
+            this.groupBox1.Controls.Add(this.pbOboi);
+            this.groupBox1.Location = new System.Drawing.Point(730, 42);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 100);
+            this.groupBox1.Size = new System.Drawing.Size(246, 169);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Обои";
             // 
-            // button3
+            // bOboiR
             // 
-            this.button3.Location = new System.Drawing.Point(55, 59);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Выбрать";
-            this.button3.UseVisualStyleBackColor = true;
+            this.bOboiR.Location = new System.Drawing.Point(158, 121);
+            this.bOboiR.Name = "bOboiR";
+            this.bOboiR.Size = new System.Drawing.Size(40, 23);
+            this.bOboiR.TabIndex = 10;
+            this.bOboiR.Text = ">";
+            this.bOboiR.UseVisualStyleBackColor = true;
+            this.bOboiR.Click += new System.EventHandler(this.bOboiR_Click);
             // 
-            // cbOboi
+            // bOboiAdd
             // 
-            this.cbOboi.FormattingEnabled = true;
-            this.cbOboi.Location = new System.Drawing.Point(23, 19);
-            this.cbOboi.Name = "cbOboi";
-            this.cbOboi.Size = new System.Drawing.Size(152, 21);
-            this.cbOboi.TabIndex = 0;
+            this.bOboiAdd.Location = new System.Drawing.Point(77, 121);
+            this.bOboiAdd.Name = "bOboiAdd";
+            this.bOboiAdd.Size = new System.Drawing.Size(75, 23);
+            this.bOboiAdd.TabIndex = 1;
+            this.bOboiAdd.Text = "Выбрать";
+            this.bOboiAdd.UseVisualStyleBackColor = true;
+            // 
+            // bOboiL
+            // 
+            this.bOboiL.Location = new System.Drawing.Point(31, 121);
+            this.bOboiL.Name = "bOboiL";
+            this.bOboiL.Size = new System.Drawing.Size(40, 23);
+            this.bOboiL.TabIndex = 9;
+            this.bOboiL.Text = "<";
+            this.bOboiL.UseVisualStyleBackColor = true;
+            this.bOboiL.Click += new System.EventHandler(this.bOboiL_Click);
+            // 
+            // pbOboi
+            // 
+            this.pbOboi.Location = new System.Drawing.Point(65, 19);
+            this.pbOboi.Name = "pbOboi";
+            this.pbOboi.Size = new System.Drawing.Size(96, 96);
+            this.pbOboi.TabIndex = 8;
+            this.pbOboi.TabStop = false;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button4);
-            this.groupBox2.Controls.Add(this.cbPlitka);
-            this.groupBox2.Location = new System.Drawing.Point(730, 140);
+            this.groupBox2.Controls.Add(this.bPlitkaR);
+            this.groupBox2.Controls.Add(this.bPlitkaAdd);
+            this.groupBox2.Controls.Add(this.bPlitkaL);
+            this.groupBox2.Controls.Add(this.pbPlitka);
+            this.groupBox2.Location = new System.Drawing.Point(730, 217);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(200, 100);
+            this.groupBox2.Size = new System.Drawing.Size(246, 160);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Плитка";
             // 
-            // button4
+            // bPlitkaR
             // 
-            this.button4.Location = new System.Drawing.Point(55, 59);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "Выбрать";
-            this.button4.UseVisualStyleBackColor = true;
+            this.bPlitkaR.Location = new System.Drawing.Point(160, 121);
+            this.bPlitkaR.Name = "bPlitkaR";
+            this.bPlitkaR.Size = new System.Drawing.Size(40, 23);
+            this.bPlitkaR.TabIndex = 7;
+            this.bPlitkaR.Text = ">";
+            this.bPlitkaR.UseVisualStyleBackColor = true;
+            this.bPlitkaR.Click += new System.EventHandler(this.bPlitkaR_Click);
             // 
-            // cbPlitka
+            // bPlitkaAdd
             // 
-            this.cbPlitka.FormattingEnabled = true;
-            this.cbPlitka.Location = new System.Drawing.Point(23, 19);
-            this.cbPlitka.Name = "cbPlitka";
-            this.cbPlitka.Size = new System.Drawing.Size(152, 21);
-            this.cbPlitka.TabIndex = 0;
+            this.bPlitkaAdd.Location = new System.Drawing.Point(77, 121);
+            this.bPlitkaAdd.Name = "bPlitkaAdd";
+            this.bPlitkaAdd.Size = new System.Drawing.Size(75, 23);
+            this.bPlitkaAdd.TabIndex = 1;
+            this.bPlitkaAdd.Text = "Выбрать";
+            this.bPlitkaAdd.UseVisualStyleBackColor = true;
+            // 
+            // bPlitkaL
+            // 
+            this.bPlitkaL.Location = new System.Drawing.Point(31, 121);
+            this.bPlitkaL.Name = "bPlitkaL";
+            this.bPlitkaL.Size = new System.Drawing.Size(40, 23);
+            this.bPlitkaL.TabIndex = 6;
+            this.bPlitkaL.Text = "<";
+            this.bPlitkaL.UseVisualStyleBackColor = true;
+            this.bPlitkaL.Click += new System.EventHandler(this.bPlitkaL_Click);
+            // 
+            // pbPlitka
+            // 
+            this.pbPlitka.Location = new System.Drawing.Point(65, 19);
+            this.pbPlitka.Name = "pbPlitka";
+            this.pbPlitka.Size = new System.Drawing.Size(96, 96);
+            this.pbPlitka.TabIndex = 5;
+            this.pbPlitka.TabStop = false;
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.button5);
-            this.groupBox3.Controls.Add(this.cbFurnit);
-            this.groupBox3.Location = new System.Drawing.Point(730, 246);
+            this.groupBox3.Controls.Add(this.bFurnitR);
+            this.groupBox3.Controls.Add(this.bFurnitL);
+            this.groupBox3.Controls.Add(this.pbFurnit);
+            this.groupBox3.Controls.Add(this.bFurnitAdd);
+            this.groupBox3.Location = new System.Drawing.Point(730, 383);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(200, 100);
+            this.groupBox3.Size = new System.Drawing.Size(246, 189);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Фурнитура";
             // 
-            // button5
+            // bFurnitR
             // 
-            this.button5.Location = new System.Drawing.Point(55, 59);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 1;
-            this.button5.Text = "Добавить";
-            this.button5.UseVisualStyleBackColor = true;
+            this.bFurnitR.Location = new System.Drawing.Point(160, 153);
+            this.bFurnitR.Name = "bFurnitR";
+            this.bFurnitR.Size = new System.Drawing.Size(40, 23);
+            this.bFurnitR.TabIndex = 4;
+            this.bFurnitR.Text = ">";
+            this.bFurnitR.UseVisualStyleBackColor = true;
+            this.bFurnitR.Click += new System.EventHandler(this.button7_Click);
             // 
-            // cbFurnit
+            // bFurnitL
             // 
-            this.cbFurnit.FormattingEnabled = true;
-            this.cbFurnit.Location = new System.Drawing.Point(23, 19);
-            this.cbFurnit.Name = "cbFurnit";
-            this.cbFurnit.Size = new System.Drawing.Size(152, 21);
-            this.cbFurnit.TabIndex = 0;
+            this.bFurnitL.Location = new System.Drawing.Point(31, 153);
+            this.bFurnitL.Name = "bFurnitL";
+            this.bFurnitL.Size = new System.Drawing.Size(40, 23);
+            this.bFurnitL.TabIndex = 3;
+            this.bFurnitL.Text = "<";
+            this.bFurnitL.UseVisualStyleBackColor = true;
+            this.bFurnitL.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // pbFurnit
+            // 
+            this.pbFurnit.Location = new System.Drawing.Point(46, 19);
+            this.pbFurnit.Name = "pbFurnit";
+            this.pbFurnit.Size = new System.Drawing.Size(128, 128);
+            this.pbFurnit.TabIndex = 2;
+            this.pbFurnit.TabStop = false;
+            // 
+            // bFurnitAdd
+            // 
+            this.bFurnitAdd.Location = new System.Drawing.Point(77, 153);
+            this.bFurnitAdd.Name = "bFurnitAdd";
+            this.bFurnitAdd.Size = new System.Drawing.Size(75, 23);
+            this.bFurnitAdd.TabIndex = 1;
+            this.bFurnitAdd.Text = "Добавить";
+            this.bFurnitAdd.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -464,6 +547,10 @@ namespace WorkPlace
             this.timer1.Enabled = true;
             this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // Form1
             // 
@@ -488,10 +575,12 @@ namespace WorkPlace
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBControl)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbOboi)).EndInit();
             this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbPlitka)).EndInit();
             this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbFurnit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -533,16 +622,25 @@ namespace WorkPlace
         private System.Windows.Forms.ToolStripMenuItem структураТоваровToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem логическиеВыводыToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.ComboBox cbOboi;
+        private System.Windows.Forms.Button bOboiAdd;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.ComboBox cbPlitka;
+        private System.Windows.Forms.Button bPlitkaAdd;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.ComboBox cbFurnit;
+        private System.Windows.Forms.Button bFurnitAdd;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button bFurnitR;
+        private System.Windows.Forms.Button bFurnitL;
+        private System.Windows.Forms.PictureBox pbFurnit;
+        private System.Windows.Forms.Button bPlitkaR;
+        private System.Windows.Forms.Button bPlitkaL;
+        private System.Windows.Forms.PictureBox pbPlitka;
+        private System.Windows.Forms.Button bOboiR;
+        private System.Windows.Forms.Button bOboiL;
+        private System.Windows.Forms.PictureBox pbOboi;
     }
 }
 

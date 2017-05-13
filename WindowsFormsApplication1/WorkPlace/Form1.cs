@@ -55,7 +55,7 @@ namespace WorkPlace
         {
             InitializeComponent();
             openGLControl.MouseWheel += new System.Windows.Forms.MouseEventHandler(openGLControl_MouseWheel);
-            room = new Room(8, 4, 2.5);
+            room = new Room(8, 8, 5);
 
             /*-------------Взаимодействие с БД (тем классом)------------------*/
             DataForBD.Length = Convert.ToInt32(room.length/2*100);
@@ -479,34 +479,63 @@ namespace WorkPlace
             ff.ShowDialog();
         }
 
+        int nFurnituraCounter = 0;
+        int nPlitkaCounter = 0;
+        int nOboiCounter = 0;
+        List<string> furnituraPath = new List<string>();
+        List<string> plitkaPath = new List<string>();
+        List<string> oboiPath = new List<string>();
         private void Form1_Load(object sender, EventArgs e)
         {
             //тут будет заполнение комбобоксов
-            cbOboi.Items.Add("Fiji - 600");
-            cbOboi.Items.Add("Vernissage - 700");
+            //cbOboi.Items.Add("Fiji - 600");
+            //cbOboi.Items.Add("Vernissage - 700");
 
-            cbPlitka.Items.Add("Florence - 300");
-            cbPlitka.Items.Add("Magma - 500");
+            //cbPlitka.Items.Add("Florence - 300");
+            //cbPlitka.Items.Add("Magma - 500");
 
-            cbFurnit.Items.Add("Стол European - 1500");
-            cbFurnit.Items.Add("Стол Premiere - 2000");
+            //cbFurnit.Items.Add("Стол European - 1500");
+            //cbFurnit.Items.Add("Стол Premiere - 2000");
 
-            cbFurnit.Items.Add("Стул Victoria - 700");
-            cbFurnit.Items.Add("Стул Bravo - 1700");
-            cbFurnit.Items.Add("Стул Iris - 1000");
+            //cbFurnit.Items.Add("Стул Victoria - 700");
+            //cbFurnit.Items.Add("Стул Bravo - 1700");
+            //cbFurnit.Items.Add("Стул Iris - 1000");
 
-            cbFurnit.Items.Add("Шкаф Brusali - 3000");
-            cbFurnit.Items.Add("Шкаф Wyspaa - 2000");
+            //cbFurnit.Items.Add("Шкаф Brusali - 3000");
+            //cbFurnit.Items.Add("Шкаф Wyspaa - 2000");
 
-            cbFurnit.Items.Add("Плита Mora - 6000");
+            //cbFurnit.Items.Add("Плита Mora - 6000");
 
-            cbFurnit.Items.Add("Холодильник LG - 11000");
-            cbFurnit.Items.Add("Холодильник BEKO - 13000");
+            //cbFurnit.Items.Add("Холодильник LG - 11000");
+            //cbFurnit.Items.Add("Холодильник BEKO - 13000");
+
+            oboiPath.Add("pictures\\oboi1.png");
+            oboiPath.Add("pictures\\oboi2.png");
+            oboiPath.Add("pictures\\oboi3.png");
+            plitkaPath.Add("pictures\\plitka1.png");
+            plitkaPath.Add("pictures\\plitka2.png");
+            plitkaPath.Add("pictures\\plitka3.png");
+            plitkaPath.Add("pictures\\plitka4.png");
+
+            furnituraPath.Add("pictures\\table1.png");
+            furnituraPath.Add("pictures\\table2.png");
+            furnituraPath.Add("pictures\\stol1.png");
+            furnituraPath.Add("pictures\\stol2.png");
+            furnituraPath.Add("pictures\\stol3.png");
+            furnituraPath.Add("pictures\\shkaf1.png");
+            furnituraPath.Add("pictures\\shkaf2.png");
+            furnituraPath.Add("pictures\\plita1.png");
+            furnituraPath.Add("pictures\\isebox1.png");
+            furnituraPath.Add("pictures\\isebox2.png");
 
 
-            int nImageCounter = 0;
-            List<string> path = new List<string>();
-            path.Add("picture\\image.jpg");
+            pbFurnit.Load(furnituraPath[nFurnituraCounter]);
+            nFurnituraCounter++;
+            pbOboi.Load(oboiPath[nOboiCounter]);
+            nOboiCounter++;
+            pbPlitka.Load(plitkaPath[nPlitkaCounter]);
+            nPlitkaCounter++;
+
             //path.Add("res\\Obj2.bmp");
             //path.Add("res\\Obj3.bmp");
             //path.Add("res\\Obj4.bmp");
@@ -540,6 +569,97 @@ namespace WorkPlace
         private void timer1_Tick(object sender, EventArgs e)
         {
             label1.Text = "Заказ №" + DataForBD.IdZakaz.ToString();
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Model m = new Model();
+                m.LoadModel(openFileDialog1.FileName);
+                list.Add(m);
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (nFurnituraCounter > furnituraPath.Count-1)
+            {
+                nFurnituraCounter = 0;
+            } else if (nFurnituraCounter < 0)
+            {
+                nFurnituraCounter = furnituraPath.Count - 1;
+            }
+            pbFurnit.Load(furnituraPath[nFurnituraCounter]);
+             nFurnituraCounter++;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (nFurnituraCounter > furnituraPath.Count - 1)
+            {
+                nFurnituraCounter = 0;
+            }
+            else if (nFurnituraCounter < 0)
+            {
+                nFurnituraCounter = furnituraPath.Count - 1;
+            }
+            pbFurnit.Load(furnituraPath[nFurnituraCounter]);
+            nFurnituraCounter--;
+        }
+
+        private void bOboiR_Click(object sender, EventArgs e)
+        {
+            if (nOboiCounter > oboiPath.Count - 1)
+            {
+                nOboiCounter = 0;
+            } else if (nOboiCounter < 0)
+            {
+                nOboiCounter = oboiPath.Count - 1;
+            }
+            pbOboi.Load(oboiPath[nOboiCounter]);
+            nOboiCounter++;
+        }
+
+        private void bOboiL_Click(object sender, EventArgs e)
+        {
+            if (nOboiCounter > oboiPath.Count - 1)
+            {
+                nOboiCounter = 0;
+            }
+            else if (nOboiCounter < 0)
+            {
+                nOboiCounter = oboiPath.Count - 1;
+            }
+            pbOboi.Load(oboiPath[nOboiCounter]);
+            nOboiCounter--;
+        }
+
+        private void bPlitkaR_Click(object sender, EventArgs e)
+        {
+            if (nPlitkaCounter > plitkaPath.Count - 1)
+            {
+                nPlitkaCounter = 0;
+            } else if (nPlitkaCounter < 0)
+            {
+                nPlitkaCounter = plitkaPath.Count - 1;
+            }
+            pbPlitka.Load(plitkaPath[nPlitkaCounter]);
+            nPlitkaCounter++;
+        }
+
+        private void bPlitkaL_Click(object sender, EventArgs e)
+        {
+            if (nPlitkaCounter > plitkaPath.Count - 1)
+            {
+                nPlitkaCounter = 0;
+            }
+            else if (nPlitkaCounter < 0)
+            {
+                nPlitkaCounter = plitkaPath.Count - 1;
+            }
+            pbPlitka.Load(plitkaPath[nPlitkaCounter]);
+            nPlitkaCounter--;
         }
     }
 }

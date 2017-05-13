@@ -120,6 +120,7 @@
             this.Controls.Add(this.tBLength);
             this.Name = "FRoomConf";
             this.Text = "Настройка параметров комнаты";
+            this.Load += new System.EventHandler(this.FRoomConf_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

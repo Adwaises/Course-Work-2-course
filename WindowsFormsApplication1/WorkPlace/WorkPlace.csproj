@@ -177,6 +177,8 @@
       <DependentUpon>FToMail.cs</DependentUpon>
     </Compile>
     <Compile Include="Logic.cs" />
+    <Compile Include="Model.cs" />
+    <Compile Include="ParserObj.cs" />
     <Compile Include="ProfitAnalysis.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -209,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FProfit.resx">
       <DependentUpon>FProfit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRoomConf.resx">
+      <DependentUpon>FRoomConf.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FSemantic.resx">
       <DependentUpon>FSemantic.cs</DependentUpon>
