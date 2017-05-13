@@ -39,7 +39,7 @@ namespace WorkPlace
                 }
             } else
             {
-                MessageBox.Show("Выберите заказ");
+                MessageBox.Show("Выберите заказ","Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

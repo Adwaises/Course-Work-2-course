@@ -62,7 +62,6 @@ namespace WorkPlace
             this.структураТоваровToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.логическиеВыводыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.pBControl = new System.Windows.Forms.PictureBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button3 = new System.Windows.Forms.Button();
@@ -135,7 +134,8 @@ namespace WorkPlace
             this.отчетToolStripMenuItem,
             this.заказToolStripMenuItem,
             this.бДToolStripMenuItem,
-            this.информацияToolStripMenuItem});
+            this.информацияToolStripMenuItem,
+            this.парсерToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1263, 24);
@@ -476,7 +476,6 @@ namespace WorkPlace
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.pBControl);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.openGLControl);
@@ -510,7 +509,6 @@ namespace WorkPlace
         private System.Windows.Forms.ToolStripMenuItem размерыКомнатыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem видToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem прежнееПоложениеКамерыToolStripMenuItem;
-        private System.Windows.Forms.PictureBox pBControl;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ToolStripMenuItem режимToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem просмотрToolStripMenuItem;

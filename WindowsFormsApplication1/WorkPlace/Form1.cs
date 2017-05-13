@@ -33,7 +33,7 @@ namespace WorkPlace
         private double CamZ = 0;
         private double secret = 20;// важно
         private double perspective = 1f;
-
+        ParserObj p = new ParserObj();
         private double mouseX = 0;// важно
         private double mouseY = 0;// важно
         private double sigma = 0;// важно
@@ -41,6 +41,8 @@ namespace WorkPlace
         private bool editing = false;// важно
         private bool mouseDown = false;// важно
         private bool objMove = false;// важно
+        bool key = false;
+        List<Model> list = new List<Model>();
         Vertex ray_m = new Vertex(0, 0, 0);//временно
         Vertex ray_n = new Vertex(0, 0, 0);// важно
 
@@ -76,6 +78,11 @@ namespace WorkPlace
             var gl = openGLControl.OpenGL;
             gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);//очистка сцены
 
+            //float[] g_LightPosition = { 0, 0, 1, 3 };
+            //gl.Enable(OpenGL.GL_LIGHTING);
+            //gl.Light(OpenGL.GL_LIGHT0, OpenGL.GL_POSITION, g_LightPosition);
+            //gl.Enable(OpenGL.GL_LIGHT0);
+
             gl.Begin(OpenGL.GL_LINES);
             gl.Color(1f, 0f, 0f); // X Green
             gl.Vertex(0f, 0f, 0f);
@@ -91,6 +98,12 @@ namespace WorkPlace
             for (int i = 0; i < room.GetSize(); i++)
             {
                 room.GetObj(i).Draw(gl);
+                
+            }
+            for (int i = 0; i < list.Count; i++)
+            {
+                list[i].Render(gl);
+
             }
             float zsd;//временно
             if (editing)//временно
@@ -110,18 +123,22 @@ namespace WorkPlace
             gl.End();//временно
             DrawPlane(gl); // рисуем пол
             room.DrawRoom(gl); // рисуем комнату
+            if (key)
+                p.on_paint(gl);
             gl.Flush();// говорят, что эта штука для оптимизации
         }
+        
         private void openGLControl_Resized(object sender, EventArgs e)
         {
             OpenGL gl = openGLControl.OpenGL;
             gl.MatrixMode(OpenGL.GL_PROJECTION);
             gl.LoadIdentity();
+            
             gl.Perspective(40, (double)Width / (double)Height, 0.5, 200.0);
             gl.LookAt(radius * Math.Cos(sigma * Math.PI / 180) * Math.Cos(fi * Math.PI / 180), radius *
                 Math.Cos(sigma * Math.PI / 180) * Math.Sin(fi * Math.PI / 180), radius * Math.Sin(sigma * Math.PI / 180),
                 centX, centY, centZ, 0, 0, 1);
-            gl.MatrixMode(OpenGL.GL_MODELVIEW);
+       //     gl.MatrixMode(OpenGL.GL_MODELVIEW);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -140,12 +157,9 @@ namespace WorkPlace
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //     openGLControl_Resized(sender, e);
-            //      SharpGLXmlFormat s = new SharpGLXmlFormat();
-            //        SceneControl sc = new SceneControl();
-
-            //      sc.Scene = s.LoadData("save.xml");
-
+            list.Clear();
+         //   p.on_ob();
+            key = true;
         }
 
         private void openGLControl_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)
