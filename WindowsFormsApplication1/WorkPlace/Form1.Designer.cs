@@ -65,14 +65,14 @@ namespace WorkPlace
             this.pBControl = new System.Windows.Forms.PictureBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button3 = new System.Windows.Forms.Button();
+            this.cbOboi = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button4 = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbPlitka = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button5 = new System.Windows.Forms.Button();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cbFurnit = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
@@ -368,21 +368,13 @@ namespace WorkPlace
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.cbOboi);
             this.groupBox1.Location = new System.Drawing.Point(730, 27);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(200, 100);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Обои";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(23, 19);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(141, 21);
-            this.comboBox1.TabIndex = 0;
             // 
             // button3
             // 
@@ -393,10 +385,18 @@ namespace WorkPlace
             this.button3.Text = "Выбрать";
             this.button3.UseVisualStyleBackColor = true;
             // 
+            // cbOboi
+            // 
+            this.cbOboi.FormattingEnabled = true;
+            this.cbOboi.Location = new System.Drawing.Point(23, 19);
+            this.cbOboi.Name = "cbOboi";
+            this.cbOboi.Size = new System.Drawing.Size(141, 21);
+            this.cbOboi.TabIndex = 0;
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.button4);
-            this.groupBox2.Controls.Add(this.comboBox2);
+            this.groupBox2.Controls.Add(this.cbPlitka);
             this.groupBox2.Location = new System.Drawing.Point(730, 140);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(200, 100);
@@ -413,18 +413,18 @@ namespace WorkPlace
             this.button4.Text = "Выбрать";
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // comboBox2
+            // cbPlitka
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(23, 19);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(141, 21);
-            this.comboBox2.TabIndex = 0;
+            this.cbPlitka.FormattingEnabled = true;
+            this.cbPlitka.Location = new System.Drawing.Point(23, 19);
+            this.cbPlitka.Name = "cbPlitka";
+            this.cbPlitka.Size = new System.Drawing.Size(141, 21);
+            this.cbPlitka.TabIndex = 0;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.button5);
-            this.groupBox3.Controls.Add(this.comboBox3);
+            this.groupBox3.Controls.Add(this.cbFurnit);
             this.groupBox3.Location = new System.Drawing.Point(730, 246);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(200, 100);
@@ -441,13 +441,13 @@ namespace WorkPlace
             this.button5.Text = "Добавить";
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // comboBox3
+            // cbFurnit
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(23, 19);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(141, 21);
-            this.comboBox3.TabIndex = 0;
+            this.cbFurnit.FormattingEnabled = true;
+            this.cbFurnit.Location = new System.Drawing.Point(23, 19);
+            this.cbFurnit.Name = "cbFurnit";
+            this.cbFurnit.Size = new System.Drawing.Size(141, 21);
+            this.cbFurnit.TabIndex = 0;
             // 
             // label1
             // 
@@ -484,7 +484,7 @@ namespace WorkPlace
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Кухня";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).EndInit();
             this.menuStrip1.ResumeLayout(false);
@@ -536,13 +536,13 @@ namespace WorkPlace
         private System.Windows.Forms.ToolStripMenuItem логическиеВыводыToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbOboi;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbPlitka;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cbFurnit;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer timer1;
     }

@@ -48,12 +48,14 @@ namespace WorkPlace
 
             //DataTable dt = mbd.selectionquery("select * from zakaz join customer on zakaz.id_customer = customer.id_customer ; ");
 
-           DataTable dt = mbd.selectionquery("select * from FurnituraZakaz ; ");
+            //DataTable dt = mbd.selectionquery("select * from FurnituraZakaz ; ");
 
             //DataTable dt = mbd.selectionquery("select Famil, Name, otchestvo, month_zakaz, count(*),id_zakaz from zakaz join customer on zakaz.id_customer = customer.id_customer join FurnituraZakaz on zakaz.id_zakaz = FurnituraZakaz.id_zakaz where id_furnitura = " + "61" + " group by zakaz.id_zakaz order by famil");
 
             //DataTable dt = mbd.selectionquery("select Famil,Name,otchestvo, month_zakaz,count(*) from zakaz join customer on zakaz.id_customer = customer.id_customer join FurnituraZakaz on zakaz.id_zakaz = FurnituraZakaz.id_zakaz where id_furnitura = " + "11"+ " group by zakaz.id_zakaz order by famil");
 
+
+            DataTable dt = mbd.selectionquery("select * from Furnitura ; ");
             dataGridView1.DataSource = dt;
         }
 

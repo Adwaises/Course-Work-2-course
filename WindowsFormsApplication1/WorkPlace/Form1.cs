@@ -467,8 +467,20 @@ namespace WorkPlace
         private void Form1_Load(object sender, EventArgs e)
         {
             //тут будет заполнение комбобоксов
+            cbOboi.Items.Add("Fiji - 600");
+            cbOboi.Items.Add("Vernissage - 700");
 
-            //присвоение id
+            cbPlitka.Items.Add("Florence - 300");
+            cbPlitka.Items.Add("Magma - 500");
+
+            cbFurnit.Items.Add("Стол European - 1500"); //2
+
+            cbFurnit.Items.Add("Стул Victoria - 700"); //3
+            cbFurnit.Items.Add("Шкаф Brusali - 3000"); //2
+            cbFurnit.Items.Add("Плита Mora - 6000"); //1
+            cbFurnit.Items.Add("Холодильник LG - 11000"); //2
+
+            //присвоение нового id
             mbd.Connection();
             DataTable dt1 = mbd.selectionquery("select * from zakaz;");
             DataForBD.IdZakaz = 1;
