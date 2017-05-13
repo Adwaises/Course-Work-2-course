@@ -390,7 +390,7 @@ namespace WorkPlace
             this.cbOboi.FormattingEnabled = true;
             this.cbOboi.Location = new System.Drawing.Point(23, 19);
             this.cbOboi.Name = "cbOboi";
-            this.cbOboi.Size = new System.Drawing.Size(141, 21);
+            this.cbOboi.Size = new System.Drawing.Size(152, 21);
             this.cbOboi.TabIndex = 0;
             // 
             // groupBox2
@@ -418,7 +418,7 @@ namespace WorkPlace
             this.cbPlitka.FormattingEnabled = true;
             this.cbPlitka.Location = new System.Drawing.Point(23, 19);
             this.cbPlitka.Name = "cbPlitka";
-            this.cbPlitka.Size = new System.Drawing.Size(141, 21);
+            this.cbPlitka.Size = new System.Drawing.Size(152, 21);
             this.cbPlitka.TabIndex = 0;
             // 
             // groupBox3
@@ -446,7 +446,7 @@ namespace WorkPlace
             this.cbFurnit.FormattingEnabled = true;
             this.cbFurnit.Location = new System.Drawing.Point(23, 19);
             this.cbFurnit.Name = "cbFurnit";
-            this.cbFurnit.Size = new System.Drawing.Size(141, 21);
+            this.cbFurnit.Size = new System.Drawing.Size(152, 21);
             this.cbFurnit.TabIndex = 0;
             // 
             // label1

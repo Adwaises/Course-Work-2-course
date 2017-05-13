@@ -473,12 +473,20 @@ namespace WorkPlace
             cbPlitka.Items.Add("Florence - 300");
             cbPlitka.Items.Add("Magma - 500");
 
-            cbFurnit.Items.Add("Стол European - 1500"); //2
+            cbFurnit.Items.Add("Стол European - 1500");
+            cbFurnit.Items.Add("Стол Premiere - 2000");
 
-            cbFurnit.Items.Add("Стул Victoria - 700"); //3
-            cbFurnit.Items.Add("Шкаф Brusali - 3000"); //2
-            cbFurnit.Items.Add("Плита Mora - 6000"); //1
-            cbFurnit.Items.Add("Холодильник LG - 11000"); //2
+            cbFurnit.Items.Add("Стул Victoria - 700");
+            cbFurnit.Items.Add("Стул Bravo - 1700");
+            cbFurnit.Items.Add("Стул Iris - 1000");
+
+            cbFurnit.Items.Add("Шкаф Brusali - 3000");
+            cbFurnit.Items.Add("Шкаф Wyspaa - 2000");
+
+            cbFurnit.Items.Add("Плита Mora - 6000");
+
+            cbFurnit.Items.Add("Холодильник LG - 11000");
+            cbFurnit.Items.Add("Холодильник BEKO - 13000");
 
             //присвоение нового id
             mbd.Connection();
