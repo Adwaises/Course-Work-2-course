@@ -60,11 +60,12 @@ namespace WorkPlace
             this.анализПрибылиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.самаяПокупаемаяФурнитураToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.pBControl = new System.Windows.Forms.PictureBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.парсерToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.загрузкаОбъектоввременноToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBControl)).BeginInit();
             this.SuspendLayout();
             // 
             // openGLControl
@@ -119,7 +120,8 @@ namespace WorkPlace
             this.отчетToolStripMenuItem,
             this.заказToolStripMenuItem,
             this.бДToolStripMenuItem,
-            this.информацияToolStripMenuItem});
+            this.информацияToolStripMenuItem,
+            this.парсерToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(947, 24);
@@ -316,15 +318,6 @@ namespace WorkPlace
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // pBControl
-            // 
-            this.pBControl.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.pBControl.Location = new System.Drawing.Point(721, 435);
-            this.pBControl.Name = "pBControl";
-            this.pBControl.Size = new System.Drawing.Size(214, 196);
-            this.pBControl.TabIndex = 3;
-            this.pBControl.TabStop = false;
-            // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
@@ -333,6 +326,25 @@ namespace WorkPlace
             this.listBox1.Size = new System.Drawing.Size(120, 95);
             this.listBox1.TabIndex = 4;
             // 
+            // парсерToolStripMenuItem
+            // 
+            this.парсерToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.загрузкаОбъектоввременноToolStripMenuItem});
+            this.парсерToolStripMenuItem.Name = "парсерToolStripMenuItem";
+            this.парсерToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.парсерToolStripMenuItem.Text = "Парсер";
+            // 
+            // загрузкаОбъектоввременноToolStripMenuItem
+            // 
+            this.загрузкаОбъектоввременноToolStripMenuItem.Name = "загрузкаОбъектоввременноToolStripMenuItem";
+            this.загрузкаОбъектоввременноToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
+            this.загрузкаОбъектоввременноToolStripMenuItem.Text = "Загрузка объектов (временно)";
+            this.загрузкаОбъектоввременноToolStripMenuItem.Click += new System.EventHandler(this.загрузкаОбъектоввременноToolStripMenuItem_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -340,7 +352,6 @@ namespace WorkPlace
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(947, 639);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.pBControl);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.openGLControl);
@@ -352,7 +363,6 @@ namespace WorkPlace
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBControl)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -370,7 +380,6 @@ namespace WorkPlace
         private System.Windows.Forms.ToolStripMenuItem размерыКомнатыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem видToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem прежнееПоложениеКамерыToolStripMenuItem;
-        private System.Windows.Forms.PictureBox pBControl;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ToolStripMenuItem режимToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem просмотрToolStripMenuItem;
@@ -392,6 +401,9 @@ namespace WorkPlace
         private System.Windows.Forms.ToolStripMenuItem информацияToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem анализПрибылиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem самаяПокупаемаяФурнитураToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem парсерToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem загрузкаОбъектоввременноToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

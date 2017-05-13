@@ -151,12 +151,15 @@
     </Compile>
     <Compile Include="Mail.cs" />
     <Compile Include="ManagerBD.cs" />
+    <Compile Include="Model.cs" />
     <Compile Include="ObjFurnit.cs" />
+    <Compile Include="ParserObj.cs" />
     <Compile Include="ProfitAnalysis.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports.cs" />
     <Compile Include="SemanticNetworks.cs" />
+    <Compile Include="VT.cs" />
     <EmbeddedResource Include="FDiagram.resx">
       <DependentUpon>FDiagram.cs</DependentUpon>
     </EmbeddedResource>
