@@ -390,7 +390,7 @@ namespace WorkPlace
             this.groupBox1.Controls.Add(this.pbOboi);
             this.groupBox1.Location = new System.Drawing.Point(730, 42);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(246, 169);
+            this.groupBox1.Size = new System.Drawing.Size(234, 169);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Обои";
@@ -440,7 +440,7 @@ namespace WorkPlace
             this.groupBox2.Controls.Add(this.pbPlitka);
             this.groupBox2.Location = new System.Drawing.Point(730, 217);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(246, 160);
+            this.groupBox2.Size = new System.Drawing.Size(234, 160);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Плитка";
@@ -490,7 +490,7 @@ namespace WorkPlace
             this.groupBox3.Controls.Add(this.bFurnitAdd);
             this.groupBox3.Location = new System.Drawing.Point(730, 383);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(246, 189);
+            this.groupBox3.Size = new System.Drawing.Size(234, 189);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Фурнитура";
