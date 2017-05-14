@@ -531,6 +531,7 @@ namespace WorkPlace
             this.bFurnitAdd.TabIndex = 1;
             this.bFurnitAdd.Text = "Добавить";
             this.bFurnitAdd.UseVisualStyleBackColor = true;
+            this.bFurnitAdd.Click += new System.EventHandler(this.bFurnitAdd_Click);
             // 
             // label1
             // 

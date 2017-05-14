@@ -485,6 +485,7 @@ namespace WorkPlace
         List<string> furnituraPath = new List<string>();
         List<string> plitkaPath = new List<string>();
         List<string> oboiPath = new List<string>();
+        List<string> modelsPath = new List<string>(); 
         private void Form1_Load(object sender, EventArgs e)
         {
             //тут будет заполнение комбобоксов
@@ -558,17 +559,25 @@ namespace WorkPlace
 
 
             pbFurnit.Load(furnituraPath[nFurnituraCounter]);
-            nFurnituraCounter++;
+           // nFurnituraCounter++;
             pbOboi.Load(oboiPath[nOboiCounter]);
-            nOboiCounter++;
+           // nOboiCounter++;
             pbPlitka.Load(plitkaPath[nPlitkaCounter]);
-            nPlitkaCounter++;
+            //nPlitkaCounter++;
 
             //path.Add("res\\Obj2.bmp");
             //path.Add("res\\Obj3.bmp");
             //path.Add("res\\Obj4.bmp");
             //path.Add("res\\Obj5.bmp");
             //path.Add("res\\Obj6.bmp");
+
+            di = new DirectoryInfo(@"textures//models");
+            fi = di.GetFiles("*.obj"); // Фильтруем нужный формат
+
+            foreach (FileInfo fc in fi)
+            {
+                modelsPath.Add("textures//models//" + fc.Name); // Добавляем все что удалось найти из @"D:\путь"
+            }
 
             //присвоение нового id
             mbd.Connection();
@@ -611,6 +620,7 @@ namespace WorkPlace
 
         private void button7_Click(object sender, EventArgs e)
         {
+            nFurnituraCounter++;
             if (nFurnituraCounter > furnituraPath.Count-1)
             {
                 nFurnituraCounter = 0;
@@ -618,12 +628,15 @@ namespace WorkPlace
             {
                 nFurnituraCounter = furnituraPath.Count - 1;
             }
+            Console.WriteLine(nFurnituraCounter);
+
             pbFurnit.Load(furnituraPath[nFurnituraCounter]);
-             nFurnituraCounter++;
+            
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
+            nFurnituraCounter--;
             if (nFurnituraCounter > furnituraPath.Count - 1)
             {
                 nFurnituraCounter = 0;
@@ -632,12 +645,14 @@ namespace WorkPlace
             {
                 nFurnituraCounter = furnituraPath.Count - 1;
             }
+            Console.WriteLine(nFurnituraCounter);
             pbFurnit.Load(furnituraPath[nFurnituraCounter]);
-            nFurnituraCounter--;
+           
         }
 
         private void bOboiR_Click(object sender, EventArgs e)
         {
+            nOboiCounter++;
             if (nOboiCounter > oboiPath.Count - 1)
             {
                 nOboiCounter = 0;
@@ -646,11 +661,12 @@ namespace WorkPlace
                 nOboiCounter = oboiPath.Count - 1;
             }
             pbOboi.Load(oboiPath[nOboiCounter]);
-            nOboiCounter++;
+           
         }
 
         private void bOboiL_Click(object sender, EventArgs e)
         {
+            nOboiCounter--;
             if (nOboiCounter > oboiPath.Count - 1)
             {
                 nOboiCounter = 0;
@@ -660,11 +676,12 @@ namespace WorkPlace
                 nOboiCounter = oboiPath.Count - 1;
             }
             pbOboi.Load(oboiPath[nOboiCounter]);
-            nOboiCounter--;
+            
         }
 
         private void bPlitkaR_Click(object sender, EventArgs e)
         {
+            nPlitkaCounter++;
             if (nPlitkaCounter > plitkaPath.Count - 1)
             {
                 nPlitkaCounter = 0;
@@ -673,11 +690,12 @@ namespace WorkPlace
                 nPlitkaCounter = plitkaPath.Count - 1;
             }
             pbPlitka.Load(plitkaPath[nPlitkaCounter]);
-            nPlitkaCounter++;
+           
         }
 
         private void bPlitkaL_Click(object sender, EventArgs e)
         {
+            nPlitkaCounter--;
             if (nPlitkaCounter > plitkaPath.Count - 1)
             {
                 nPlitkaCounter = 0;
@@ -687,7 +705,30 @@ namespace WorkPlace
                 nPlitkaCounter = plitkaPath.Count - 1;
             }
             pbPlitka.Load(plitkaPath[nPlitkaCounter]);
-            nPlitkaCounter--;
+            
+        }
+
+        private void bFurnitAdd_Click(object sender, EventArgs e)
+        {
+            //if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            //{
+            //    Model m = new Model();
+            //    m.LoadModel(openFileDialog1.FileName);
+            //    list.Add(m);
+            //}
+
+            Model m = new Model();
+            if (nFurnituraCounter > furnituraPath.Count - 1)
+            {
+                nFurnituraCounter = 0;
+            }
+            else if (nFurnituraCounter < 0)
+            {
+                nFurnituraCounter = furnituraPath.Count - 1;
+            }
+            m.LoadModel(modelsPath[nFurnituraCounter]);
+            list.Add(m);
+
         }
     }
 }
