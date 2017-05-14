@@ -509,24 +509,52 @@ namespace WorkPlace
             //cbFurnit.Items.Add("Холодильник LG - 11000");
             //cbFurnit.Items.Add("Холодильник BEKO - 13000");
 
-            oboiPath.Add("pictures\\oboi1.png");
-            oboiPath.Add("pictures\\oboi2.png");
-            oboiPath.Add("pictures\\oboi3.png");
-            plitkaPath.Add("pictures\\plitka1.png");
-            plitkaPath.Add("pictures\\plitka2.png");
-            plitkaPath.Add("pictures\\plitka3.png");
-            plitkaPath.Add("pictures\\plitka4.png");
+            //oboiPath.Add("pictures\\oboi1.png");
+            //oboiPath.Add("pictures\\oboi2.png");
+            //oboiPath.Add("pictures\\oboi3.png");
 
-            furnituraPath.Add("pictures\\table1.png");
-            furnituraPath.Add("pictures\\table2.png");
-            furnituraPath.Add("pictures\\stol1.png");
-            furnituraPath.Add("pictures\\stol2.png");
-            furnituraPath.Add("pictures\\stol3.png");
-            furnituraPath.Add("pictures\\shkaf1.png");
-            furnituraPath.Add("pictures\\shkaf2.png");
-            furnituraPath.Add("pictures\\plita1.png");
-            furnituraPath.Add("pictures\\isebox1.png");
-            furnituraPath.Add("pictures\\isebox2.png");
+            DirectoryInfo di = new DirectoryInfo(@"textures//oboi");
+            FileInfo[] fi = di.GetFiles("*.png"); // Фильтруем нужный формат
+
+            foreach (FileInfo fc in fi)
+            {
+                oboiPath.Add("textures//oboi//" + fc.Name); // Добавляем все что удалось найти из @"D:\путь"
+            }
+
+
+            //plitkaPath.Add("pictures\\plitka1.png");
+            //plitkaPath.Add("pictures\\plitka2.png");
+            //plitkaPath.Add("pictures\\plitka3.png");
+            //plitkaPath.Add("pictures\\plitka4.png");
+
+             di = new DirectoryInfo(@"textures//plitka");
+             fi = di.GetFiles("*.png"); // Фильтруем нужный формат
+            
+            foreach (FileInfo fc in fi)
+            {
+                plitkaPath.Add("textures//plitka//" + fc.Name); // Добавляем все что удалось найти из @"D:\путь"
+            }
+
+
+
+            //furnituraPath.Add("pictures\\table1.png");
+            //furnituraPath.Add("pictures\\table2.png");
+            //furnituraPath.Add("pictures\\stol1.png");
+            //furnituraPath.Add("pictures\\stol2.png");
+            //furnituraPath.Add("pictures\\stol3.png");
+            //furnituraPath.Add("pictures\\shkaf1.png");
+            //furnituraPath.Add("pictures\\shkaf2.png");
+            //furnituraPath.Add("pictures\\plita1.png");
+            //furnituraPath.Add("pictures\\isebox1.png");
+            //furnituraPath.Add("pictures\\isebox2.png");
+
+            di = new DirectoryInfo(@"textures//furnitura");
+            fi = di.GetFiles("*.png"); // Фильтруем нужный формат
+
+            foreach (FileInfo fc in fi)
+            {
+                furnituraPath.Add("textures//furnitura//" + fc.Name); // Добавляем все что удалось найти из @"D:\путь"
+            }
 
 
             pbFurnit.Load(furnituraPath[nFurnituraCounter]);
