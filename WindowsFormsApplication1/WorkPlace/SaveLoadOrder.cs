@@ -22,6 +22,11 @@ namespace WorkPlace
             if (rbNum == 1)
             {
                 DataForBD.IdCustomer = Convert.ToInt32(dt.Rows[index][0]);
+
+                foreach (var n in DataForBD.ListZakazMebTeh)
+                {
+                   
+                }
             }
             else if (rbNum ==2)
             {

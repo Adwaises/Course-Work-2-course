@@ -150,7 +150,7 @@ namespace WorkPlace
 
             /*-------------Взаимодействие с БД (тем классом)------------------*/
 
-            DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdCustomer, 61, 0, 0));
+            DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 61, 0, 0));
 
             /*----------------------------------------------------------------*/
         }
@@ -728,7 +728,32 @@ namespace WorkPlace
             }
             m.LoadModel(modelsPath[nFurnituraCounter]);
             list.Add(m);
+            if(modelsPath[nFurnituraCounter].Contains("isebox"))
+            {
+                DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 61, 0, 0));
+            } else if(modelsPath[nFurnituraCounter].Contains("plita"))
+            {
+                DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 41, 0, 0));
+            }
+            else if (modelsPath[nFurnituraCounter].Contains("table"))
+            {
+                DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 11, 0, 0));
+            }
+            else if (modelsPath[nFurnituraCounter].Contains("stol"))
+            {
+                DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 21, 0, 0));
+            }
+            else if (modelsPath[nFurnituraCounter].Contains("shkaf"))
+            {
+                DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 31, 0, 0));
+            }
 
+            //уберу потом
+            foreach (var n in DataForBD.ListZakazMebTeh)
+            {
+                Console.WriteLine(n.IdFurnit + " " + n.CoordX + " " + n.CoordY + " ");
+            }
+            //
         }
     }
 }
