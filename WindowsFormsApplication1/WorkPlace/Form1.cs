@@ -718,7 +718,6 @@ namespace WorkPlace
             //    list.Add(m);
             //}
 
-            Model m = new Model();
             if (nFurnituraCounter > furnituraPath.Count - 1)
             {
                 nFurnituraCounter = 0;
@@ -727,27 +726,36 @@ namespace WorkPlace
             {
                 nFurnituraCounter = furnituraPath.Count - 1;
             }
+
+            Model m = new Model();
             m.LoadModel(modelsPath[nFurnituraCounter]);
             list.Add(m);
-            if(modelsPath[nFurnituraCounter].Contains("isebox"))
+            string num = "";
+            if (modelsPath[nFurnituraCounter].Contains("isebox"))
             {
-                DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 61, 0, 0));
+                num = "6";
             } else if(modelsPath[nFurnituraCounter].Contains("plita"))
             {
-                DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 41, 0, 0));
+                //DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 41, 0, 0));
+                num = "4";
             }
             else if (modelsPath[nFurnituraCounter].Contains("table"))
             {
-                DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 11, 0, 0));
+                //DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 11, 0, 0));
+                num = "1";
             }
             else if (modelsPath[nFurnituraCounter].Contains("stol"))
             {
-                DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 21, 0, 0));
+                //DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 21, 0, 0));
+                num = "2";
             }
             else if (modelsPath[nFurnituraCounter].Contains("shkaf"))
             {
-                DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 31, 0, 0));
+                //DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 31, 0, 0));
+                num = "3";
             }
+            num += modelsPath[nFurnituraCounter][modelsPath[nFurnituraCounter].Length - 5];
+            DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, Convert.ToInt32(num), 0, 0));
 
             //уберу потом
             foreach (var n in DataForBD.ListZakazMebTeh)
