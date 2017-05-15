@@ -730,7 +730,9 @@ namespace WorkPlace
             Model m = new Model();
             m.LoadModel(modelsPath[nFurnituraCounter]);
             list.Add(m);
-            string num = "";
+
+            string num = ""+ modelsPath[nFurnituraCounter][modelsPath[nFurnituraCounter].Length - 6];
+            /*
             if (modelsPath[nFurnituraCounter].Contains("isebox"))
             {
                 num = "6";
@@ -754,6 +756,7 @@ namespace WorkPlace
                 //DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 31, 0, 0));
                 num = "3";
             }
+            */
             num += modelsPath[nFurnituraCounter][modelsPath[nFurnituraCounter].Length - 5];
             DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, Convert.ToInt32(num), 0, 0));
 
