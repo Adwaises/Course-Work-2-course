@@ -160,6 +160,7 @@ namespace WorkPlace
             list.Clear();
          //   p.on_ob();
             key = true;
+            DataForBD.ListZakazMebTeh.Clear();
         }
 
         private void openGLControl_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)
