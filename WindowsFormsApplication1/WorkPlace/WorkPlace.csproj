@@ -177,6 +177,8 @@
       <DependentUpon>FToMail.cs</DependentUpon>
     </Compile>
     <Compile Include="Logic.cs" />
+    <Compile Include="Model.cs" />
+    <Compile Include="ParserObj.cs" />
     <Compile Include="ProfitAnalysis.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

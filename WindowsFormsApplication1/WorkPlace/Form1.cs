@@ -530,5 +530,15 @@ namespace WorkPlace
         {
             label1.Text = "Заказ №" + DataForBD.IdZakaz.ToString();
         }
+
+        private void asdToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Model m = new Model();
+                m.LoadModel(openFileDialog1.FileName);
+                list.Add(m);
+            }
+        }
     }
 }

@@ -74,9 +74,11 @@ namespace WorkPlace
             this.cbFurnit = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.ёToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.asdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBControl)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -135,7 +137,7 @@ namespace WorkPlace
             this.заказToolStripMenuItem,
             this.бДToolStripMenuItem,
             this.информацияToolStripMenuItem,
-            this.парсерToolStripMenuItem});
+            this.ёToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1263, 24);
@@ -348,15 +350,6 @@ namespace WorkPlace
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // pBControl
-            // 
-            this.pBControl.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.pBControl.Location = new System.Drawing.Point(1037, 435);
-            this.pBControl.Name = "pBControl";
-            this.pBControl.Size = new System.Drawing.Size(214, 196);
-            this.pBControl.TabIndex = 3;
-            this.pBControl.TabStop = false;
-            // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
@@ -465,6 +458,25 @@ namespace WorkPlace
             this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // ёToolStripMenuItem
+            // 
+            this.ёToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.asdToolStripMenuItem});
+            this.ёToolStripMenuItem.Name = "ёToolStripMenuItem";
+            this.ёToolStripMenuItem.Size = new System.Drawing.Size(25, 20);
+            this.ёToolStripMenuItem.Text = "ё";
+            // 
+            // asdToolStripMenuItem
+            // 
+            this.asdToolStripMenuItem.Name = "asdToolStripMenuItem";
+            this.asdToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.asdToolStripMenuItem.Text = "asd";
+            this.asdToolStripMenuItem.Click += new System.EventHandler(this.asdToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -488,7 +500,6 @@ namespace WorkPlace
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBControl)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
@@ -543,6 +554,9 @@ namespace WorkPlace
         private System.Windows.Forms.ComboBox cbFurnit;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ToolStripMenuItem ёToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem asdToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 
