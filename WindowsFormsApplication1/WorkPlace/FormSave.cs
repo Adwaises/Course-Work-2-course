@@ -100,11 +100,27 @@ namespace WorkPlace
         {
             if (RBSelect.Checked)
             {
-                slo.saveOrder(1, CBCustomer.SelectedIndex, TBFamil.Text,TBName.Text, TBOtch.Text, TBTel.Text, TBmail.Text);
+                if (CBCustomer.SelectedIndex != -1) {
+                    slo.saveOrder(1, CBCustomer.SelectedIndex, TBFamil.Text, TBName.Text, TBOtch.Text, TBTel.Text, TBmail.Text);
+                    slo.initIdOrder();
+                    MessageBox.Show("Заказ оформлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                } else
+                {
+                    MessageBox.Show("Выберите заказ", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+
             else if (RBNew.Checked)
             {
-                slo.saveOrder(2, CBCustomer.SelectedIndex, TBFamil.Text, TBName.Text, TBOtch.Text, TBTel.Text, TBmail.Text);
+                try
+                {
+                    slo.saveOrder(2, CBCustomer.SelectedIndex, TBFamil.Text, TBName.Text, TBOtch.Text, TBTel.Text, TBmail.Text);
+                    slo.initIdOrder();
+                    MessageBox.Show("Заказ оформлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }catch
+                {
+                    MessageBox.Show("Введите верные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
 
@@ -167,8 +183,7 @@ namespace WorkPlace
             rep.blank(DataForBD.idZakaz);
             mbd.controlquery("update zakaz set summa = " + Convert.ToString(DataForBD.summa) + " where id_zakaz = " + Convert.ToString(DataForBD.idZakaz));
             */
-            slo.initIdOrder();
-            MessageBox.Show("Заказ оформлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            
         }
 
         private void FormSave_FormClosed(object sender, FormClosedEventArgs e)
