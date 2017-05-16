@@ -146,7 +146,10 @@ namespace WorkPlace
             //SharpGLXmlFormat s = new SharpGLXmlFormat();
             //SceneControl sc = new SceneControl();
             //s.SaveData(sc.Scene, "save.xml");
-            room.AddObj((new Cupboard(0, 0, -1, 1, 1, 2)));
+            // ParserObj p = new ParserObj();
+            p.LoadMatrix();
+            key = true;
+        //    room.AddObj((new Cupboard(0, 0, -1, 1, 1, 2)));
 
             /*-------------Взаимодействие с БД (тем классом)------------------*/
 
