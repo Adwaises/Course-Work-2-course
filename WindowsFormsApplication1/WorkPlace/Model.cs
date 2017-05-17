@@ -20,7 +20,7 @@ namespace WorkPlace
         public void LoadModel(string filename)
         {
             ParserObj p = new ParserObj();
-            p.LoadMatrix(ref vt, ref norm, ref polygon, filename);
+        //    p.LoadMatrix(ref vt, ref norm, ref polygon, filename);
         }
         public void Render(OpenGL gl)
         {

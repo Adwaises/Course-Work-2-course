@@ -212,6 +212,9 @@
     <EmbeddedResource Include="FProfit.resx">
       <DependentUpon>FProfit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FRoomConf.resx">
+      <DependentUpon>FRoomConf.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FSemantic.resx">
       <DependentUpon>FSemantic.cs</DependentUpon>
     </EmbeddedResource>
