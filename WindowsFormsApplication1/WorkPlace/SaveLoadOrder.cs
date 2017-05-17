@@ -8,6 +8,7 @@ using LibDataForBD;
 using LibObjFurnit;
 using LibraryManagerBD;
 using LibReports;
+using System.IO;
 
 namespace WorkPlace
 {
@@ -155,6 +156,30 @@ namespace WorkPlace
             // поиск макс (присвоение id)
 
             initIdOrder();
+
+            //в тот файл загружено, теперь добавляем объекты, устанавливаем плитку и обои
+            List<string> furnituraPath = new List<string>();
+            DirectoryInfo di = new DirectoryInfo(@"textures//models");
+            FileInfo[]fi = di.GetFiles("*.obj"); // Фильтруем нужный формат
+
+            foreach (FileInfo fc in fi)
+            {
+                furnituraPath.Add("textures//models//" + fc.Name); // Добавляем все что удалось найти из @"D:\путь"
+            }
+
+            foreach (var n in DataForBD.ListZakazMebTeh)
+            {
+               // n.IdFurnit;
+                for(int i=0; i< furnituraPath.Count;i++)
+                {
+                    if (furnituraPath[i].Contains(n.IdFurnit.ToString()))
+                    {
+                        //добавление
+                       // Console.WriteLine("+");
+                    }
+                }
+            }
+
         }
 
     }
