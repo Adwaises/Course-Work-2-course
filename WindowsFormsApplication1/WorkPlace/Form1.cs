@@ -461,7 +461,7 @@ namespace WorkPlace
 
         private void просмотрыременноToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormBD fBD = new FormBD();
+            FormAddFurnit fBD = new FormAddFurnit();
             fBD.ShowDialog();
         }
 
@@ -769,6 +769,13 @@ namespace WorkPlace
                 Console.WriteLine(n.IdFurnit + " " + n.CoordX + " " + n.CoordY + " ");
             }
             //
+        }
+
+        private void добавитьОбоиплиткуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAddStroyMat fa = new FormAddStroyMat();
+            fa.ShowDialog();
+
         }
     }
 }

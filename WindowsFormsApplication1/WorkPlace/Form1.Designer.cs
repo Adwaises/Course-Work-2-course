@@ -56,6 +56,7 @@ namespace WorkPlace
             this.загрузитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.бДToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.просмотрыременноToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.добавитьОбоиплиткуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.информацияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.анализПрибылиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.самаяПокупаемаяФурнитураToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -303,17 +304,25 @@ namespace WorkPlace
             // бДToolStripMenuItem
             // 
             this.бДToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.просмотрыременноToolStripMenuItem});
+            this.просмотрыременноToolStripMenuItem,
+            this.добавитьОбоиплиткуToolStripMenuItem});
             this.бДToolStripMenuItem.Name = "бДToolStripMenuItem";
-            this.бДToolStripMenuItem.Size = new System.Drawing.Size(34, 20);
-            this.бДToolStripMenuItem.Text = "БД";
+            this.бДToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
+            this.бДToolStripMenuItem.Text = "Шаблоны";
             // 
             // просмотрыременноToolStripMenuItem
             // 
             this.просмотрыременноToolStripMenuItem.Name = "просмотрыременноToolStripMenuItem";
-            this.просмотрыременноToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.просмотрыременноToolStripMenuItem.Text = "Просмотр (временно)";
+            this.просмотрыременноToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.просмотрыременноToolStripMenuItem.Text = "Добавить фурнитуру";
             this.просмотрыременноToolStripMenuItem.Click += new System.EventHandler(this.просмотрыременноToolStripMenuItem_Click);
+            // 
+            // добавитьОбоиплиткуToolStripMenuItem
+            // 
+            this.добавитьОбоиплиткуToolStripMenuItem.Name = "добавитьОбоиплиткуToolStripMenuItem";
+            this.добавитьОбоиплиткуToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.добавитьОбоиплиткуToolStripMenuItem.Text = "Добавить обои/плитку";
+            this.добавитьОбоиплиткуToolStripMenuItem.Click += new System.EventHandler(this.добавитьОбоиплиткуToolStripMenuItem_Click);
             // 
             // информацияToolStripMenuItem
             // 
@@ -642,6 +651,7 @@ namespace WorkPlace
         private System.Windows.Forms.Button bOboiR;
         private System.Windows.Forms.Button bOboiL;
         private System.Windows.Forms.PictureBox pbOboi;
+        private System.Windows.Forms.ToolStripMenuItem добавитьОбоиплиткуToolStripMenuItem;
     }
 }
 
