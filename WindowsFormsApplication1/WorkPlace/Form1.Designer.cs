@@ -165,8 +165,8 @@ namespace WorkPlace
             // размерыКомнатыToolStripMenuItem
             // 
             this.размерыКомнатыToolStripMenuItem.Name = "размерыКомнатыToolStripMenuItem";
-            this.размерыКомнатыToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this.размерыКомнатыToolStripMenuItem.Text = "Размеры комнаты";
+            this.размерыКомнатыToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.размерыКомнатыToolStripMenuItem.Text = "Размеры помещения";
             this.размерыКомнатыToolStripMenuItem.Click += new System.EventHandler(this.размерыКомнатыToolStripMenuItem_Click);
             // 
             // видToolStripMenuItem
@@ -237,8 +237,8 @@ namespace WorkPlace
             this.pDFToolStripMenuItem,
             this.графическиеОтчетыToolStripMenuItem});
             this.отчетToolStripMenuItem.Name = "отчетToolStripMenuItem";
-            this.отчетToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
-            this.отчетToolStripMenuItem.Text = "Отчет";
+            this.отчетToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.отчетToolStripMenuItem.Text = "Отчеты";
             // 
             // pDFToolStripMenuItem
             // 
@@ -247,7 +247,7 @@ namespace WorkPlace
             this.отправитьНаПочтуToolStripMenuItem});
             this.pDFToolStripMenuItem.Name = "pDFToolStripMenuItem";
             this.pDFToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.pDFToolStripMenuItem.Text = "PDF";
+            this.pDFToolStripMenuItem.Text = "Бланк заказа";
             // 
             // создатьToolStripMenuItem
             // 
