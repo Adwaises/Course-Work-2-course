@@ -422,6 +422,7 @@ namespace WorkPlace
             this.bOboiAdd.TabIndex = 1;
             this.bOboiAdd.Text = "Выбрать";
             this.bOboiAdd.UseVisualStyleBackColor = true;
+            this.bOboiAdd.Click += new System.EventHandler(this.bOboiAdd_Click);
             // 
             // bOboiL
             // 

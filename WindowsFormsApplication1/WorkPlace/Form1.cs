@@ -31,7 +31,9 @@ namespace WorkPlace
         private double CamX = 0;//временно
         private double CamY = 0;
         private double CamZ = 0;
+        private Camera cam;
         private double secret = 20;// важно
+        private ObjectMove objCtrl;
         private double perspective = 1f;
         ParserObj p = new ParserObj();
         private double mouseX = 0;// важно
@@ -42,8 +44,7 @@ namespace WorkPlace
         private bool mouseDown = false;// важно
         private bool objMove = false;// важно
         bool key = false;
-        List<Model> list = new List<Model>();
-        Vertex ray_m = new Vertex(0, 0, 0);//временно
+    //    Vertex ray_m = new Vertex(0, 0, 0);//временно
         Vertex ray_n = new Vertex(0, 0, 0);// важно
 
 
@@ -55,8 +56,12 @@ namespace WorkPlace
         {
             InitializeComponent();
             openGLControl.MouseWheel += new System.Windows.Forms.MouseEventHandler(openGLControl_MouseWheel);
-            room = new Room(8, 8, 5);
-
+            room = new Room(4, 4, 2.5);
+            cam = new Camera();
+            cam.Radius = 6;
+            cam.Sigma = 0;
+            cam.Fi = 0;
+            cam.Secret = 20;
             /*-------------Взаимодействие с БД (тем классом)------------------*/
             DataForBD.Length = Convert.ToInt32(room.length/2*100);
             DataForBD.Width = Convert.ToInt32(room.width/2 * 100);
@@ -67,16 +72,14 @@ namespace WorkPlace
 
         private void openGLControl_OpenGLInitialized(object sender, EventArgs e)
         {
-            //  Get the OpenGL object.
             OpenGL gl = openGLControl.OpenGL;
-
             gl.ClearColor(0.4f, 0.4f, 0.4f, 0); // задний фон
         }
 
         private void openGLControl_OpenGLDraw(object sender, RenderEventArgs e)
         {
             var gl = openGLControl.OpenGL;
-            gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);//очистка сцены
+            gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
 
             //float[] g_LightPosition = { 0, 0, 1, 3 };
             //gl.Enable(OpenGL.GL_LIGHTING);
@@ -94,37 +97,30 @@ namespace WorkPlace
             gl.Vertex(0f, 0f, 0f);
             gl.Vertex(0f, 0f, 3f);
             gl.End();
-
+            room.DrawRoom(gl);
             for (int i = 0; i < room.GetSize(); i++)
             {
-                room.GetObj(i).Draw(gl);
+                room.GetObj(i).Render(gl);
                 
             }
-            for (int i = 0; i < list.Count; i++)
-            {
-                list[i].Render(gl);
-
-            }
-            float zsd;//временно
-            if (editing)//временно
-            {
-                zsd = (float)(ray_n.Z - radius);//временно
-            }
-            else
-            {
-                zsd = -1;//временно
-            }
-            gl.Begin(OpenGL.GL_LINES);//временно
-            gl.Color(0f, 1f, 0f);//временно
-            gl.Vertex(CamX, CamY, CamZ);//временно
-            gl.Vertex(-(ray_n.X * secret), -(ray_n.Y * secret), zsd);//временно
+            //float zsd;//временно
+            //if (editing)//временно
+            //{
+            //    zsd = (float)(ray_n.Z - radius);//временно
+            //}
+            //else
+            //{
+            //    zsd = -1;//временно
+            //}
+            //gl.Begin(OpenGL.GL_LINES);//временно
+            //gl.Color(0f, 1f, 0f);//временно
+            //gl.Vertex(CamX, CamY, CamZ);//временно
+            //gl.Vertex(-(ray_n.X * secret), -(ray_n.Y * secret), zsd);//временно
 
             //    gl.Vertex(ray_m.X, ray_m.Y, ray_m.Z);
-            gl.End();//временно
+           // gl.End();//временно
             DrawPlane(gl); // рисуем пол
-            room.DrawRoom(gl); // рисуем комнату
-            if (key)
-                p.on_paint(gl);
+             // рисуем комнату
             gl.Flush();// говорят, что эта штука для оптимизации
         }
         
@@ -132,12 +128,9 @@ namespace WorkPlace
         {
             OpenGL gl = openGLControl.OpenGL;
             gl.MatrixMode(OpenGL.GL_PROJECTION);
-            gl.LoadIdentity();
-            
+            gl.LoadIdentity();            
             gl.Perspective(40, (double)Width / (double)Height, 0.5, 200.0);
-            gl.LookAt(radius * Math.Cos(sigma * Math.PI / 180) * Math.Cos(fi * Math.PI / 180), radius *
-                Math.Cos(sigma * Math.PI / 180) * Math.Sin(fi * Math.PI / 180), radius * Math.Sin(sigma * Math.PI / 180),
-                centX, centY, centZ, 0, 0, 1);
+            gl.LookAt(cam.CamX, cam.CamY, cam.CamZ, 0, 0, 0, 0, 0, 1);
        //     gl.MatrixMode(OpenGL.GL_MODELVIEW);
         }
 
@@ -147,7 +140,6 @@ namespace WorkPlace
             //SceneControl sc = new SceneControl();
             //s.SaveData(sc.Scene, "save.xml");
             // ParserObj p = new ParserObj();
-            p.LoadMatrix();
             key = true;
         //    room.AddObj((new Cupboard(0, 0, -1, 1, 1, 2)));
 
@@ -161,7 +153,6 @@ namespace WorkPlace
 
         private void button2_Click(object sender, EventArgs e)
         {
-            list.Clear();
          //   p.on_ob();
             key = true;
             DataForBD.ListZakazMebTeh.Clear();
@@ -169,17 +160,16 @@ namespace WorkPlace
 
         private void openGLControl_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-
             if (e.Delta > 0)
             {
-                radius -= 2f;
-                secret -= 6.5f;
+                cam.RadDown();
+                cam.SecretDown();
                 openGLControl_Resized(sender, e);
             }
             else
             {
-                radius += 2f;
-                secret += 6.5f;
+                cam.RadUP();
+                cam.SecretUP();
                 openGLControl_Resized(sender, e);
             }
         }
@@ -195,8 +185,8 @@ namespace WorkPlace
         {
             if (mouseDown && e.Button.ToString().Equals("Left") && !editing)
             {
-                sigma = sigma + e.Y - mouseY;
-                fi = (fi + mouseX - e.X) % 360;
+                cam.SigmaDelta(e.Y - mouseY);
+                cam.FiDelta(mouseX - e.X);
                 openGLControl_Resized(sender, e);
                 mouseY = e.Y;
                 mouseX = e.X;
@@ -214,7 +204,6 @@ namespace WorkPlace
             {
                 room.GetObj(indexOfObj).Y = room.GetObj(indexOfObj).Y + (mouseY - e.Y) / 70;
                 room.GetObj(indexOfObj).X = room.GetObj(indexOfObj).X + (e.X - mouseX) / 70;
-                
                 mouseY = e.Y;
                 mouseX = e.X;
             }
@@ -272,25 +261,21 @@ namespace WorkPlace
                 gl.UnProject(e.X, _yw, -0.8, modelMatrix, projMatrix, viewport, ref p1[0], ref p1[1], ref p1[2]);
                 double[] p2 = new double[3];
                 gl.UnProject(e.X, _yw, 10, modelMatrix, projMatrix, viewport, ref p2[0], ref p2[1], ref p2[2]);
-                ray_m = new Vertex((float)p1[0], (float)p1[1], (float)p1[2]);
+             //   ray_m = new Vertex((float)p1[0], (float)p1[1], (float)p1[2]);
                 ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)p2[2]);
-                Console.WriteLine("луч");                                                                                   //временно
-                Console.WriteLine(-(ray_n.X * secret) + "  " + (-ray_n.Y * secret) + "  " + ray_n.Z);                       //временно
                 for (int i = 0; i < room.GetSize(); i++)
                 {
-                    Console.WriteLine("объект");                                                                            //временно
-                    Console.WriteLine(room.GetObj(i).X + "  " + room.GetObj(i).Y + "  " + ray_n.Z);                         //временно
                     if (room.GetObj(i).X < -((float)(p2[0] - p1[0]) * secret) && (room.GetObj(i).X + room.GetObj(i).Length) > -((float)(p2[0] - p1[0]) * secret))
                     {
                         if (room.GetObj(i).Y < -((float)(p2[1] - p1[1]) * secret) && (room.GetObj(i).Y + room.GetObj(i).Width) > -((float)(p2[1] - p1[1]) * secret))
                         {
-                            ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)(p2[2]));
-                            //    otstup = room.GetObj(i).Height;
-                            if(e.Clicks == 2)
+                        //    ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)(p2[2]));
+                            if (e.Clicks == 2)
+                            {
                                 Cursor.Hide();
-                            objMove = true;
+                            }
+                            objMove = true; // останется только эта переменная
                             indexOfObj = i;
-
                             /*-------------Взаимодействие с БД (тем классом)------------------*/
 
                             for (int k = 0; k < DataForBD.ListZakazMebTeh.Count; k++)
@@ -303,22 +288,16 @@ namespace WorkPlace
                             }
 
                             /*----------------------------------------------------------------*/
-
                             return;
-                            Console.WriteLine("Попали");
                         }
                         else
                         {
-                            Console.WriteLine("Не попали");
-                            //        otstup = 0;
-                            ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)(p2[2]));
+                 //           ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)(p2[2]));
                         }
                     }
                     else
                     {
-                        Console.WriteLine("Не попали");
-                        //       otstup = 0;
-                        ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)(p2[2]));
+            //            ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)(p2[2]));
                     }
                 }
                 ///////////////////////////////////////// конец лютой хрени
@@ -641,7 +620,7 @@ namespace WorkPlace
             {
                 Model m = new Model();
                 m.LoadModel(openFileDialog1.FileName);
-                list.Add(m);
+           //     list.Add(m);
             }
         }
 
@@ -757,7 +736,7 @@ namespace WorkPlace
             {
                 Model m = new Model();
                 m.LoadModel(modelsPath[nFurnituraCounter]);
-                list.Add(m);
+           //     list.Add(m);
 
                 string num = "" + modelsPath[nFurnituraCounter][modelsPath[nFurnituraCounter].Length - 6];
                 /*
@@ -805,6 +784,11 @@ namespace WorkPlace
         {
             FormAddStroyMat fa = new FormAddStroyMat();
             fa.ShowDialog();
+
+        }
+
+        private void bOboiAdd_Click(object sender, EventArgs e)
+        {
 
         }
     }
