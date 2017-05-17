@@ -153,7 +153,8 @@ namespace WorkPlace
 
             /*-------------Взаимодействие с БД (тем классом)------------------*/
 
-            DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 61, 0, 0));
+          //  DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 61, 0, 0));
+
 
             /*----------------------------------------------------------------*/
         }
@@ -461,7 +462,7 @@ namespace WorkPlace
 
         private void просмотрыременноToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormBD fBD = new FormBD();
+            FormAddFurnit fBD = new FormAddFurnit();
             fBD.ShowDialog();
         }
 
@@ -489,6 +490,10 @@ namespace WorkPlace
         List<string> furnituraPath = new List<string>();
         List<string> plitkaPath = new List<string>();
         List<string> oboiPath = new List<string>();
+
+        List<string> plitkaBPath = new List<string>();
+        List<string> oboiBPath = new List<string>();
+
         List<string> modelsPath = new List<string>(); 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -518,12 +523,12 @@ namespace WorkPlace
             //oboiPath.Add("pictures\\oboi2.png");
             //oboiPath.Add("pictures\\oboi3.png");
 
-            DirectoryInfo di = new DirectoryInfo(@"textures//oboi");
-            FileInfo[] fi = di.GetFiles("*.png"); // Фильтруем нужный формат
+            DirectoryInfo di = new DirectoryInfo(@"textures//oboiPlitka");
+            FileInfo[] fi = di.GetFiles("oboi*.png"); // Фильтруем нужный формат
 
             foreach (FileInfo fc in fi)
             {
-                oboiPath.Add("textures//oboi//" + fc.Name); // Добавляем все что удалось найти из @"D:\путь"
+                oboiPath.Add("textures//oboiPlitka//" + fc.Name); // Добавляем все что удалось найти из @"D:\путь"
             }
 
 
@@ -532,15 +537,33 @@ namespace WorkPlace
             //plitkaPath.Add("pictures\\plitka3.png");
             //plitkaPath.Add("pictures\\plitka4.png");
 
-             di = new DirectoryInfo(@"textures//plitka");
-             fi = di.GetFiles("*.png"); // Фильтруем нужный формат
+             di = new DirectoryInfo(@"textures//oboiPlitka");
+             fi = di.GetFiles("plitka*.png"); // Фильтруем нужный формат
             
             foreach (FileInfo fc in fi)
             {
-                plitkaPath.Add("textures//plitka//" + fc.Name); // Добавляем все что удалось найти из @"D:\путь"
+                plitkaPath.Add("textures//oboiPlitka//" + fc.Name); // Добавляем все что удалось найти из @"D:\путь"
             }
 
 
+
+
+            di = new DirectoryInfo(@"textures//oboiPlitkaBig");
+            fi = di.GetFiles("oboi*.png"); // Фильтруем нужный формат
+
+            foreach (FileInfo fc in fi)
+            {
+                oboiBPath.Add("textures//oboiPlitkaBig//" + fc.Name); // Добавляем все что удалось найти из @"D:\путь"
+            }
+
+
+            di = new DirectoryInfo(@"textures//oboiPlitkaBig");
+            fi = di.GetFiles("plitka*.png"); // Фильтруем нужный формат
+
+            foreach (FileInfo fc in fi)
+            {
+                plitkaBPath.Add("textures//oboiPlitkaBig//" + fc.Name); // Добавляем все что удалось найти из @"D:\путь"
+            }
 
             //furnituraPath.Add("pictures\\table1.png");
             //furnituraPath.Add("pictures\\table2.png");
@@ -730,38 +753,45 @@ namespace WorkPlace
                 nFurnituraCounter = furnituraPath.Count - 1;
             }
 
-            Model m = new Model();
-            m.LoadModel(modelsPath[nFurnituraCounter]);
-            list.Add(m);
+            try
+            {
+                Model m = new Model();
+                m.LoadModel(modelsPath[nFurnituraCounter]);
+                list.Add(m);
 
-            string num = ""+ modelsPath[nFurnituraCounter][modelsPath[nFurnituraCounter].Length - 6];
-            /*
-            if (modelsPath[nFurnituraCounter].Contains("isebox"))
+                string num = "" + modelsPath[nFurnituraCounter][modelsPath[nFurnituraCounter].Length - 6];
+                /*
+                if (modelsPath[nFurnituraCounter].Contains("isebox"))
+                {
+                    num = "6";
+                } else if(modelsPath[nFurnituraCounter].Contains("plita"))
+                {
+                    //DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 41, 0, 0));
+                    num = "4";
+                }
+                else if (modelsPath[nFurnituraCounter].Contains("table"))
+                {
+                    //DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 11, 0, 0));
+                    num = "1";
+                }
+                else if (modelsPath[nFurnituraCounter].Contains("stol"))
+                {
+                    //DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 21, 0, 0));
+                    num = "2";
+                }
+                else if (modelsPath[nFurnituraCounter].Contains("shkaf"))
+                {
+                    //DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 31, 0, 0));
+                    num = "3";
+                }
+                */
+                num += modelsPath[nFurnituraCounter][modelsPath[nFurnituraCounter].Length - 5];
+                DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, Convert.ToInt32(num), 0, 0));
+            } catch (Exception ex)
             {
-                num = "6";
-            } else if(modelsPath[nFurnituraCounter].Contains("plita"))
-            {
-                //DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 41, 0, 0));
-                num = "4";
+                MessageBox.Show("Файлы повреждёны\r\n"+ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (modelsPath[nFurnituraCounter].Contains("table"))
-            {
-                //DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 11, 0, 0));
-                num = "1";
-            }
-            else if (modelsPath[nFurnituraCounter].Contains("stol"))
-            {
-                //DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 21, 0, 0));
-                num = "2";
-            }
-            else if (modelsPath[nFurnituraCounter].Contains("shkaf"))
-            {
-                //DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 31, 0, 0));
-                num = "3";
-            }
-            */
-            num += modelsPath[nFurnituraCounter][modelsPath[nFurnituraCounter].Length - 5];
-            DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, Convert.ToInt32(num), 0, 0));
+
 
             //уберу потом
             foreach (var n in DataForBD.ListZakazMebTeh)
@@ -771,14 +801,11 @@ namespace WorkPlace
             //
         }
 
-        private void asdToolStripMenuItem_Click(object sender, EventArgs e)
+        private void добавитьОбоиплиткуToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                Model m = new Model();
-                m.LoadModel(openFileDialog1.FileName);
-                list.Add(m);
-            }
+            FormAddStroyMat fa = new FormAddStroyMat();
+            fa.ShowDialog();
+
         }
     }
 }

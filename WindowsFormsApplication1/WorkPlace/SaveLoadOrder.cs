@@ -8,6 +8,7 @@ using LibDataForBD;
 using LibObjFurnit;
 using LibraryManagerBD;
 using LibReports;
+using System.IO;
 
 namespace WorkPlace
 {
@@ -23,10 +24,7 @@ namespace WorkPlace
             {
                 DataForBD.IdCustomer = Convert.ToInt32(dt.Rows[index][0]);
 
-                foreach (var n in DataForBD.ListZakazMebTeh)
-                {
-                   
-                }
+               
             }
             else if (rbNum ==2)
             {
@@ -143,8 +141,8 @@ namespace WorkPlace
             dt = mbd.selectionquery("select * from StroyMaterialZakaz where id_zakaz = " + DataForBD.IdZakaz + ";");
 
 
-            DataForBD.IdOboi = Convert.ToInt32(dt.Rows[0][1]);
-            DataForBD.IdPlitka = Convert.ToInt32(dt.Rows[1][1]);
+            DataForBD.IdOboi = Convert.ToInt32(dt.Rows[1][1]);
+            DataForBD.IdPlitka = Convert.ToInt32(dt.Rows[0][1]);
 
             dt = mbd.selectionquery("select * from FurnituraZakaz  where id_zakaz = " + DataForBD.IdZakaz + ";");
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -158,6 +156,67 @@ namespace WorkPlace
             // поиск макс (присвоение id)
 
             initIdOrder();
+
+            //в тот класс загружено, теперь добавляем объекты, устанавливаем плитку и обои
+            List<string> furnituraPath = new List<string>();
+            DirectoryInfo di = new DirectoryInfo(@"textures//models");
+            FileInfo[]fi = di.GetFiles("*.obj"); // Фильтруем нужный формат
+
+            foreach (FileInfo fc in fi)
+            {
+                furnituraPath.Add("textures//models//" + fc.Name); // Добавляем все что удалось найти из @"D:\путь"
+            }
+
+            foreach (var n in DataForBD.ListZakazMebTeh)
+            {
+               // n.IdFurnit;
+                for(int i=0; i< furnituraPath.Count;i++)
+                {
+                    if (furnituraPath[i].Contains(n.IdFurnit.ToString()))
+                    {
+                        //добавление
+                       // Console.WriteLine("+");
+                    }
+                }
+            }
+
+            List<string> plitkaPath = new List<string>();
+            List<string> oboiPath = new List<string>();
+
+            di = new DirectoryInfo(@"textures//oboiPlitkaBig");
+            fi = di.GetFiles("oboi*.png"); // Фильтруем нужный формат
+
+            foreach (FileInfo fc in fi)
+            {
+                oboiPath.Add("textures//oboiPlitkaBig//" + fc.Name); // Добавляем все что удалось найти из @"D:\путь"
+            }
+
+            for (int i = 0; i < oboiPath.Count; i++)
+            {
+                if (oboiPath[i].Contains(DataForBD.IdOboi.ToString()))
+                {
+                    //добавление наложение текстуры
+                   // Console.WriteLine("+");
+                }
+            }
+
+            di = new DirectoryInfo(@"textures//oboiPlitkaBig");
+            fi = di.GetFiles("plitka*.png"); // Фильтруем нужный формат
+
+            foreach (FileInfo fc in fi)
+            {
+                plitkaPath.Add("textures//oboiPlitkaBig//" + fc.Name); // Добавляем все что удалось найти из @"D:\путь"
+            }
+
+            for (int i = 0; i < plitkaPath.Count; i++)
+            {
+                if (plitkaPath[i].Contains(DataForBD.IdPlitka.ToString()))
+                {
+                    //добавление наложение текстуры
+                    //Console.WriteLine("+");
+                }
+            }
+
         }
 
     }

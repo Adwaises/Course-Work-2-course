@@ -115,11 +115,17 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormBD.cs">
+    <Compile Include="FormAddFurnit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormBD.Designer.cs">
-      <DependentUpon>FormBD.cs</DependentUpon>
+    <Compile Include="FormAddFurnit.Designer.cs">
+      <DependentUpon>FormAddFurnit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAddStroyMat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddStroyMat.Designer.cs">
+      <DependentUpon>FormAddStroyMat.cs</DependentUpon>
     </Compile>
     <Compile Include="FormFrame.cs">
       <SubType>Form</SubType>
@@ -191,8 +197,11 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormBD.resx">
-      <DependentUpon>FormBD.cs</DependentUpon>
+    <EmbeddedResource Include="FormAddFurnit.resx">
+      <DependentUpon>FormAddFurnit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAddStroyMat.resx">
+      <DependentUpon>FormAddStroyMat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFrame.resx">
       <DependentUpon>FormFrame.cs</DependentUpon>
