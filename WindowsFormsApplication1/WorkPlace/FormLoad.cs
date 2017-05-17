@@ -74,17 +74,24 @@ namespace WorkPlace
             }
             DataForBD.idZakaz++;
             */
-
-            slo.loadOrder(CBorder.SelectedIndex);
-
-            foreach(var n in DataForBD.ListZakazMebTeh)
+            if (CBorder.SelectedIndex != -1)
             {
-                Console.WriteLine(n.IdFurnit +" "+ n.IdZakaz);
+                slo.loadOrder(CBorder.SelectedIndex);
+
+                foreach (var n in DataForBD.ListZakazMebTeh)
+                {
+                    Console.WriteLine(n.IdFurnit + " " + n.IdZakaz);
+                }
+
+                MessageBox.Show("Заказ загружен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
             }
-
-            MessageBox.Show("Заказ загружен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+            {
+                MessageBox.Show("Выберите заказ", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-
         private void FormLoad_Load(object sender, EventArgs e)
         {
 

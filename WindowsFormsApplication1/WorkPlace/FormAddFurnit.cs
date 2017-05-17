@@ -12,10 +12,10 @@ using LibraryManagerBD;
 
 namespace WorkPlace
 {
-    public partial class FormBD : Form
+    public partial class FormAddFurnit : Form
     {
         ManagerBD mbd = new ManagerBD();
-        public FormBD()
+        public FormAddFurnit()
         {
             InitializeComponent();
 
@@ -55,15 +55,52 @@ namespace WorkPlace
             //DataTable dt = mbd.selectionquery("select Famil,Name,otchestvo, month_zakaz,count(*) from zakaz join customer on zakaz.id_customer = customer.id_customer join FurnituraZakaz on zakaz.id_zakaz = FurnituraZakaz.id_zakaz where id_furnitura = " + "11"+ " group by zakaz.id_zakaz order by famil");
 
 
-            DataTable dt = mbd.selectionquery("select * from Furnitura ; ");
+            DataTable dt = mbd.selectionquery("select * from Furnitura; ");
             dataGridView1.DataSource = dt;
+
+            comboBox1.Items.Add("mebel");
+            comboBox1.Items.Add("technics");
+            comboBox1.SelectedIndex = 0;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            try {
+                int id = Convert.ToInt32(tbId.Text);
+                string type = comboBox1.SelectedItem.ToString();
+                string naim = tbNaim.Text;
+                string naz = tbNazvanie.Text;
+                int price = Convert.ToInt32(tbPrice.Text);
+
+                mbd.controlquery("Insert into Furnitura values (" + id + ", '" + type + "', '" + naim + "', '" + naz + "', " + price + ");");
+                MessageBox.Show("Добавлено", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DataTable dt = mbd.selectionquery("select * from Furnitura; ");
+                dataGridView1.DataSource = dt;
+            }
+            catch
+            {
+                MessageBox.Show("Введите корректные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+           
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int id = Convert.ToInt32(tbId2.Text);
+                mbd.controlquery("Delete from Furnitura where id_furnit = " + id + ";");
+                MessageBox.Show("Удалено", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DataTable dt = mbd.selectionquery("select * from Furnitura; ");
+                dataGridView1.DataSource = dt;
+            }
+            catch
+            {
+                MessageBox.Show("Введите корректные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             
-
         }
     }
 }

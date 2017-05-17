@@ -20,13 +20,20 @@ namespace WorkPlace
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string str1 = comboBox1.SelectedItem.ToString();
-            string str2 = comboBox2.SelectedItem.ToString();
+            if (comboBox1.SelectedIndex != -1 && comboBox2.SelectedIndex != -1)
+            {
+                string str1 = comboBox1.SelectedItem.ToString();
+                string str2 = comboBox2.SelectedItem.ToString();
 
-            string[] str1Mas = str1.Split(' ');
-            string[] str2Mas = str2.Split(' ');
+                string[] str1Mas = str1.Split(' ');
+                string[] str2Mas = str2.Split(' ');
 
-            textBox1.Text = log.result(str1Mas[0], str2Mas[0]);
+                textBox1.Text = log.result(str1Mas[0], str2Mas[0]);
+            } else
+            {
+                MessageBox.Show("Выберите утверждения", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void FormLogic_Load(object sender, EventArgs e)
