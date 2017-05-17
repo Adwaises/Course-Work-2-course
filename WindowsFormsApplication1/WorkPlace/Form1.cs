@@ -153,7 +153,7 @@ namespace WorkPlace
 
             /*-------------Взаимодействие с БД (тем классом)------------------*/
 
-            DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 61, 0, 0));
+          //  DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 61, 0, 0));
 
             /*----------------------------------------------------------------*/
         }
