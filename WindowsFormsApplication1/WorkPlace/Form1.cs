@@ -490,6 +490,10 @@ namespace WorkPlace
         List<string> furnituraPath = new List<string>();
         List<string> plitkaPath = new List<string>();
         List<string> oboiPath = new List<string>();
+
+        List<string> plitkaBPath = new List<string>();
+        List<string> oboiBPath = new List<string>();
+
         List<string> modelsPath = new List<string>(); 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -542,6 +546,24 @@ namespace WorkPlace
             }
 
 
+
+
+            di = new DirectoryInfo(@"textures//oboiPlitkaBig");
+            fi = di.GetFiles("oboi*.png"); // Фильтруем нужный формат
+
+            foreach (FileInfo fc in fi)
+            {
+                oboiBPath.Add("textures//oboiPlitkaBig//" + fc.Name); // Добавляем все что удалось найти из @"D:\путь"
+            }
+
+
+            di = new DirectoryInfo(@"textures//oboiPlitkaBig");
+            fi = di.GetFiles("plitka*.png"); // Фильтруем нужный формат
+
+            foreach (FileInfo fc in fi)
+            {
+                plitkaBPath.Add("textures//oboiPlitkaBig//" + fc.Name); // Добавляем все что удалось найти из @"D:\путь"
+            }
 
             //furnituraPath.Add("pictures\\table1.png");
             //furnituraPath.Add("pictures\\table2.png");

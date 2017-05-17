@@ -195,7 +195,7 @@ namespace WorkPlace
             {
                 if (oboiPath[i].Contains(DataForBD.IdOboi.ToString()))
                 {
-                    //добавление
+                    //добавление наложение текстуры
                    // Console.WriteLine("+");
                 }
             }
@@ -212,7 +212,7 @@ namespace WorkPlace
             {
                 if (plitkaPath[i].Contains(DataForBD.IdPlitka.ToString()))
                 {
-                    //добавление
+                    //добавление наложение текстуры
                     //Console.WriteLine("+");
                 }
             }
