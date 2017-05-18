@@ -74,6 +74,8 @@ namespace WorkPlace
             }
             DataForBD.idZakaz++;
             */
+
+            /*
             if (CBorder.SelectedIndex != -1)
             {
                 slo.loadOrder(CBorder.SelectedIndex);
@@ -91,7 +93,9 @@ namespace WorkPlace
             {
                 MessageBox.Show("Выберите заказ", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            */
         }
+
         private void FormLoad_Load(object sender, EventArgs e)
         {
 

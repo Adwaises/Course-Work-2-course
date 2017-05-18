@@ -15,6 +15,7 @@ using LibObjFurnit;
 using LibraryManagerBD;
 using System.IO;
 
+
 namespace WorkPlace
 {
     public partial class Form1 : Form
@@ -49,7 +50,7 @@ namespace WorkPlace
 
 
         /*-------------Взаимодействие с БД (тем классом)------------------*/
-        int index = 0;
+        //int index = 0;
         /*----------------------------------------------------------------*/
 
         public Form1()
@@ -278,14 +279,15 @@ namespace WorkPlace
                             indexOfObj = i;
                             /*-------------Взаимодействие с БД (тем классом)------------------*/
 
-                            for (int k = 0; k < DataForBD.ListZakazMebTeh.Count; k++)
-                            {
-                                if (DataForBD.ListZakazMebTeh[k].CoordX == room.GetObj(indexOfObj).X && DataForBD.ListZakazMebTeh[k].CoordY == room.GetObj(indexOfObj).Y)
-                                {
-                                    Console.WriteLine("Есть конакт"); // потом уберу
-                                    index = k;
-                                }
-                            }
+                            //for (int k = 0; k < DataForBD.ListZakazMebTeh.Count; k++)
+                            //{
+                            //    if (DataForBD.ListZakazMebTeh[k].CoordX == room.GetObj(indexOfObj).X &&
+                            //        DataForBD.ListZakazMebTeh[k].CoordY == room.GetObj(indexOfObj).Y)
+                            //    {
+                            //        Console.WriteLine("Есть конакт"); // потом уберу
+                            //        index = k;
+                            //    }
+                            //}
 
                             /*----------------------------------------------------------------*/
                             return;
@@ -379,12 +381,12 @@ namespace WorkPlace
                 Cursor.Show();
                 /*-------------Взаимодействие с БД (тем классом)------------------*/
 
-                DataForBD.ListZakazMebTeh[index].CoordX = room.GetObj(indexOfObj).X;
-                DataForBD.ListZakazMebTeh[index].CoordY = room.GetObj(indexOfObj).Y;
-                foreach (var n in DataForBD.ListZakazMebTeh)
-                {
-                    Console.WriteLine(n.IdFurnit +" "+n.CoordX + " " + n.CoordY + " ");
-                }
+                //DataForBD.ListZakazMebTeh[index].CoordX = room.GetObj(indexOfObj).X;
+                //DataForBD.ListZakazMebTeh[index].CoordY = room.GetObj(indexOfObj).Y;
+                //foreach (var n in DataForBD.ListZakazMebTeh)
+                //{
+                //    Console.WriteLine(n.IdFurnit +" "+n.CoordX + " " + n.CoordY + " ");
+                //}
 
 
                 /*----------------------------------------------------------------*/
@@ -736,7 +738,7 @@ namespace WorkPlace
             {
                 Model m = new Model();
                 m.LoadModel(modelsPath[nFurnituraCounter]);
-           //     list.Add(m);
+               // list.Add(m);
 
                 string num = "" + modelsPath[nFurnituraCounter][modelsPath[nFurnituraCounter].Length - 6];
                 /*
@@ -768,7 +770,7 @@ namespace WorkPlace
                 DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, Convert.ToInt32(num), 0, 0));
             } catch (Exception ex)
             {
-                MessageBox.Show("Файлы повреждёны\r\n"+ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Файл повреждён\r\n"+ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 

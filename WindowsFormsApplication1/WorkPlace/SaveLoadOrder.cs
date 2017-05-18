@@ -126,7 +126,7 @@ namespace WorkPlace
 
             return list;
         }
-
+        /*
         public void loadOrder(int index)
         {
             dt = mbd.selectionquery("select * from zakaz;");
@@ -218,6 +218,6 @@ namespace WorkPlace
             }
 
         }
-
+        */
     }
 }
