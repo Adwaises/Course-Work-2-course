@@ -12,7 +12,7 @@ using System.IO;
 
 namespace WorkPlace
 {
-    class SaveLoadOrder
+    class SaveOrder
     {
         ManagerBD mbd = new ManagerBD();
         DataTable dt;

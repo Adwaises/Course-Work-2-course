@@ -14,7 +14,7 @@ namespace WorkPlace
 {
     public partial class FormSave : Form
     {
-        SaveLoadOrder slo = new SaveLoadOrder();
+        SaveOrder slo = new SaveOrder();
 
         public FormSave()
         {

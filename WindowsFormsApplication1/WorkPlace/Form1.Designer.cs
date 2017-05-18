@@ -53,7 +53,6 @@ namespace WorkPlace
             this.заказToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.новыйToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.оформитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.загрузитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.бДToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.просмотрыременноToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.добавитьОбоиплиткуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -274,8 +273,7 @@ namespace WorkPlace
             // 
             this.заказToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.новыйToolStripMenuItem,
-            this.оформитьToolStripMenuItem,
-            this.загрузитьToolStripMenuItem});
+            this.оформитьToolStripMenuItem});
             this.заказToolStripMenuItem.Name = "заказToolStripMenuItem";
             this.заказToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
             this.заказToolStripMenuItem.Text = "Заказ";
@@ -283,23 +281,16 @@ namespace WorkPlace
             // новыйToolStripMenuItem
             // 
             this.новыйToolStripMenuItem.Name = "новыйToolStripMenuItem";
-            this.новыйToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.новыйToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.новыйToolStripMenuItem.Text = "Новый";
             this.новыйToolStripMenuItem.Click += new System.EventHandler(this.новыйToolStripMenuItem_Click);
             // 
             // оформитьToolStripMenuItem
             // 
             this.оформитьToolStripMenuItem.Name = "оформитьToolStripMenuItem";
-            this.оформитьToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.оформитьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.оформитьToolStripMenuItem.Text = "Оформить";
             this.оформитьToolStripMenuItem.Click += new System.EventHandler(this.оформитьToolStripMenuItem_Click);
-            // 
-            // загрузитьToolStripMenuItem
-            // 
-            this.загрузитьToolStripMenuItem.Name = "загрузитьToolStripMenuItem";
-            this.загрузитьToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.загрузитьToolStripMenuItem.Text = "Загрузить";
-            this.загрузитьToolStripMenuItem.Click += new System.EventHandler(this.загрузитьToolStripMenuItem_Click);
             // 
             // бДToolStripMenuItem
             // 
@@ -624,7 +615,6 @@ namespace WorkPlace
         private System.Windows.Forms.ToolStripMenuItem заказToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem новыйToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem оформитьToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem загрузитьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem бДToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem просмотрыременноToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem информацияToolStripMenuItem;
