@@ -437,8 +437,7 @@ namespace WorkPlace
 
         private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormLoad fl = new FormLoad();
-            fl.ShowDialog();
+           
         }
 
         private void просмотрыременноToolStripMenuItem_Click(object sender, EventArgs e)
