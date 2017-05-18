@@ -102,7 +102,14 @@ namespace WorkPlace
             room.DrawRoom(gl);
             for (int i = 0; i < room.GetSize(); i++)
             {
-                room.GetObj(i).Render(gl);
+                //тут падает тоже
+                try
+                {
+                    room.GetObj(i).Render(gl);
+                }catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
                 
             }
             //float zsd;//временно
@@ -729,12 +736,12 @@ namespace WorkPlace
                 InterfaceObject obj = null;
                 if (modelsPath[nFurnituraCounter].Contains("isebox"))
                 {
-                    obj = new Fridge(-1, -1, 0, 1, 1, 2);
+                    obj = new Fridge(0, 0, 0, 1, 1, 2);
                    
                 }
                 else if (modelsPath[nFurnituraCounter].Contains("plita"))
                 {
-                    obj = new Stove(-1, -1, 0, 1, 1, 1.5);
+                    obj = new Stove(0, 0, 0, 1, 1, 1.5);
                 }
                 else if (modelsPath[nFurnituraCounter].Contains("table"))
                 {
@@ -748,6 +755,8 @@ namespace WorkPlace
                 {
                     obj = new Cupboard(0,0,0,1.5,0.5,0);
                 }
+
+
                 if(obj !=null)
                     obj.LoadModel(modelsPath[nFurnituraCounter]);
                 room.AddObj(obj);
