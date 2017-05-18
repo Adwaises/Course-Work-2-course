@@ -54,14 +54,14 @@ namespace WorkPlace
 
         public Form1()
         {
-            InitializeComponent();
-            openGLControl.MouseWheel += new System.Windows.Forms.MouseEventHandler(openGLControl_MouseWheel);
             room = new Room(4, 4, 2.5);
             cam = new Camera();
             cam.Radius = 6;
             cam.Sigma = 0;
             cam.Fi = 0;
             cam.Secret = 20;
+            InitializeComponent();
+            openGLControl.MouseWheel += new System.Windows.Forms.MouseEventHandler(openGLControl_MouseWheel);
             /*-------------Взаимодействие с БД (тем классом)------------------*/
             DataForBD.Length = Convert.ToInt32(room.length/2*100);
             DataForBD.Width = Convert.ToInt32(room.width/2 * 100);
