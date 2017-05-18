@@ -55,13 +55,14 @@ namespace WorkPlace
 
         public Form1()
         {
-            room = new Room(4, 4, 2.5);
+            room = new Room(5, 3.5, 2.5);
             cam = new Camera();
             cam.Radius = 6;
             cam.Sigma = 0;
             cam.Fi = 0;
             cam.Secret = 20;
             InitializeComponent();
+            
             openGLControl.MouseWheel += new System.Windows.Forms.MouseEventHandler(openGLControl_MouseWheel);
             /*-------------Взаимодействие с БД (тем классом)------------------*/
             DataForBD.Length = Convert.ToInt32(room.length/2*100);
@@ -154,7 +155,6 @@ namespace WorkPlace
 
         private void button2_Click(object sender, EventArgs e)
         {
-         //   p.on_ob();
             key = true;
             DataForBD.ListZakazMebTeh.Clear();
         }
@@ -225,10 +225,8 @@ namespace WorkPlace
 
         private void НачальноеПоложениеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            centX = 0;
-            centY = 0;
-            sigma = 30;
-            fi = 45;
+            cam.Sigma = 30;
+            cam.Fi = 45;
             openGLControl_Resized(sender, e);
         }
 
@@ -239,44 +237,37 @@ namespace WorkPlace
             if (editing)
             {
                 OpenGL gl = openGLControl.OpenGL;
-                //     double NMouseX, NMouseY;
-                //     double x, y, z;
-                //     NMouseX = -1.0 + 2.0 * e.X / openGLControl.Width;                                                    //временно
-                //    NMouseY = 1.0 - 2.0 * e.Y / openGLControl.Height;
-                //     Console.WriteLine(NMouseX + "  " + NMouseY);
-                //is FOV in radians 
-                //    y = (NMouseY * Math.Tan(40 / 2.0));
-                //      x = ((NMouseX / (openGLControl.Width / openGLControl.Height)) * Math.Tan(40 / 2.0));
-                CamX = ((radius - 0.5) * Math.Cos(sigma * Math.PI / 180) * Math.Cos(fi * Math.PI / 180));                   //временно, луча отрисовки скоро не будет
-                CamY = ((radius - 0.5) * Math.Cos(sigma * Math.PI / 180) * Math.Sin(fi * Math.PI / 180));                   //временно
-                CamZ = ((radius - 0.5) * Math.Sin(sigma * Math.PI / 180));                                                  //временно
+                objCtrl = new ObjectMove(openGLControl.Height,e.X,e.Y,cam.Secret);
                 ///////////////////////////////////////// лютая хрень
-                double[] modelMatrix = new double[16];
-                gl.GetDouble(OpenGL.GL_MODELVIEW_MATRIX, modelMatrix);
-                double[] projMatrix = new double[16];
-                gl.GetDouble(OpenGL.GL_PROJECTION_MATRIX, projMatrix);
-                int[] viewport = new int[4];
-                gl.GetInteger(OpenGL.GL_VIEWPORT, viewport);
-                int _yw = openGLControl.Height - e.Y - 1;
-                double[] p1 = new double[3];
-                gl.UnProject(e.X, _yw, -0.8, modelMatrix, projMatrix, viewport, ref p1[0], ref p1[1], ref p1[2]);
-                double[] p2 = new double[3];
-                gl.UnProject(e.X, _yw, 10, modelMatrix, projMatrix, viewport, ref p2[0], ref p2[1], ref p2[2]);
-             //   ray_m = new Vertex((float)p1[0], (float)p1[1], (float)p1[2]);
-                ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)p2[2]);
-                for (int i = 0; i < room.GetSize(); i++)
+                //   double[] modelMatrix = new double[16];
+                //   gl.GetDouble(OpenGL.GL_MODELVIEW_MATRIX, modelMatrix);
+                //   double[] projMatrix = new double[16];
+                //   gl.GetDouble(OpenGL.GL_PROJECTION_MATRIX, projMatrix);
+                //   int[] viewport = new int[4];
+                //   gl.GetInteger(OpenGL.GL_VIEWPORT, viewport);
+                //   int _yw = openGLControl.Height - e.Y - 1;
+                //   double[] p1 = new double[3];
+                //   gl.UnProject(e.X, _yw, -0.8, modelMatrix, projMatrix, viewport, ref p1[0], ref p1[1], ref p1[2]);
+                //   double[] p2 = new double[3];
+                //   gl.UnProject(e.X, _yw, 10, modelMatrix, projMatrix, viewport, ref p2[0], ref p2[1], ref p2[2]);
+                ////   ray_m = new Vertex((float)p1[0], (float)p1[1], (float)p1[2]);
+                //   ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)p2[2]);
+                //   for (int i = 0; i < room.GetSize(); i++)
+                //   {
+                //       if (room.GetObj(i).X < -((float)(p2[0] - p1[0]) * secret) && (room.GetObj(i).X + room.GetObj(i).Length) > -((float)(p2[0] - p1[0]) * secret))
+                //       {
+                //           if (room.GetObj(i).Y < -((float)(p2[1] - p1[1]) * secret) && (room.GetObj(i).Y + room.GetObj(i).Width) > -((float)(p2[1] - p1[1]) * secret))
+                //           {
+                //    ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)(p2[2]));
+                if (objCtrl.CheckField(gl, room))
                 {
-                    if (room.GetObj(i).X < -((float)(p2[0] - p1[0]) * secret) && (room.GetObj(i).X + room.GetObj(i).Length) > -((float)(p2[0] - p1[0]) * secret))
+                    objMove = true;
+                    if (e.Clicks == 2)
                     {
-                        if (room.GetObj(i).Y < -((float)(p2[1] - p1[1]) * secret) && (room.GetObj(i).Y + room.GetObj(i).Width) > -((float)(p2[1] - p1[1]) * secret))
-                        {
-                        //    ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)(p2[2]));
-                            if (e.Clicks == 2)
-                            {
-                                Cursor.Hide();
-                            }
-                            objMove = true; // останется только эта переменная
-                            indexOfObj = i;
+                        Cursor.Hide();
+                    }
+                    indexOfObj = objCtrl.IndexOfObj;
+                }
                             /*-------------Взаимодействие с БД (тем классом)------------------*/
 
                             //for (int k = 0; k < DataForBD.ListZakazMebTeh.Count; k++)
@@ -289,19 +280,19 @@ namespace WorkPlace
                             //    }
                             //}
 
-                            /*----------------------------------------------------------------*/
-                            return;
-                        }
-                        else
-                        {
-                 //           ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)(p2[2]));
-                        }
-                    }
-                    else
-                    {
-            //            ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)(p2[2]));
-                    }
-                }
+            //                /*----------------------------------------------------------------*/
+            //                return;
+            //            }
+            //            else
+            //            {
+            //     //           ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)(p2[2]));
+            //            }
+            //        }
+            //        else
+            //        {
+            ////            ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)(p2[2]));
+            //        }
+            //    }
                 ///////////////////////////////////////// конец лютой хрени
             }
         }
@@ -310,15 +301,11 @@ namespace WorkPlace
         {
             просмотрToolStripMenuItem.Checked = false;
             редактированиеToolStripMenuItem.Checked = true;
-            centX = 0;
-            centY = 0;
             editing = true;
-            radius = room.length * 2 / Math.Tan(20);
-            radius = 8;
-            secret = 26;
-            Console.WriteLine(radius);
-            sigma = 90;
-            fi = 270;
+            cam.Radius = 8;
+            cam.Secret = 26;
+            cam.Sigma = 90;
+            cam.Fi = 270;
             openGLControl_Resized(sender, e);
         }
 
@@ -326,10 +313,8 @@ namespace WorkPlace
         {
             просмотрToolStripMenuItem.Checked = true;
             редактированиеToolStripMenuItem.Checked = false;
-            centX = 0;
-            centY = 0;
-            sigma = 30;
-            fi = 45;
+            cam.Sigma = 30;
+            cam.Fi = 45;
             editing = false;
             openGLControl_Resized(sender, e);
         }
@@ -338,24 +323,24 @@ namespace WorkPlace
         private void видСверхуToolStripMenuItem_Click(object sender, EventArgs e)
         {
             radius = room.length * 2 / Math.Tan(20);
-            sigma = 90;
-            fi = 90;
+            cam.Sigma = 90;
+            cam.Fi = 90;
             openGLControl_Resized(sender, e);
         }
 
         private void видСбокуToolStripMenuItem_Click(object sender, EventArgs e)
         {
             radius = room.length * 2 / Math.Tan(20);
-            sigma = 0;
-            fi = 0;
+            cam.Sigma = 0;
+            cam.Fi = 0;
             openGLControl_Resized(sender, e);
         }
 
         private void видСпередиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             radius = room.length * 2 / Math.Tan(20);
-            sigma = 0;
-            fi = 90;
+            cam.Sigma = 0;
+            cam.Fi = 90;
             openGLControl_Resized(sender, e);
         }
 
@@ -718,6 +703,7 @@ namespace WorkPlace
 
         private void bFurnitAdd_Click(object sender, EventArgs e)
         {
+            
             //if (openFileDialog1.ShowDialog() == DialogResult.OK)
             //{
             //    Model m = new Model();
@@ -738,34 +724,36 @@ namespace WorkPlace
             {
                 Model m = new Model();
                 m.LoadModel(modelsPath[nFurnituraCounter]);
-               // list.Add(m);
+                // list.Add(m);
 
-                string num = "" + modelsPath[nFurnituraCounter][modelsPath[nFurnituraCounter].Length - 6];
-                /*
+
+                InterfaceObject obj = null;
                 if (modelsPath[nFurnituraCounter].Contains("isebox"))
                 {
-                    num = "6";
-                } else if(modelsPath[nFurnituraCounter].Contains("plita"))
+                    obj = new Fridge(-1, -1, 0, 1, 1, 2);
+                   
+                }
+                else if (modelsPath[nFurnituraCounter].Contains("plita"))
                 {
-                    //DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 41, 0, 0));
-                    num = "4";
+                    obj = new Stove(-1, -1, 0, 1, 1, 1.5);
                 }
                 else if (modelsPath[nFurnituraCounter].Contains("table"))
                 {
-                    //DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 11, 0, 0));
-                    num = "1";
+                    obj = new Table(0, 0, 0, 2, 2, 0);
                 }
                 else if (modelsPath[nFurnituraCounter].Contains("stol"))
                 {
-                    //DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 21, 0, 0));
-                    num = "2";
+                    obj = new Chair(0, 0, 0, 0.5, 0.5, 0);
                 }
                 else if (modelsPath[nFurnituraCounter].Contains("shkaf"))
                 {
-                    //DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 31, 0, 0));
-                    num = "3";
+                    obj = new Cupboard(0,0,0,1.5,0.5,0);
                 }
-                */
+                if(obj !=null)
+                    obj.LoadModel(modelsPath[nFurnituraCounter]);
+                room.AddObj(obj);
+                string num = "" + modelsPath[nFurnituraCounter][modelsPath[nFurnituraCounter].Length - 6];
+
                 num += modelsPath[nFurnituraCounter][modelsPath[nFurnituraCounter].Length - 5];
                 DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, Convert.ToInt32(num), 0, 0));
             } catch (Exception ex)
