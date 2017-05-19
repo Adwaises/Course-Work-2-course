@@ -65,9 +65,9 @@ namespace WorkPlace
             
             openGLControl.MouseWheel += new System.Windows.Forms.MouseEventHandler(openGLControl_MouseWheel);
             /*-------------Взаимодействие с БД (тем классом)------------------*/
-            DataForBD.Length = Convert.ToInt32(room.length/2*100);
-            DataForBD.Width = Convert.ToInt32(room.width/2 * 100);
-            DataForBD.Height = Convert.ToInt32(room.height/2 * 100);
+            DataForBD.Length = Convert.ToInt32(room.length*100);
+            DataForBD.Width = Convert.ToInt32(room.width * 100);
+            DataForBD.Height = Convert.ToInt32(room.height * 100);
             /*----------------------------------------------------------------*/
             просмотрToolStripMenuItem.Checked = true;
         }
