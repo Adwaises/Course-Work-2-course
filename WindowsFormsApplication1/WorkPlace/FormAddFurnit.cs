@@ -54,6 +54,8 @@ namespace WorkPlace
 
             //DataTable dt = mbd.selectionquery("select Famil,Name,otchestvo, month_zakaz,count(*) from zakaz join customer on zakaz.id_customer = customer.id_customer join FurnituraZakaz on zakaz.id_zakaz = FurnituraZakaz.id_zakaz where id_furnitura = " + "11"+ " group by zakaz.id_zakaz order by famil");
 
+           // mbd.controlquery("update Furnitura set naimenovanie = 'cupboard' where naimenovanie = 'shkaf'");
+           // mbd.controlquery("update Furnitura set naimenovanie = 'fridge' where naimenovanie = 'icebox'");
 
             DataTable dt = mbd.selectionquery("select * from Furnitura; ");
             dataGridView1.DataSource = dt;

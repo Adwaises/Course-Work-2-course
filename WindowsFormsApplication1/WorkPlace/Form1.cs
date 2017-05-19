@@ -162,8 +162,7 @@ namespace WorkPlace
 
         private void button2_Click(object sender, EventArgs e)
         {
-            key = true;
-            DataForBD.ListZakazMebTeh.Clear();
+            
         }
 
         private void openGLControl_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)
@@ -419,6 +418,9 @@ namespace WorkPlace
             }
             DataForBD.IdZakaz++;
 
+            //очистка
+            key = true;
+            DataForBD.ListZakazMebTeh.Clear();
         }
 
         private void оформитьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -734,12 +736,12 @@ namespace WorkPlace
 
 
                 InterfaceObject obj = null;
-                if (modelsPath[nFurnituraCounter].Contains("isebox"))
+                if (modelsPath[nFurnituraCounter].Contains("fridge"))
                 {
                     obj = new Fridge(0, 0, 0, 1, 1, 2);
                    
                 }
-                else if (modelsPath[nFurnituraCounter].Contains("plita"))
+                else if (modelsPath[nFurnituraCounter].Contains("stove"))
                 {
                     obj = new Stove(0, 0, 0, 1, 1, 1.5);
                 }
@@ -747,11 +749,11 @@ namespace WorkPlace
                 {
                     obj = new Table(0, 0, 0, 2, 2, 0);
                 }
-                else if (modelsPath[nFurnituraCounter].Contains("stol"))
+                else if (modelsPath[nFurnituraCounter].Contains("chair"))
                 {
                     obj = new Chair(0, 0, 0, 0.5, 0.5, 0);
                 }
-                else if (modelsPath[nFurnituraCounter].Contains("shkaf"))
+                else if (modelsPath[nFurnituraCounter].Contains("cupboard"))
                 {
                     obj = new Cupboard(0,0,0,1.5,0.5,0);
                 }

@@ -33,7 +33,6 @@ namespace WorkPlace
             this.components = new System.ComponentModel.Container();
             this.openGLControl = new SharpGL.OpenGLControl();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.размерыКомнатыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -125,16 +124,6 @@ namespace WorkPlace
             this.button1.Text = "Добавить прямоугольник";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(890, 578);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Очистить";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // menuStrip1
             // 
@@ -281,14 +270,14 @@ namespace WorkPlace
             // новыйToolStripMenuItem
             // 
             this.новыйToolStripMenuItem.Name = "новыйToolStripMenuItem";
-            this.новыйToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.новыйToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.новыйToolStripMenuItem.Text = "Новый";
             this.новыйToolStripMenuItem.Click += new System.EventHandler(this.новыйToolStripMenuItem_Click);
             // 
             // оформитьToolStripMenuItem
             // 
             this.оформитьToolStripMenuItem.Name = "оформитьToolStripMenuItem";
-            this.оформитьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.оформитьToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.оформитьToolStripMenuItem.Text = "Оформить";
             this.оформитьToolStripMenuItem.Click += new System.EventHandler(this.оформитьToolStripMenuItem_Click);
             // 
@@ -565,7 +554,6 @@ namespace WorkPlace
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.openGLControl);
             this.Controls.Add(this.menuStrip1);
@@ -593,7 +581,6 @@ namespace WorkPlace
         //    private SceneControl sceneControl;
         private OpenGLControl openGLControl;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
