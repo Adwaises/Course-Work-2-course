@@ -34,11 +34,11 @@ namespace LibReports
             dict.Add("oboi", "Обои");
             dict.Add("plitka", "Плитка");
             dict.Add("table", "Стол");
-            dict.Add("stol", "Стул");
-            dict.Add("plita", "Плита");
-            dict.Add("icebox", "Холодильник");
-            dict.Add("shkaf", "Шкаф");
-            dict.Add("vytyazhka", "Вытяжка");
+            dict.Add("chair", "Стул");
+            dict.Add("stove", "Плита");
+            dict.Add("fridge", "Холодильник");
+            dict.Add("cupboard", "Шкаф");
+            //dict.Add("vytyazhka", "Вытяжка");
 
             mbd.Connection();
 

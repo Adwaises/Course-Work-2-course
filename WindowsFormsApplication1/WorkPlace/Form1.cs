@@ -67,7 +67,7 @@ namespace WorkPlace
             /*-------------Взаимодействие с БД (тем классом)------------------*/
             DataForBD.Length = Convert.ToInt32(room.length/2*100);
             DataForBD.Width = Convert.ToInt32(room.width/2 * 100);
-            DataForBD.Height = Convert.ToInt32(room.height * 100);
+            DataForBD.Height = Convert.ToInt32(room.height/2 * 100);
             /*----------------------------------------------------------------*/
             просмотрToolStripMenuItem.Checked = true;
         }
@@ -788,6 +788,11 @@ namespace WorkPlace
         }
 
         private void bOboiAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void openGLControl_Load(object sender, EventArgs e)
         {
 
         }
