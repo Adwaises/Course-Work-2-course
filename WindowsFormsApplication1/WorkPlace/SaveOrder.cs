@@ -18,17 +18,14 @@ namespace WorkPlace
         DataTable dt;
         DataTable dt1;
 
-        public void saveOrder(int rbNum,int index, string famil, string name, string otch, string numTel, string mail)
+        public void saveOrder(int rbNum, int index, string famil, string name, string otch, string numTel, string mail)
         {
             if (rbNum == 1)
             {
                 DataForBD.IdCustomer = Convert.ToInt32(dt.Rows[index][0]);
-
-               
             }
-            else if (rbNum ==2)
+            else if (rbNum == 2)
             {
-                // поиск макс (присвоение id)
                 DataForBD.IdCustomer = 1;
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
@@ -44,38 +41,22 @@ namespace WorkPlace
                 DataForBD.Otchestvo = otch;
                 DataForBD.NumTel = numTel; ;
                 DataForBD.Mail = mail;
-
             }
-
-
-            // вставка заказчика
             if (rbNum == 2)
             {
                 mbd.controlquery("insert into 'customer' (id_customer, Famil ,Name , otchestvo , num_tel, mail )" +
                     "values (" + DataForBD.IdCustomer.ToString() + ", '" + DataForBD.Famil + "' ,'" + DataForBD.Name +
                     "','" + DataForBD.Otchestvo + "', " + DataForBD.NumTel + " , '" + DataForBD.Mail + "' )");
             }
-
-
             mbd.controlquery("insert into StroyMaterialZakaz values ( " + DataForBD.IdZakaz + "," + DataForBD.IdOboi + ");");
             mbd.controlquery("insert into StroyMaterialZakaz values ( " + DataForBD.IdZakaz + "," + DataForBD.IdPlitka + ");");
-
-            // вставка в фурнит
-
             foreach (var n in DataForBD.ListZakazMebTeh)
             {
                 mbd.controlquery("insert into FurnituraZakaz  values ( " + n.IdZakaz + "," + n.IdFurnit + "," + n.CoordX + "," + n.CoordY + ");");
             }
-
-            //вставка в заказ
-
-            //присвоение id заказа
-
-
             mbd.controlquery("insert into Zakaz  values (" + DataForBD.IdZakaz.ToString() + ", " + DataForBD.Length.ToString()
                 + " ," + DataForBD.Width.ToString() + " ," + DataForBD.Height.ToString() + " ," + DataForBD.IdCustomer.ToString()
                 + " ," + DataForBD.Mounth.ToString() + " ," + DataForBD.Summa.ToString() + ")");
-
             Reports rep = new Reports();
             rep.blank(DataForBD.IdZakaz);
             mbd.controlquery("update zakaz set summa = " + Convert.ToString(DataForBD.Summa) + " where id_zakaz = " + Convert.ToString(DataForBD.IdZakaz));
@@ -99,18 +80,14 @@ namespace WorkPlace
         public List<string> initCBCustomer()
         {
             List<string> list = new List<string>();
-
             mbd.Connection();
             dt = mbd.selectionquery("select * from customer;");
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 list.Add(Convert.ToString(dt.Rows[i][1]) + " " + dt.Rows[i][2] + " " + dt.Rows[i][3] + " " + dt.Rows[i][4]);
             }
-
             return list;
         }
-
-        // для сохранения
 
         public List<string> initCBOrder()
         {
@@ -126,98 +103,5 @@ namespace WorkPlace
 
             return list;
         }
-        /*
-        public void loadOrder(int index)
-        {
-            dt = mbd.selectionquery("select * from zakaz;");
-            DataForBD.Length = Convert.ToInt32(dt.Rows[index][1]);
-            DataForBD.Width = Convert.ToInt32(dt.Rows[index][2]);
-            DataForBD.Height = Convert.ToInt32(dt.Rows[index][3]);
-            DataForBD.Summa = Convert.ToInt32(dt.Rows[index][6]);
-            DataForBD.IdZakaz = Convert.ToInt32(dt.Rows[index][0]);
-
-
-            DataForBD.ListZakazMebTeh.Clear();
-            dt = mbd.selectionquery("select * from StroyMaterialZakaz where id_zakaz = " + DataForBD.IdZakaz + ";");
-
-
-            DataForBD.IdOboi = Convert.ToInt32(dt.Rows[1][1]);
-            DataForBD.IdPlitka = Convert.ToInt32(dt.Rows[0][1]);
-
-            dt = mbd.selectionquery("select * from FurnituraZakaz  where id_zakaz = " + DataForBD.IdZakaz + ";");
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                DataForBD.ListZakazMebTeh.Add(new ObjFurnit(Convert.ToInt32(dt.Rows[i][0]), Convert.ToInt32(dt.Rows[i][1]),
-                    Convert.ToInt32(dt.Rows[i][2]), Convert.ToInt32(dt.Rows[i][3])));
-
-            }
-
-            //наверное нужно присвоить новый id, т к пользователь будет изменять
-            // поиск макс (присвоение id)
-
-            initIdOrder();
-
-            //в тот класс загружено, теперь добавляем объекты, устанавливаем плитку и обои
-            List<string> furnituraPath = new List<string>();
-            DirectoryInfo di = new DirectoryInfo(@"textures//models");
-            FileInfo[]fi = di.GetFiles("*.obj"); // Фильтруем нужный формат
-
-            foreach (FileInfo fc in fi)
-            {
-                furnituraPath.Add("textures//models//" + fc.Name); // Добавляем все что удалось найти из @"D:\путь"
-            }
-
-            foreach (var n in DataForBD.ListZakazMebTeh)
-            {
-               // n.IdFurnit;
-                for(int i=0; i< furnituraPath.Count;i++)
-                {
-                    if (furnituraPath[i].Contains(n.IdFurnit.ToString()))
-                    {
-                        //добавление
-                       // Console.WriteLine("+");
-                    }
-                }
-            }
-
-            List<string> plitkaPath = new List<string>();
-            List<string> oboiPath = new List<string>();
-
-            di = new DirectoryInfo(@"textures//oboiPlitkaBig");
-            fi = di.GetFiles("oboi*.png"); // Фильтруем нужный формат
-
-            foreach (FileInfo fc in fi)
-            {
-                oboiPath.Add("textures//oboiPlitkaBig//" + fc.Name); // Добавляем все что удалось найти из @"D:\путь"
-            }
-
-            for (int i = 0; i < oboiPath.Count; i++)
-            {
-                if (oboiPath[i].Contains(DataForBD.IdOboi.ToString()))
-                {
-                    //добавление наложение текстуры
-                   // Console.WriteLine("+");
-                }
-            }
-
-            di = new DirectoryInfo(@"textures//oboiPlitkaBig");
-            fi = di.GetFiles("plitka*.png"); // Фильтруем нужный формат
-
-            foreach (FileInfo fc in fi)
-            {
-                plitkaPath.Add("textures//oboiPlitkaBig//" + fc.Name); // Добавляем все что удалось найти из @"D:\путь"
-            }
-
-            for (int i = 0; i < plitkaPath.Count; i++)
-            {
-                if (plitkaPath[i].Contains(DataForBD.IdPlitka.ToString()))
-                {
-                    //добавление наложение текстуры
-                    //Console.WriteLine("+");
-                }
-            }
-
-        }
-        */
     }
 }

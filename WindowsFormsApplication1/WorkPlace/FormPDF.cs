@@ -24,7 +24,6 @@ namespace WorkPlace
             InitializeComponent();
         }
 
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (comboBox1.SelectedIndex > -1)
@@ -32,9 +31,8 @@ namespace WorkPlace
                 report.blank(Convert.ToInt32(dt.Rows[comboBox1.SelectedIndex][0]));
                 DialogResult result = MessageBox.Show("Открыть?", "Отчет сформирован", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
-                if (result == DialogResult.Yes) //Если нажал Да
+                if (result == DialogResult.Yes)
                 {
-                    //отрытие документа программой по умолчанию
                     Process.Start("Document.pdf");
                 }
             } else
@@ -49,7 +47,8 @@ namespace WorkPlace
             dt = mbd.selectionquery("select * from zakaz;");
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                comboBox1.Items.Add("Заказ №" + dt.Rows[i][0] + "" + " Размеры:" + Convert.ToDouble(dt.Rows[i][1]) / 100 + "*" + Convert.ToDouble(dt.Rows[i][2]) / 100 +
+                comboBox1.Items.Add("Заказ №" + dt.Rows[i][0] + "" + " Размеры:" + Convert.ToDouble(dt.Rows[i][1]) / 100 
+                    + "*" + Convert.ToDouble(dt.Rows[i][2]) / 100 +
                     "*" + Convert.ToDouble(dt.Rows[i][3]) / 100 + " Сумма:" + dt.Rows[i][6]);
             }
         }

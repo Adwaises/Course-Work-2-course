@@ -17,14 +17,11 @@ using System.Data;
 
 namespace LibReports
 {
-    /// <summary>
-    /// Отчеты
-    /// </summary>
+
     public class Reports
     {
         ManagerBD mbd = new ManagerBD();
         Dictionary<string, string> dict;
-
         Dictionary<int, int> dictSum;
         Dictionary<int, int> dictCount;
 
@@ -38,25 +35,19 @@ namespace LibReports
             dict.Add("stove", "Плита");
             dict.Add("fridge", "Холодильник");
             dict.Add("cupboard", "Шкаф");
-            //dict.Add("vytyazhka", "Вытяжка");
 
             mbd.Connection();
 
             DataTable dt = mbd.selectionquery("select naimenovanie,nazvanie,price from StroyMaterial join StroyMaterialZakaz on StroyMaterial.id_stroy_mater = StroyMaterialZakaz.id_StroyMaterial" +
                 " join Zakaz on StroyMaterialZakaz.id_zakaz = Zakaz.id_zakaz  where zakaz.id_zakaz = " + Convert.ToString(id) + ";");
-
             DataTable dt1 = mbd.selectionquery("select naimenovanie,nazvanie,price from Furnitura  join FurnituraZakaz  on FurnituraZakaz.id_Furnitura = Furnitura.id_furnit " +
                 " join Zakaz on FurnituraZakaz.id_zakaz = Zakaz.id_zakaz  where zakaz.id_zakaz = " + Convert.ToString(id) + " AND type = 'mebel';");
-
             DataTable dt2 = mbd.selectionquery("select naimenovanie,nazvanie,price from Furnitura  join FurnituraZakaz  on FurnituraZakaz.id_Furnitura = Furnitura.id_furnit " +
                " join Zakaz on FurnituraZakaz.id_zakaz = Zakaz.id_zakaz  where zakaz.id_zakaz = " + Convert.ToString(id) + " AND type = 'technics';");
-
             DataTable dt3 = mbd.selectionquery("select length,width,height from zakaz where id_zakaz = " + Convert.ToString(id) + ";");
-
             var doc = new Document();
             PdfWriter.GetInstance(doc, new FileStream(@"Document.pdf", FileMode.Create));
             doc.Open();
-
             BaseFont baseFont = BaseFont.CreateFont(@"lib/ARIAL.TTF", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
             iTextSharp.text.Phrase p = new Phrase("Бланк заказа №" + Convert.ToString(id),
             new iTextSharp.text.Font(baseFont, 14,
@@ -66,9 +57,7 @@ namespace LibReports
             a1.Add(Environment.NewLine);
             a1.SpacingAfter = 5;
             doc.Add(a1);
-
             PdfPTable table = new PdfPTable(4);
-
             p = new Phrase("Строительные материалы",
             new iTextSharp.text.Font(baseFont, 12,
             iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
@@ -77,32 +66,24 @@ namespace LibReports
             a1.Add(Environment.NewLine);
             a1.SpacingAfter = 5;
             doc.Add(a1);
-
             PdfPCell cell = new PdfPCell(new Phrase("Наименование", new iTextSharp.text.Font(baseFont,
                12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
-
             cell.Colspan = 1;
             cell.HorizontalAlignment = Element.ALIGN_CENTER;
             cell.VerticalAlignment = PdfPCell.ALIGN_MIDDLE;
             table.AddCell(cell);
-
             cell = new PdfPCell(new Phrase("Название", new iTextSharp.text.Font(baseFont,
             12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
             cell.HorizontalAlignment = Element.ALIGN_CENTER;
             table.AddCell(cell);
-
-
-
             cell = new PdfPCell(new Phrase("Цена за кв.м", new iTextSharp.text.Font(baseFont,
                 12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
             cell.HorizontalAlignment = Element.ALIGN_CENTER;
             table.AddCell(cell);
-
             cell = new PdfPCell(new Phrase("Кв.м", new iTextSharp.text.Font(baseFont,
                 12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
             cell.HorizontalAlignment = Element.ALIGN_CENTER;
             table.AddCell(cell);
-
             double sumSM = 0;
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -118,7 +99,6 @@ namespace LibReports
                         cell = new PdfPCell(new Phrase(Convert.ToString(dt.Rows[i][j]), new iTextSharp.text.Font(baseFont,
                             12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
                     }
-
                     table.AddCell(cell);
                 }
                 double S = 0;
@@ -138,11 +118,8 @@ namespace LibReports
                     table.AddCell(cell);
                 }
                 sumSM += Convert.ToInt32(dt.Rows[i][2]) * S;
-
             }
-
             doc.Add(table);
-
             table = new PdfPTable(3);
             int sumM = 0;
             if (dt1.Rows.Count != 0)
@@ -155,7 +132,6 @@ namespace LibReports
                 a1.Add(Environment.NewLine);
                 a1.SpacingAfter = 5;
                 doc.Add(a1);
-
                 cell = new PdfPCell(new Phrase("Наименование", new iTextSharp.text.Font(baseFont,
                 12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
                 cell.Colspan = 1;
@@ -166,12 +142,10 @@ namespace LibReports
                     12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
                 cell.HorizontalAlignment = Element.ALIGN_CENTER;
                 table.AddCell(cell);
-
                 cell = new PdfPCell(new Phrase("Цена", new iTextSharp.text.Font(baseFont,
                     12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
                 cell.HorizontalAlignment = Element.ALIGN_CENTER;
                 table.AddCell(cell);
-
                 for (int i = 0; i < dt1.Rows.Count; i++)
                 {
                     for (int j = 0; j < dt1.Columns.Count; j++)
@@ -187,20 +161,16 @@ namespace LibReports
                          iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
                         }
                         table.AddCell(cell);
-
                     }
                     sumM += Convert.ToInt32(dt1.Rows[i][2]);
                 }
             }
 
             doc.Add(table);
-
             table = new PdfPTable(3);
             int sumT = 0;
-
             if (dt2.Rows.Count != 0)
             {
-
                 p = new Phrase("Техника",
                 new iTextSharp.text.Font(baseFont, 12,
                 iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
@@ -209,7 +179,6 @@ namespace LibReports
                 a1.Add(Environment.NewLine);
                 a1.SpacingAfter = 5;
                 doc.Add(a1);
-
                 cell = new PdfPCell(new Phrase("Наименование", new iTextSharp.text.Font(baseFont,
                 12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
                 cell.Colspan = 1;
@@ -220,12 +189,10 @@ namespace LibReports
                     12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
                 cell.HorizontalAlignment = Element.ALIGN_CENTER;
                 table.AddCell(cell);
-
                 cell = new PdfPCell(new Phrase("Цена", new iTextSharp.text.Font(baseFont,
                     12, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
                 cell.HorizontalAlignment = Element.ALIGN_CENTER;
                 table.AddCell(cell);
-
                 for (int i = 0; i < dt2.Rows.Count; i++)
                 {
                     for (int j = 0; j < dt2.Columns.Count; j++)
@@ -241,14 +208,11 @@ namespace LibReports
                            iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
                         }
                         table.AddCell(cell);
-
                     }
                     sumT += Convert.ToInt32(dt2.Rows[i][2]);
                 }
             }
-
             doc.Add(table);
-
             Phrase p1 = new Phrase("             Параметры комнаты: " + Convert.ToString(Convert.ToDouble(dt3.Rows[0][0]) / 100) + " м * " +
                  Convert.ToString(Convert.ToDouble(dt3.Rows[0][1]) / 100) + " м * " + Convert.ToString(Convert.ToDouble(dt3.Rows[0][2]) / 100) + " м",
             new iTextSharp.text.Font(baseFont, 14,
@@ -257,7 +221,6 @@ namespace LibReports
             a2.Alignment = Element.ALIGN_LEFT;
             a2.Add(Environment.NewLine);
             doc.Add(a2);
-
             p1 = new Phrase("             Сумма строительных материалов: " + Convert.ToString(sumSM),
             new iTextSharp.text.Font(baseFont, 14,
             iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black)));
@@ -265,53 +228,39 @@ namespace LibReports
             a2.Alignment = Element.ALIGN_LEFT;
             a2.Add(Environment.NewLine);
             doc.Add(a2);
-
             p1 = new Phrase("             Сумма техники: " + Convert.ToString(sumT),
             new iTextSharp.text.Font(baseFont, 14,
             iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black)));
             a2 = new Paragraph(p1);
             doc.Add(a2);
-
             p1 = new Phrase("             Сумма мебели: " + Convert.ToString(sumM),
             new iTextSharp.text.Font(baseFont, 14,
             iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black)));
             a2 = new Paragraph(p1);
-
             doc.Add(a2);
-
             int allSum = Convert.ToInt32(sumM + sumT + sumSM);
-
             p1 = new Phrase("             Общая сумма: " + Convert.ToString(allSum),
             new iTextSharp.text.Font(baseFont, 14,
             iTextSharp.text.Font.BOLD, new BaseColor(Color.Black)));
             a2 = new Paragraph(p1);
-
             a2.SpacingAfter = 30;
             doc.Add(a2);
             a2.SpacingAfter = 30;
             DateTime second = DateTime.Now;
-
             Phrase p2 = new Phrase("Дата формирования заказа: " + second,
             new iTextSharp.text.Font(baseFont, 12,
             iTextSharp.text.Font.ITALIC, new BaseColor(Color.Black)));
             a2 = new Paragraph(p2);
             a2.Alignment = Element.ALIGN_RIGHT;
             doc.Add(a2);
-
             doc.Close();
-
             DataForBD.Summa = allSum;
-
         }
-        /// <summary>
-        /// Рисует сетку
-        /// </summary>
-        /// <returns></returns>
+
         public Bitmap DrawGrid()
         {
             Bitmap bmp = new Bitmap(760, 500);
             Graphics gr = Graphics.FromImage(bmp);
-
             int h = 455;
             int w = 570;
             int maxX = 12;
@@ -323,13 +272,11 @@ namespace LibReports
             p.EndCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor;
             gr.DrawLine(p, (int)(0 * cdx) + 40, (int)h - 25, (int)(0 * cdx) + 40, 0);
             gr.DrawLine(p, 0, (int)(max - 0 * cdy), (int)w - 50, (int)(max - 0 * cdy));
-
             for (float x = 0; x < maxX; x++)
             {
                 gr.DrawString((x + 1).ToString(), new System.Drawing.Font("Arial", 10), Brushes.Green, (int)(x * cdx) + 40, max + 10);
                 gr.DrawLine(Pens.Green, (int)(x * cdx) + 40, (int)h - 25, (int)(x * cdx) + 40, 0);
             }
-
             double cy = 0.4;
             for (float y = 1; y <= maxY + 1; y += 100)
             {
@@ -348,10 +295,8 @@ namespace LibReports
                 dictSum.Add(i, 0);
                 dictCount.Add(i, 0);
             }
-
             mbd.Connection();
             DataTable dt = mbd.Statistic();
-
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 dictSum[Convert.ToInt32(dt.Rows[i][0])] = Convert.ToInt32(dt.Rows[i][1]) / 1000;
@@ -362,17 +307,14 @@ namespace LibReports
             int maxX = 12;
             int maxY = 1000;
             int max = h - 25;
-
             Bitmap bmp = new Bitmap(760, 500);
             Graphics gr = Graphics.FromImage(bmp);
             float cdx = (w - 90) / maxX;
             float cdy = (h - 50) / maxY;
-
             Pen p = new Pen(Brushes.Green, 3);
             p.EndCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor;
             gr.DrawLine(p, (int)(0 * cdx) + 40, (int)h - 25, (int)(0 * cdx) + 40, 0);
             gr.DrawLine(p, 0, (int)(max - 0 * cdy), (int)w - 50, (int)(max - 0 * cdy));
-
             if (check)
             {
                 for (float x = 0; x < maxX; x++)
@@ -380,20 +322,16 @@ namespace LibReports
                     gr.DrawString((x + 1).ToString(), new System.Drawing.Font("Arial", 10), Brushes.Green, (int)(x * cdx) + 40, max + 10);
                     gr.DrawLine(Pens.Green, (int)(x * cdx) + 40, (int)h - 25, (int)(x * cdx) + 40, 0);
                 }
-
                 double cy = 0.4;
                 for (float y = 1; y <= maxY + 1; y += 100)
                 {
                     gr.DrawString((y - 1).ToString(), new System.Drawing.Font("Arial", 10), Brushes.Green, 0, (int)(max - (y) * cy));
                     gr.DrawLine(Pens.Green, 0, (int)(max - (int)(y * cy)), (int)w - 50, (int)(max - (int)(y * cy)));
                 }
-
                 for (int i = 1; i <= dictSum.Count; i++)
                 {
                     gr.FillRectangle(Brushes.Red, 40 * (i - 1) + 40, (int)(maxY * 0.43) - (int)(dictSum[i] * 0.4), 10, (int)(dictSum[i] * 0.4));
                 }
-
-
             }
             else if (!check)
             {
@@ -402,27 +340,21 @@ namespace LibReports
                     gr.DrawString((x + 1).ToString(), new System.Drawing.Font("Arial", 10), Brushes.Green, (int)(x * cdx) + 40, max + 10);
                     gr.DrawLine(Pens.Green, (int)(x * cdx) + 40, (int)h - 25, (int)(x * cdx) + 40, 0);
                 }
-
                 double cy = 0.4;
                 for (float y = 1; y <= maxY + 1; y += 100)
                 {
                     gr.DrawString(((y - 1) / 100).ToString(), new System.Drawing.Font("Arial", 10), Brushes.Green, 0, (int)(max - (y) * cy));
                     gr.DrawLine(Pens.Green, 0, (int)(max - (int)(y * cy)), (int)w - 50, (int)(max - (int)(y * cy)));
                 }
-
                 for (int i = 1; i <= dictCount.Count; i++)
                 {
                     gr.FillRectangle(Brushes.Red, 40 * (i - 1) + 40, (int)(maxY * 0.43) - dictCount[i] * 40, 10, (int)(dictCount[i] * 40));
                 }
-
             }
-
             gr.DrawString("Месяц", new System.Drawing.Font("Arial", 10), Brushes.Black, 250, 470);
-
             w = 184;
             h = 56;
             gr.DrawRectangle(new Pen(Brushes.Black), 550, 180, w - 1, h - 1);
-
             gr.FillRectangle(Brushes.Red, 560, 203, 10, 10);
             if (check)
             {
@@ -432,9 +364,7 @@ namespace LibReports
             {
                 gr.DrawString("Количество заказов", new System.Drawing.Font("Arial", 10), Brushes.Black, 585, 200);
             }
-
             return bmp;
-
         }
 
         public Bitmap vertLabelDiagr(bool check)
@@ -473,14 +403,12 @@ namespace LibReports
                 ObjExcel.DisplayAlerts = false;
                 ObjWorkBook.SaveAs("book.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Excel.XlSaveAsAccessMode.xlExclusive,
                 Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
-
                 ObjExcel.Quit();
             }
             catch (Exception exc)
             {
                 throw exc;
             }
-
             DataForBD.Iter = 1;
             Excel.Application excelapp = new Excel.Application();
             try
@@ -499,7 +427,6 @@ namespace LibReports
             }
         }
 
-
         public void ExcelDiagr2()
         {
             Excel.Application excelapp = new Excel.Application();
@@ -511,19 +438,15 @@ namespace LibReports
                 Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
                 Type.Missing, Type.Missing, Type.Missing, Type.Missing);
                 Excel.Sheets excelsheets = excelappworkbook.Worksheets;
-
                 Excel.Worksheet excelworksheet = (Excel.Worksheet)excelsheets.get_Item(1);
                 excelworksheet.Activate();
                 Excel.Range excelcells = excelworksheet.get_Range("B1", "B12");
                 excelcells.Select();
-
                 Excel.Chart excelchart = (Excel.Chart)excelapp.Charts.Add(Type.Missing,
                     Type.Missing, Type.Missing, Type.Missing);
                 excelapp.ActiveChart.HasTitle = true;
                 excelapp.ActiveChart.ChartTitle.Text = "Количество заказов";
-
                 DataForBD.Iter = 5;
-
                 ((Excel.Axis)excelapp.ActiveChart.Axes(Excel.XlAxisType.xlCategory,
                 Excel.XlAxisGroup.xlPrimary)).HasTitle = true;
                 ((Excel.Axis)excelapp.ActiveChart.Axes(Excel.XlAxisType.xlCategory,
@@ -532,24 +455,19 @@ namespace LibReports
                 Excel.XlAxisGroup.xlPrimary)).HasTitle = true;
                 ((Excel.Axis)excelapp.ActiveChart.Axes(Excel.XlAxisType.xlValue,
                 Excel.XlAxisGroup.xlPrimary)).AxisTitle.Text = "Количество";
-
                 Excel.SeriesCollection seriesCollection =
                 (Excel.SeriesCollection)excelapp.ActiveChart.SeriesCollection(Type.Missing);
                 Excel.Series series = seriesCollection.Item(1);
                 series.Name = "Количество заказов";
-
                 excelapp.DisplayAlerts = false;
                 excelappworkbook.SaveAs("book.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Excel.XlSaveAsAccessMode.xlExclusive,
                 Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
-
                 excelapp.Quit();
-
             }
             catch (Exception exc)
             {
                 excelapp.Quit();
                 throw exc;
-
             }
         }
 
@@ -567,13 +485,11 @@ namespace LibReports
                 Excel.Worksheet excelworksheet = (Excel.Worksheet)excelsheets.get_Item(1);
                 Excel.Range excelcells = excelworksheet.get_Range("A1", "A12");
                 excelcells.Select();
-
                 Excel.Chart excelchart = (Excel.Chart)excelapp.Charts.Add(Type.Missing,
                     Type.Missing, Type.Missing, Type.Missing);
                 excelapp.ActiveChart.HasTitle = true;
                 excelapp.ActiveChart.ChartTitle.Text = "Выручка";
                 DataForBD.Iter = 3;
-
                 ((Excel.Axis)excelapp.ActiveChart.Axes(Excel.XlAxisType.xlCategory,
                 Excel.XlAxisGroup.xlPrimary)).HasTitle = true;
                 ((Excel.Axis)excelapp.ActiveChart.Axes(Excel.XlAxisType.xlCategory,
@@ -582,13 +498,11 @@ namespace LibReports
                 Excel.XlAxisGroup.xlPrimary)).HasTitle = true;
                 ((Excel.Axis)excelapp.ActiveChart.Axes(Excel.XlAxisType.xlValue,
                 Excel.XlAxisGroup.xlPrimary)).AxisTitle.Text = "Выручка (тыс)";
-
                 Excel.SeriesCollection seriesCollection =
                 (Excel.SeriesCollection)excelapp.ActiveChart.SeriesCollection(
                 Type.Missing);
                 Excel.Series series = seriesCollection.Item(1);
                 series.Name = "Выручка";
-
                 excelapp.DisplayAlerts = false;
                 excelappworkbook.SaveAs("book.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Excel.XlSaveAsAccessMode.xlExclusive,
                 Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
@@ -598,9 +512,7 @@ namespace LibReports
             {
                 excelapp.Quit();
                 throw exc;
-
             }
         }
-
     }
 }

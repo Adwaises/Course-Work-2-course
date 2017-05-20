@@ -65,7 +65,7 @@ namespace WorkPlace
             
             openGLControl.MouseWheel += new System.Windows.Forms.MouseEventHandler(openGLControl_MouseWheel);
             /*-------------Взаимодействие с БД (тем классом)------------------*/
-            DataForBD.Length = Convert.ToInt32(room.length*100);
+            DataForBD.Length = Convert.ToInt32(room.length * 100);
             DataForBD.Width = Convert.ToInt32(room.width * 100);
             DataForBD.Height = Convert.ToInt32(room.height * 100);
             /*----------------------------------------------------------------*/
@@ -106,13 +106,9 @@ namespace WorkPlace
             for (int i = 0; i < room.GetSize(); i++)
             {
                 //тут падает тоже
-                try
-                {
+             
                     room.GetObj(i).Render(gl);
-                }catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+             
                 
             }
             //float zsd;//временно
@@ -804,9 +800,11 @@ namespace WorkPlace
 
 
             try{
-           //     room.UseTexture(gl, new Bitmap(oboiBPath[nOboiCounter]));
+                //     room.UseTexture(gl, new Bitmap(oboiBPath[nOboiCounter]));
+                // oboiBPath[nOboiCounter]) - путь к файлу
 
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("Файл повреждён\r\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
