@@ -94,17 +94,13 @@ namespace WorkPlace
             gl.Vertex(0f, 0f, 0f);
             gl.Vertex(0f, 0f, 3f);
             gl.End();
-          //  room.UseTexture(gl, new Bitmap("textures//oboiPlitkaBig//oboib21.png"));
-            
+            //  room.UseTexture(gl, new Bitmap("textures//oboiPlitkaBig//oboib21.png"));
+
             room.DrawRoom(gl);
 
             for (int i = 0; i < room.GetSize(); i++)
             {
-                //тут падает тоже
-             
                     room.GetObj(i).Render(gl);
-             
-                
             }
             DrawPlane(gl); // рисуем полу
             gl.Flush();// говорят, что эта штука для оптимизации
