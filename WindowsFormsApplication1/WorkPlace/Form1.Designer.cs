@@ -98,6 +98,7 @@ namespace WorkPlace
             this.openGLControl.AutoScroll = true;
             this.openGLControl.AutoSize = true;
             this.openGLControl.BackColor = System.Drawing.Color.CadetBlue;
+            this.openGLControl.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.openGLControl.DrawFPS = true;
             this.openGLControl.ForeColor = System.Drawing.SystemColors.ControlText;
             this.openGLControl.Location = new System.Drawing.Point(12, 27);
@@ -124,11 +125,10 @@ namespace WorkPlace
             this.button1.TabIndex = 0;
             this.button1.Text = "Добавить прямоугольник";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(890, 578);
+            this.button2.Location = new System.Drawing.Point(897, 578);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 1;
@@ -281,14 +281,14 @@ namespace WorkPlace
             // новыйToolStripMenuItem
             // 
             this.новыйToolStripMenuItem.Name = "новыйToolStripMenuItem";
-            this.новыйToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.новыйToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.новыйToolStripMenuItem.Text = "Новый";
             this.новыйToolStripMenuItem.Click += new System.EventHandler(this.новыйToolStripMenuItem_Click);
             // 
             // оформитьToolStripMenuItem
             // 
             this.оформитьToolStripMenuItem.Name = "оформитьToolStripMenuItem";
-            this.оформитьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.оформитьToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.оформитьToolStripMenuItem.Text = "Оформить";
             this.оформитьToolStripMenuItem.Click += new System.EventHandler(this.оформитьToolStripMenuItem_Click);
             // 
@@ -388,7 +388,7 @@ namespace WorkPlace
             this.groupBox1.Controls.Add(this.bOboiAdd);
             this.groupBox1.Controls.Add(this.bOboiL);
             this.groupBox1.Controls.Add(this.pbOboi);
-            this.groupBox1.Location = new System.Drawing.Point(730, 42);
+            this.groupBox1.Location = new System.Drawing.Point(737, 42);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(234, 169);
             this.groupBox1.TabIndex = 5;
@@ -439,7 +439,7 @@ namespace WorkPlace
             this.groupBox2.Controls.Add(this.bPlitkaAdd);
             this.groupBox2.Controls.Add(this.bPlitkaL);
             this.groupBox2.Controls.Add(this.pbPlitka);
-            this.groupBox2.Location = new System.Drawing.Point(730, 217);
+            this.groupBox2.Location = new System.Drawing.Point(737, 217);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(234, 160);
             this.groupBox2.TabIndex = 6;
@@ -489,7 +489,7 @@ namespace WorkPlace
             this.groupBox3.Controls.Add(this.bFurnitL);
             this.groupBox3.Controls.Add(this.pbFurnit);
             this.groupBox3.Controls.Add(this.bFurnitAdd);
-            this.groupBox3.Location = new System.Drawing.Point(730, 383);
+            this.groupBox3.Location = new System.Drawing.Point(737, 383);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(234, 189);
             this.groupBox3.TabIndex = 6;
@@ -538,7 +538,7 @@ namespace WorkPlace
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(725, 605);
+            this.label1.Location = new System.Drawing.Point(732, 605);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 25);
             this.label1.TabIndex = 7;

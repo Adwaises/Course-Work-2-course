@@ -55,14 +55,13 @@ namespace WorkPlace
 
         public Form1()
         {
-            room = new Room(5, 3.5, 2.5);
             cam = new Camera();
             cam.Radius = 6;
             cam.Sigma = 0;
             cam.Fi = 0;
             cam.Secret = 20;
             InitializeComponent();
-            
+            room = new Room(8, 4, 2.5);
             openGLControl.MouseWheel += new System.Windows.Forms.MouseEventHandler(openGLControl_MouseWheel);
             /*-------------Взаимодействие с БД (тем классом)------------------*/
             DataForBD.Length = Convert.ToInt32(room.length/2*100);
@@ -82,7 +81,6 @@ namespace WorkPlace
         {
             var gl = openGLControl.OpenGL;
             gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
-
             //float[] g_LightPosition = { 0, 0, 1, 3 };
             //gl.Enable(OpenGL.GL_LIGHTING);
             //gl.Light(OpenGL.GL_LIGHT0, OpenGL.GL_POSITION, g_LightPosition);
@@ -103,26 +101,8 @@ namespace WorkPlace
             for (int i = 0; i < room.GetSize(); i++)
             {
                 room.GetObj(i).Render(gl);
-                
             }
-            //float zsd;//временно
-            //if (editing)//временно
-            //{
-            //    zsd = (float)(ray_n.Z - radius);//временно
-            //}
-            //else
-            //{
-            //    zsd = -1;//временно
-            //}
-            //gl.Begin(OpenGL.GL_LINES);//временно
-            //gl.Color(0f, 1f, 0f);//временно
-            //gl.Vertex(CamX, CamY, CamZ);//временно
-            //gl.Vertex(-(ray_n.X * secret), -(ray_n.Y * secret), zsd);//временно
-
-            //    gl.Vertex(ray_m.X, ray_m.Y, ray_m.Z);
-           // gl.End();//временно
-            DrawPlane(gl); // рисуем пол
-             // рисуем комнату
+            DrawPlane(gl); // рисуем полу
             gl.Flush();// говорят, что эта штука для оптимизации
         }
         
@@ -130,27 +110,10 @@ namespace WorkPlace
         {
             OpenGL gl = openGLControl.OpenGL;
             gl.MatrixMode(OpenGL.GL_PROJECTION);
-            gl.LoadIdentity();            
-            gl.Perspective(40, (double)Width / (double)Height, 0.5, 200.0);
-            gl.LookAt(cam.CamX, cam.CamY, cam.CamZ, 0, 0, 0, 0, 0, 1);
-       //     gl.MatrixMode(OpenGL.GL_MODELVIEW);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //SharpGLXmlFormat s = new SharpGLXmlFormat();
-            //SceneControl sc = new SceneControl();
-            //s.SaveData(sc.Scene, "save.xml");
-            // ParserObj p = new ParserObj();
-            key = true;
-        //    room.AddObj((new Cupboard(0, 0, -1, 1, 1, 2)));
-
-            /*-------------Взаимодействие с БД (тем классом)------------------*/
-
-          //  DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, 61, 0, 0));
-
-
-            /*----------------------------------------------------------------*/
+            gl.LoadIdentity();
+            gl.Perspective(50, (double)openGLControl.Width / (double)openGLControl.Height, 0.5, 200.0);
+            gl.LookAt(cam.CamX, cam.CamY, cam.CamZ, 0, 0, 0, 0, 0, 1);        
+            gl.MatrixMode(OpenGL.GL_MODELVIEW);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -161,17 +124,31 @@ namespace WorkPlace
 
         private void openGLControl_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            if (e.Delta > 0)
+            if (!objMove)
             {
-                cam.RadDown();
-                cam.SecretDown();
-                openGLControl_Resized(sender, e);
+                if (e.Delta > 0)
+                {
+                    cam.RadDown();
+                    cam.SecretDown();
+                    openGLControl_Resized(sender, e);
+                }
+                else
+                {
+                    cam.RadUP();
+                    cam.SecretUP();
+                    openGLControl_Resized(sender, e);
+                }
             }
             else
             {
-                cam.RadUP();
-                cam.SecretUP();
-                openGLControl_Resized(sender, e);
+                if (e.Delta > 0)
+                {
+                    room.GetObj(indexOfObj).RotationUp();
+                }
+                else
+                {
+                    room.GetObj(indexOfObj).RotationDown();
+                }
             }
         }
 
@@ -306,6 +283,7 @@ namespace WorkPlace
             cam.Secret = 26;
             cam.Sigma = 90;
             cam.Fi = 270;
+            openGLControl.Cursor = Cursors.Hand;
             openGLControl_Resized(sender, e);
         }
 
@@ -316,7 +294,9 @@ namespace WorkPlace
             cam.Sigma = 30;
             cam.Fi = 45;
             editing = false;
+            openGLControl.Cursor = Cursors.SizeAll;
             openGLControl_Resized(sender, e);
+            
         }
 
 
@@ -734,7 +714,7 @@ namespace WorkPlace
                 }
                 else if (modelsPath[nFurnituraCounter].Contains("plita"))
                 {
-                    obj = new Stove(-1, -1, 0, 1, 1, 1.5);
+                    obj = new Stove(-1, -1, 0, 0.5, 0.7, 1.5);
                 }
                 else if (modelsPath[nFurnituraCounter].Contains("table"))
                 {
