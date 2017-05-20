@@ -84,7 +84,7 @@ namespace WorkPlace
             dt = mbd.selectionquery("select * from customer;");
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                list.Add(Convert.ToString(dt.Rows[i][1]) + " " + dt.Rows[i][2] + " " + dt.Rows[i][3] + " " + dt.Rows[i][4]);
+                list.Add(Convert.ToString(dt.Rows[i][1]) + " " + dt.Rows[i][2] + " " + dt.Rows[i][3] + " Номер:" + dt.Rows[i][4]);
             }
             return list;
         }
