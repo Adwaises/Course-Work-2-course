@@ -40,8 +40,6 @@ namespace WorkPlace
             {
                 pictureBox1.Image = fr.draw(pictureBox1.Width, pictureBox1.Height, 5);
             }
-
-
         }
 
         private void FormFrame_Load(object sender, EventArgs e)

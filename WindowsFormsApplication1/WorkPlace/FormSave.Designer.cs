@@ -59,9 +59,9 @@
             // CBCustomer
             // 
             this.CBCustomer.FormattingEnabled = true;
-            this.CBCustomer.Location = new System.Drawing.Point(128, 15);
+            this.CBCustomer.Location = new System.Drawing.Point(90, 15);
             this.CBCustomer.Name = "CBCustomer";
-            this.CBCustomer.Size = new System.Drawing.Size(221, 21);
+            this.CBCustomer.Size = new System.Drawing.Size(259, 21);
             this.CBCustomer.TabIndex = 1;
             // 
             // RBSelect
@@ -198,7 +198,6 @@
             this.Name = "FormSave";
             this.Text = "Form2";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormSave_FormClosed);
-            this.Load += new System.EventHandler(this.FormSave_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

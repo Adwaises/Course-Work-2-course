@@ -27,10 +27,7 @@ namespace LibInformation
 
         public string Analis(int month)
         {
-
-
             string s = "";
-
             mbd.Connection();
             DataTable dt = mbd.selectionquery("select count(*) from zakaz where month_Zakaz = " + month);
             int countOrder = Convert.ToInt32(dt.Rows[0][0]);
@@ -38,50 +35,37 @@ namespace LibInformation
             {
                 s += dict[0] + "\r\n";
             }
-
             dt = mbd.selectionquery("select sum(summa) from zakaz where month_Zakaz = " + month);
-
             if (countOrder >= 4 && Convert.ToInt32(dt.Rows[0][0]) > 300000)
             {
                 s += dict[7] + "\r\n";
             }
-
             dt = mbd.selectionquery("select count(*) from FurnituraZakaz join zakaz on zakaz.id_zakaz = FurnituraZakaz.id_zakaz where month_Zakaz = " + month);
-
             if (Convert.ToInt32(dt.Rows[0][0]) / countOrder <= 3)
             {
                 DataTable dt1 = mbd.selectionquery("select count(*) from FurnituraZakaz join zakaz on zakaz.id_zakaz = FurnituraZakaz.id_zakaz join Furnitura " +
                  "on Furnitura.id_furnit = FurnituraZakaz.id_Furnitura  where month_Zakaz =" + month + " and type = 'mebel'");
-
                 if (Convert.ToInt32(dt1.Rows[0][0]) / countOrder <= 3)
                 {
                     s += dict[1] + "\r\n";
                 }
-
                 dt1 = mbd.selectionquery("select count(*) from FurnituraZakaz join zakaz on zakaz.id_zakaz = FurnituraZakaz.id_zakaz join Furnitura " +
                  "on Furnitura.id_furnit = FurnituraZakaz.id_Furnitura  where month_Zakaz =" + month + " and type = 'technics'");
-
                 if (Convert.ToInt32(dt1.Rows[0][0]) / countOrder <= 3)
                 {
                     s += dict[2] + "\r\n";
                 }
-
             }
-
             if (Convert.ToInt32(dt.Rows[0][0]) / countOrder > 3)
             {
-
                 DataTable dt1 = mbd.selectionquery("select count(*) from FurnituraZakaz join zakaz on zakaz.id_zakaz = FurnituraZakaz.id_zakaz join Furnitura " +
                  "on Furnitura.id_furnit = FurnituraZakaz.id_Furnitura  where month_Zakaz =" + month + " and type = 'mebel'");
-
                 if (Convert.ToInt32(dt1.Rows[0][0]) / countOrder > 3)
                 {
                     s += dict[3] + "\r\n";
                 }
-
                 dt1 = mbd.selectionquery("select count(*) from FurnituraZakaz join zakaz on zakaz.id_zakaz = FurnituraZakaz.id_zakaz join Furnitura " +
                  "on Furnitura.id_furnit = FurnituraZakaz.id_Furnitura  where month_Zakaz =" + month + " and type = 'technics'");
-
                 if (Convert.ToInt32(dt1.Rows[0][0]) / countOrder > 3)
                 {
                     s += dict[4] + "\r\n";
@@ -90,22 +74,18 @@ namespace LibInformation
 
             dt = mbd.selectionquery("select avg(price) from StroyMaterial  ");
             int avg = Convert.ToInt32(dt.Rows[0][0]);
-
             dt = mbd.selectionquery("select avg(price) from StroyMaterialZakaz join StroyMaterial on StroyMaterialZakaz.id_StroyMaterial =  StroyMaterial.id_stroy_mater join" +
                 " zakaz on StroyMaterialZakaz.id_zakaz = zakaz.id_zakaz where month_zakaz = " + month);
-
             if (avg >= Convert.ToInt32(dt.Rows[0][0]) / countOrder)
             {
                 if (countOrder <= 5)
                 {
                     s += dict[5] + "\r\n";
                 }
-
                 if (countOrder > 5)
                 {
                     s += dict[6] + "\r\n";
                 }
-
             }
 
             if (avg < Convert.ToInt32(dt.Rows[0][0]) / countOrder)
@@ -114,17 +94,13 @@ namespace LibInformation
                 {
                     s += dict[5] + "\r\n";
                 }
-
                 if (countOrder > 5)
                 {
                     s += dict[6] + "\r\n";
                 }
             }
-
-
             return s;
         }
-
     }
 
     public class SemanticNetworks
@@ -143,7 +119,6 @@ namespace LibInformation
             dict.Add("shkaf", "Шкаф");
             dict.Add("vytyazhka", "Вытяжка");
             string s = "Самая покупаемая фурнитура (Топ-3) \r\n";
-
             mbd.Connection();
             DataTable dt = mbd.selectionquery("select naimenovanie,nazvanie,price, count(*), id_furnitura from FurnituraZakaz  join furnitura on furnitura.id_furnit = FurnituraZakaz.id_furnitura group by id_furnitura order by count(*) desc ");
             for (int i = 0; i < 3; i++)
@@ -164,26 +139,20 @@ namespace LibInformation
         {
             Bitmap bmp = new Bitmap(w, h);
             Graphics gr = Graphics.FromImage(bmp);
-
             gr.DrawString("Фурнитура", new System.Drawing.Font("Arial", 10), Brushes.Black, 250, 10);
-
             gr.DrawString("Покупатель", new System.Drawing.Font("Arial", 10), Brushes.Red, 600, 100);
             gr.DrawString("Количество", new System.Drawing.Font("Arial", 10), Brushes.Red, 600, 200);
             gr.DrawString("Месяц", new System.Drawing.Font("Arial", 10), Brushes.Red, 650, 300);
-
             for (int i = 0; i < 12; i++)
             {
                 gr.DrawString((i + 1).ToString(), new System.Drawing.Font("Arial", 10), Brushes.Black, 50 + 50 * i, 300);
             }
             Pen p = new Pen(Brushes.Green, 3);
             p.EndCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor;
-
             gr.DrawLine(p, 70, 60, 250, 60);
             gr.DrawLine(p, 300, 60, 470, 60);
-
             gr.DrawString("Выгоднее", new System.Drawing.Font("Arial", 10), Brushes.Black, 150, 40);
             gr.DrawString("Выгоднее", new System.Drawing.Font("Arial", 10), Brushes.Black, 350, 40);
-
             mbd.Connection();
             DataTable dt = mbd.selectionquery("select naimenovanie,nazvanie,price, count(*), id_furnitura from FurnituraZakaz  join furnitura on furnitura.id_furnit = FurnituraZakaz.id_furnitura group by id_furnitura order by count(*) desc ");
             int one = 30;
@@ -259,7 +228,6 @@ namespace LibInformation
             gr.DrawString("Вид", new System.Drawing.Font("Arial", 10), Brushes.Green, 260, 45);
             gr.DrawRectangle(p, 250, 65, 120, 20);
             gr.DrawString("Цена", new System.Drawing.Font("Arial", 10), Brushes.Green, 260, 65);
-
             gr.DrawString("Мебель", new System.Drawing.Font("Arial", 10), Brushes.Blue, 125, 115);
             gr.DrawRectangle(p, 100, 135, 120, 20);
             gr.DrawString("Наименование", new System.Drawing.Font("Arial", 10), Brushes.Green, 110, 135);
@@ -269,7 +237,6 @@ namespace LibInformation
             gr.DrawString("Цена", new System.Drawing.Font("Arial", 10), Brushes.Green, 110, 175);
             gr.DrawRectangle(p, 100, 195, 120, 20);
             gr.DrawString("Материал", new System.Drawing.Font("Arial", 10), Brushes.Green, 110, 195);
-
             gr.DrawString("Техника", new System.Drawing.Font("Arial", 10), Brushes.Blue, 475, 115);
             gr.DrawRectangle(p, 450, 135, 120, 20);
             gr.DrawString("Наименование", new System.Drawing.Font("Arial", 10), Brushes.Green, 460, 135);
@@ -279,7 +246,6 @@ namespace LibInformation
             gr.DrawString("Цена", new System.Drawing.Font("Arial", 10), Brushes.Green, 460, 175);
             gr.DrawRectangle(p, 450, 195, 120, 20);
             gr.DrawString("Производитель", new System.Drawing.Font("Arial", 10), Brushes.Green, 460, 195);
-
             p = new Pen(Brushes.Red, 3);
             p.EndCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor;
             gr.DrawLine(p, 160, 115, 310, 87);
@@ -379,7 +345,6 @@ namespace LibInformation
         public Bitmap draw(int w, int h, int id)
         {
             bmp = new Bitmap(w, h);
-
             drawStruct();
             if (id == 1)
             {
@@ -404,6 +369,7 @@ namespace LibInformation
             return bmp;
         }
     }
+
     public class Logic
     {
         public List<string> list1 = new List<string>() {

@@ -33,17 +33,15 @@ namespace WorkPlace
                 room.width = Convert.ToDouble(tBWidth.Text);
                 room.height = Convert.ToDouble(tBHeigth.Text);
 
-                /*-------------Взаимодействие с БД (тем классом)------------------*/
-                DataForBD.Length = Convert.ToInt32(room.length / 2 * 100);
-                DataForBD.Width = Convert.ToInt32(room.width / 2 * 100);
+                DataForBD.Length = Convert.ToInt32(room.length * 100);
+                DataForBD.Width = Convert.ToInt32(room.width  * 100);
                 DataForBD.Height = Convert.ToInt32(room.height * 100);
-                /*----------------------------------------------------------------*/
 
                 Close();
             }
             catch (FormatException ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

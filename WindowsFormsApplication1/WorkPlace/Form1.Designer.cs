@@ -32,8 +32,6 @@ namespace WorkPlace
         {
             this.components = new System.ComponentModel.Container();
             this.openGLControl = new SharpGL.OpenGLControl();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.размерыКомнатыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,10 +59,7 @@ namespace WorkPlace
             this.самаяПокупаемаяФурнитураToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.структураТоваровToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.логическиеВыводыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.bOboiR = new System.Windows.Forms.Button();
             this.bOboiAdd = new System.Windows.Forms.Button();
@@ -111,30 +106,12 @@ namespace WorkPlace
             this.openGLControl.OpenGLInitialized += new System.EventHandler(this.openGLControl_OpenGLInitialized);
             this.openGLControl.OpenGLDraw += new SharpGL.RenderEventHandler(this.openGLControl_OpenGLDraw);
             this.openGLControl.Resized += new System.EventHandler(this.openGLControl_Resized);
+            this.openGLControl.Load += new System.EventHandler(this.openGLControl_Load);
             this.openGLControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.openGLControl_MouseClick);
             this.openGLControl.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.openGLControl_MouseDoubleClick);
             this.openGLControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.openGLControl_MouseDown);
             this.openGLControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.openGLControl_MouseMove);
             this.openGLControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.openGLControl_MouseUp);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(1120, 59);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(122, 50);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Добавить прямоугольник";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(897, 578);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Очистить";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // menuStrip1
             // 
@@ -145,11 +122,10 @@ namespace WorkPlace
             this.отчетToolStripMenuItem,
             this.заказToolStripMenuItem,
             this.бДToolStripMenuItem,
-            this.информацияToolStripMenuItem,
-            this.toolStripMenuItem1});
+            this.информацияToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1263, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(976, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -354,33 +330,10 @@ namespace WorkPlace
             this.логическиеВыводыToolStripMenuItem.Text = "Логические выводы";
             this.логическиеВыводыToolStripMenuItem.Click += new System.EventHandler(this.логическиеВыводыToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem3});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(25, 20);
-            this.toolStripMenuItem1.Text = "1";
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(80, 22);
-            this.toolStripMenuItem3.Text = "1";
-            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
-            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(1094, 299);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 95);
-            this.listBox1.TabIndex = 4;
             // 
             // groupBox1
             // 
@@ -464,6 +417,7 @@ namespace WorkPlace
             this.bPlitkaAdd.TabIndex = 1;
             this.bPlitkaAdd.Text = "Выбрать";
             this.bPlitkaAdd.UseVisualStyleBackColor = true;
+            this.bPlitkaAdd.Click += new System.EventHandler(this.bPlitkaAdd_Click);
             // 
             // bPlitkaL
             // 
@@ -559,14 +513,11 @@ namespace WorkPlace
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1263, 639);
+            this.ClientSize = new System.Drawing.Size(976, 639);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.openGLControl);
             this.Controls.Add(this.menuStrip1);
             this.KeyPreview = true;
@@ -592,15 +543,12 @@ namespace WorkPlace
 
         //    private SceneControl sceneControl;
         private OpenGLControl openGLControl;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem размерыКомнатыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem видToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem прежнееПоложениеКамерыToolStripMenuItem;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ToolStripMenuItem режимToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem просмотрToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem редактированиеToolStripMenuItem;
@@ -630,8 +578,6 @@ namespace WorkPlace
         private System.Windows.Forms.Button bFurnitAdd;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button bFurnitR;
         private System.Windows.Forms.Button bFurnitL;

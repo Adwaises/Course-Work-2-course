@@ -10,90 +10,84 @@ namespace LibraryManagerBD
 {
     public class ManagerBD
     {
-            SQLiteConnection sql;
-            public void Connection()
+        SQLiteConnection sql;
+        public void Connection()
+        {
+            try
             {
-                try
-                {
-                    sql = new SQLiteConnection(@"Data Source= database/mydb.sqlite;Version=3");
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                sql = new SQLiteConnection(@"Data Source= database/mydb.sqlite;Version=3");
             }
-            /// <summary>
-            /// Управляющий запрос
-            /// </summary>
-            public void controlquery(string сq)
+            catch (Exception ex)
             {
-                try
-                {
-                    SQLiteCommand sc = new SQLiteCommand(сq, sql);
-                    sql.Open();
-                    sc.ExecuteNonQuery();
-                    sql.Close();
-                }
-                catch (Exception ex)
-                {
-                    sql.Close();
-                    throw ex;
-                }
-
-
+                throw ex;
             }
-            /// <summary>
-            /// запрос выборка
-            /// </summary>
-            /// <param name="sq"></param>
-            public DataTable selectionquery(string sq)
-            {
-                DataTable dt;
-                try
-                {
-                    sql.Open();
-                    SQLiteCommand sc = new SQLiteCommand(sql);
-                    sc.CommandText = @sq;
-                    SQLiteDataReader sdr = sc.ExecuteReader();
-                    dt = new DataTable();
-                    dt.Load(sdr);
-                    sql.Close();
-                }
-                catch (Exception ex)
-                {
-                    sql.Close();
-                    throw ex;
-                }
-                return dt;
-            }
-            /// <summary>
-            /// Вывод статистики для диаграмм
-            /// </summary>
-            /// <returns></returns>
-            public DataTable Statistic()
-            {
-                DataTable dt;
-                try
-                {
-                    sql.Open();
-                    SQLiteCommand sc = new SQLiteCommand(sql);
-                    sc.CommandText = @"select month_zakaz,sum(summa),count(*) from zakaz group by month_zakaz ;";
-
-                    SQLiteDataReader sdr = sc.ExecuteReader();
-                    dt = new DataTable();
-                    dt.Load(sdr);
-                    sql.Close();
-                }
-                catch (Exception ex)
-                {
-                    sql.Close();
-                    throw ex;
-                }
-                return dt;
-            }
-
-
-
         }
-    
+        /// <summary>
+        /// Управляющий запрос
+        /// </summary>
+        public void controlquery(string сq)
+        {
+            try
+            {
+                SQLiteCommand sc = new SQLiteCommand(сq, sql);
+                sql.Open();
+                sc.ExecuteNonQuery();
+                sql.Close();
+            }
+            catch (Exception ex)
+            {
+                sql.Close();
+                throw ex;
+            }
+        }
+        /// <summary>
+        /// Запрос выборка
+        /// </summary>
+        /// <param name="sq"></param>
+        public DataTable selectionquery(string sq)
+        {
+            DataTable dt;
+            try
+            {
+                sql.Open();
+                SQLiteCommand sc = new SQLiteCommand(sql);
+                sc.CommandText = @sq;
+                SQLiteDataReader sdr = sc.ExecuteReader();
+                dt = new DataTable();
+                dt.Load(sdr);
+                sql.Close();
+            }
+            catch (Exception ex)
+            {
+                sql.Close();
+                throw ex;
+            }
+            return dt;
+        }
+        /// <summary>
+        /// Вывод статистики для диаграмм
+        /// </summary>
+        /// <returns></returns>
+        public DataTable Statistic()
+        {
+            DataTable dt;
+            try
+            {
+                sql.Open();
+                SQLiteCommand sc = new SQLiteCommand(sql);
+                sc.CommandText = @"select month_zakaz,sum(summa),count(*) from zakaz group by month_zakaz ;";
+
+                SQLiteDataReader sdr = sc.ExecuteReader();
+                dt = new DataTable();
+                dt.Load(sdr);
+                sql.Close();
+            }
+            catch (Exception ex)
+            {
+                sql.Close();
+                throw ex;
+            }
+            return dt;
+        }
+    }
 }
