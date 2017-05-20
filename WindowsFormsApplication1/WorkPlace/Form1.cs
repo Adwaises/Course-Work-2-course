@@ -99,7 +99,10 @@ namespace WorkPlace
             gl.Vertex(0f, 0f, 0f);
             gl.Vertex(0f, 0f, 3f);
             gl.End();
+          //  room.UseTexture(gl, new Bitmap("textures//oboiPlitkaBig//oboib21.png"));
+            
             room.DrawRoom(gl);
+
             for (int i = 0; i < room.GetSize(); i++)
             {
                 //тут падает тоже
@@ -730,8 +733,8 @@ namespace WorkPlace
 
             try
             {
-                Model m = new Model();
-                m.LoadModel(modelsPath[nFurnituraCounter]);
+                //Model m = new Model();
+                //m.LoadModel(modelsPath[nFurnituraCounter]);
                 // list.Add(m);
 
 
@@ -762,6 +765,7 @@ namespace WorkPlace
                 if(obj !=null)
                     obj.LoadModel(modelsPath[nFurnituraCounter]);
                 room.AddObj(obj);
+
                 string num = "" + modelsPath[nFurnituraCounter][modelsPath[nFurnituraCounter].Length - 6];
 
                 num += modelsPath[nFurnituraCounter][modelsPath[nFurnituraCounter].Length - 5];
@@ -789,12 +793,63 @@ namespace WorkPlace
 
         private void bOboiAdd_Click(object sender, EventArgs e)
         {
+            if (nOboiCounter > oboiPath.Count - 1)
+            {
+                nOboiCounter = 0;
+            }
+            else if (nOboiCounter < 0)
+            {
+                nOboiCounter = oboiPath.Count - 1;
+            }
 
+
+            try{
+           //     room.UseTexture(gl, new Bitmap(oboiBPath[nOboiCounter]));
+
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Файл повреждён\r\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            string num = "" + oboiBPath[nOboiCounter][oboiBPath[nOboiCounter].Length - 6];
+            num += oboiBPath[nOboiCounter][oboiBPath[nOboiCounter].Length - 5];
+
+            DataForBD.IdOboi = Convert.ToInt32(num);
+          //  Console.WriteLine(DataForBD.IdOboi);
         }
 
         private void openGLControl_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void bPlitkaAdd_Click(object sender, EventArgs e)
+        {
+            if (nPlitkaCounter > plitkaPath.Count - 1)
+            {
+                nPlitkaCounter = 0;
+            }
+            else if (nPlitkaCounter < 0)
+            {
+                nPlitkaCounter = plitkaPath.Count - 1;
+            }
+
+
+            try
+            {
+                //     room.UseTexture(gl, new Bitmap(oboiBPath[nOboiCounter]));
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Файл повреждён\r\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            string num = "" + plitkaBPath[nPlitkaCounter][plitkaBPath[nPlitkaCounter].Length - 6];
+            num += plitkaBPath[nPlitkaCounter][plitkaBPath[nPlitkaCounter].Length - 5];
+
+            DataForBD.IdPlitka = Convert.ToInt32(num);
+            //  Console.WriteLine(DataForBD.IdPlitka);
         }
     }
 }

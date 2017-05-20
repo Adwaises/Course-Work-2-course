@@ -454,6 +454,7 @@ namespace WorkPlace
             this.bPlitkaAdd.TabIndex = 1;
             this.bPlitkaAdd.Text = "Выбрать";
             this.bPlitkaAdd.UseVisualStyleBackColor = true;
+            this.bPlitkaAdd.Click += new System.EventHandler(this.bPlitkaAdd_Click);
             // 
             // bPlitkaL
             // 
