@@ -592,7 +592,36 @@ namespace WorkPlace
             }
             DataForBD.IdZakaz++;
 
-            label1.Text ="Заказ №"+ DataForBD.IdZakaz.ToString();
+            try
+            {
+                //     room.UseTexture(gl, new Bitmap(oboiBPath[nOboiCounter]));
+                // oboiBPath[nOboiCounter]) - путь к файлу
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Файл повреждён\r\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            string num = "" + oboiBPath[nOboiCounter][oboiBPath[nOboiCounter].Length - 6];
+            num += oboiBPath[nOboiCounter][oboiBPath[nOboiCounter].Length - 5];
+            DataForBD.IdOboi = Convert.ToInt32(num);
+            try
+            {
+                //     room.UseTexture(gl, new Bitmap(oboiBPath[nOboiCounter]));
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Файл повреждён\r\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            num = "" + plitkaBPath[nPlitkaCounter][plitkaBPath[nPlitkaCounter].Length - 6];
+            num += plitkaBPath[nPlitkaCounter][plitkaBPath[nPlitkaCounter].Length - 5];
+
+            DataForBD.IdPlitka = Convert.ToInt32(num);
+
+
+            label1.Text = "Заказ №" + DataForBD.IdZakaz.ToString();
         }
 
       
@@ -608,15 +637,6 @@ namespace WorkPlace
             label1.Text = "Заказ №" + DataForBD.IdZakaz.ToString();
         }
 
-        private void toolStripMenuItem3_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                Model m = new Model();
-                m.LoadModel(openFileDialog1.FileName);
-           //     list.Add(m);
-            }
-        }
 
         private void button7_Click(object sender, EventArgs e)
         {
@@ -831,7 +851,6 @@ namespace WorkPlace
             {
                 nPlitkaCounter = plitkaPath.Count - 1;
             }
-
 
             try
             {

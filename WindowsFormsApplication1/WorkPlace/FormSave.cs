@@ -26,9 +26,6 @@ namespace WorkPlace
             {
                 CBCustomer.Items.Add(n);
             }
-
-            DataForBD.IdOboi = 12;
-            DataForBD.IdPlitka = 22; 
         }
 
         private void button1_Click(object sender, EventArgs e)
