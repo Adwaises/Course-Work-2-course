@@ -40,14 +40,14 @@
             // 
             // tBLength
             // 
-            this.tBLength.Location = new System.Drawing.Point(39, 42);
+            this.tBLength.Location = new System.Drawing.Point(177, 48);
             this.tBLength.Name = "tBLength";
             this.tBLength.Size = new System.Drawing.Size(100, 20);
             this.tBLength.TabIndex = 0;
             // 
             // tBWidth
             // 
-            this.tBWidth.Location = new System.Drawing.Point(39, 78);
+            this.tBWidth.Location = new System.Drawing.Point(177, 82);
             this.tBWidth.Name = "tBWidth";
             this.tBWidth.Size = new System.Drawing.Size(100, 20);
             this.tBWidth.TabIndex = 1;
@@ -55,7 +55,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(157, 45);
+            this.label1.Location = new System.Drawing.Point(49, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(88, 13);
             this.label1.TabIndex = 2;
@@ -64,7 +64,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(157, 85);
+            this.label2.Location = new System.Drawing.Point(49, 85);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(94, 13);
             this.label2.TabIndex = 3;
@@ -92,7 +92,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(157, 121);
+            this.label3.Location = new System.Drawing.Point(50, 116);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(93, 13);
             this.label3.TabIndex = 7;
@@ -100,7 +100,7 @@
             // 
             // tBHeigth
             // 
-            this.tBHeigth.Location = new System.Drawing.Point(39, 114);
+            this.tBHeigth.Location = new System.Drawing.Point(177, 113);
             this.tBHeigth.Name = "tBHeigth";
             this.tBHeigth.Size = new System.Drawing.Size(100, 20);
             this.tBHeigth.TabIndex = 6;
