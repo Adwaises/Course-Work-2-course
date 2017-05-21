@@ -45,7 +45,7 @@ namespace WorkPlace
         private bool mouseDown = false;// важно
         private bool objMove = false;// важно
         bool key = false;
-    //    Vertex ray_m = new Vertex(0, 0, 0);//временно
+        //    Vertex ray_m = new Vertex(0, 0, 0);//временно
         Vertex ray_n = new Vertex(0, 0, 0);// важно
 
 
@@ -57,8 +57,8 @@ namespace WorkPlace
             cam.Sigma = 0;
             cam.Fi = 0;
             cam.Secret = 20;
-            InitializeComponent();
             room = new Room(8, 4, 2.5);
+            InitializeComponent();
             openGLControl.MouseWheel += new System.Windows.Forms.MouseEventHandler(openGLControl_MouseWheel);
 
             DataForBD.Length = Convert.ToInt32(room.length * 100);
@@ -94,35 +94,35 @@ namespace WorkPlace
             gl.Vertex(0f, 0f, 0f);
             gl.Vertex(0f, 0f, 3f);
             gl.End();
-          //  room.UseTexture(gl, new Bitmap("textures//oboiPlitkaBig//oboib21.png"));
-            
+            //  room.UseTexture(gl, new Bitmap("textures//oboiPlitkaBig//oboib21.png"));
+
             room.DrawRoom(gl);
 
             for (int i = 0; i < room.GetSize(); i++)
             {
                 //тут падает тоже
-             
-                    room.GetObj(i).Render(gl);
-             
-                
+
+                room.GetObj(i).Render(gl);
+
+
             }
             DrawPlane(gl); // рисуем полу
             gl.Flush();// говорят, что эта штука для оптимизации
         }
-        
+
         private void openGLControl_Resized(object sender, EventArgs e)
         {
             OpenGL gl = openGLControl.OpenGL;
             gl.MatrixMode(OpenGL.GL_PROJECTION);
             gl.LoadIdentity();
             gl.Perspective(50, (double)openGLControl.Width / (double)openGLControl.Height, 0.5, 200.0);
-            gl.LookAt(cam.CamX, cam.CamY, cam.CamZ, 0, 0, 0, 0, 0, 1);        
+            gl.LookAt(cam.CamX, cam.CamY, cam.CamZ, 0, 0, 0, 0, 0, 1);
             gl.MatrixMode(OpenGL.GL_MODELVIEW);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void openGLControl_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)
@@ -217,28 +217,7 @@ namespace WorkPlace
             if (editing)
             {
                 OpenGL gl = openGLControl.OpenGL;
-                objCtrl = new ObjectMove(openGLControl.Height,e.X,e.Y,cam.Secret);
-                ///////////////////////////////////////// лютая хрень
-                //   double[] modelMatrix = new double[16];
-                //   gl.GetDouble(OpenGL.GL_MODELVIEW_MATRIX, modelMatrix);
-                //   double[] projMatrix = new double[16];
-                //   gl.GetDouble(OpenGL.GL_PROJECTION_MATRIX, projMatrix);
-                //   int[] viewport = new int[4];
-                //   gl.GetInteger(OpenGL.GL_VIEWPORT, viewport);
-                //   int _yw = openGLControl.Height - e.Y - 1;
-                //   double[] p1 = new double[3];
-                //   gl.UnProject(e.X, _yw, -0.8, modelMatrix, projMatrix, viewport, ref p1[0], ref p1[1], ref p1[2]);
-                //   double[] p2 = new double[3];
-                //   gl.UnProject(e.X, _yw, 10, modelMatrix, projMatrix, viewport, ref p2[0], ref p2[1], ref p2[2]);
-                ////   ray_m = new Vertex((float)p1[0], (float)p1[1], (float)p1[2]);
-                //   ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)p2[2]);
-                //   for (int i = 0; i < room.GetSize(); i++)
-                //   {
-                //       if (room.GetObj(i).X < -((float)(p2[0] - p1[0]) * secret) && (room.GetObj(i).X + room.GetObj(i).Length) > -((float)(p2[0] - p1[0]) * secret))
-                //       {
-                //           if (room.GetObj(i).Y < -((float)(p2[1] - p1[1]) * secret) && (room.GetObj(i).Y + room.GetObj(i).Width) > -((float)(p2[1] - p1[1]) * secret))
-                //           {
-                //    ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)(p2[2]));
+                objCtrl = new ObjectMove(openGLControl.Height, e.X, e.Y, cam.Secret);
                 if (objCtrl.CheckField(gl, room))
                 {
                     objMove = true;
@@ -248,20 +227,6 @@ namespace WorkPlace
                     }
                     indexOfObj = objCtrl.IndexOfObj;
                 }
-
-            //                return;
-            //            }
-            //            else
-            //            {
-            //     //           ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)(p2[2]));
-            //            }
-            //        }
-            //        else
-            //        {
-            ////            ray_n = new Vertex((float)(p2[0] - p1[0]), (float)(p2[1] - p1[1]), (float)(p2[2]));
-            //        }
-            //    }
-                ///////////////////////////////////////// конец лютой хрени
             }
         }
 
@@ -287,7 +252,7 @@ namespace WorkPlace
             editing = false;
             openGLControl.Cursor = Cursors.SizeAll;
             openGLControl_Resized(sender, e);
-            
+
         }
 
 
@@ -374,6 +339,7 @@ namespace WorkPlace
 
             //очистка
             key = true;
+
             DataForBD.ListZakazMebTeh.Clear();
         }
 
@@ -385,7 +351,7 @@ namespace WorkPlace
 
         private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void просмотрыременноToolStripMenuItem_Click(object sender, EventArgs e)
@@ -422,19 +388,19 @@ namespace WorkPlace
         List<string> plitkaBPath = new List<string>();
         List<string> oboiBPath = new List<string>();
 
-        List<string> modelsPath = new List<string>(); 
+        List<string> modelsPath = new List<string>();
         private void Form1_Load(object sender, EventArgs e)
         {
 
             DirectoryInfo di = new DirectoryInfo(@"textures//oboiPlitka");
-            FileInfo[] fi = di.GetFiles("oboi*.png"); 
+            FileInfo[] fi = di.GetFiles("oboi*.png");
             foreach (FileInfo fc in fi)
             {
                 oboiPath.Add("textures//oboiPlitka//" + fc.Name);
             }
 
-             di = new DirectoryInfo(@"textures//oboiPlitka");
-             fi = di.GetFiles("plitka*.png");         
+            di = new DirectoryInfo(@"textures//oboiPlitka");
+            fi = di.GetFiles("plitka*.png");
             foreach (FileInfo fc in fi)
             {
                 plitkaPath.Add("textures//oboiPlitka//" + fc.Name);
@@ -517,7 +483,7 @@ namespace WorkPlace
             label1.Text = "Заказ №" + DataForBD.IdZakaz.ToString();
         }
 
-      
+
 
         private void логическиеВыводыToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -534,17 +500,18 @@ namespace WorkPlace
         private void button7_Click(object sender, EventArgs e)
         {
             nFurnituraCounter++;
-            if (nFurnituraCounter > furnituraPath.Count-1)
+            if (nFurnituraCounter > furnituraPath.Count - 1)
             {
                 nFurnituraCounter = 0;
-            } else if (nFurnituraCounter < 0)
+            }
+            else if (nFurnituraCounter < 0)
             {
                 nFurnituraCounter = furnituraPath.Count - 1;
             }
             Console.WriteLine(nFurnituraCounter);
 
             pbFurnit.Load(furnituraPath[nFurnituraCounter]);
-            
+
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -560,7 +527,7 @@ namespace WorkPlace
             }
             Console.WriteLine(nFurnituraCounter);
             pbFurnit.Load(furnituraPath[nFurnituraCounter]);
-           
+
         }
 
         private void bOboiR_Click(object sender, EventArgs e)
@@ -569,12 +536,13 @@ namespace WorkPlace
             if (nOboiCounter > oboiPath.Count - 1)
             {
                 nOboiCounter = 0;
-            } else if (nOboiCounter < 0)
+            }
+            else if (nOboiCounter < 0)
             {
                 nOboiCounter = oboiPath.Count - 1;
             }
             pbOboi.Load(oboiPath[nOboiCounter]);
-           
+
         }
 
         private void bOboiL_Click(object sender, EventArgs e)
@@ -589,7 +557,7 @@ namespace WorkPlace
                 nOboiCounter = oboiPath.Count - 1;
             }
             pbOboi.Load(oboiPath[nOboiCounter]);
-            
+
         }
 
         private void bPlitkaR_Click(object sender, EventArgs e)
@@ -598,12 +566,13 @@ namespace WorkPlace
             if (nPlitkaCounter > plitkaPath.Count - 1)
             {
                 nPlitkaCounter = 0;
-            } else if (nPlitkaCounter < 0)
+            }
+            else if (nPlitkaCounter < 0)
             {
                 nPlitkaCounter = plitkaPath.Count - 1;
             }
             pbPlitka.Load(plitkaPath[nPlitkaCounter]);
-           
+
         }
 
         private void bPlitkaL_Click(object sender, EventArgs e)
@@ -618,12 +587,12 @@ namespace WorkPlace
                 nPlitkaCounter = plitkaPath.Count - 1;
             }
             pbPlitka.Load(plitkaPath[nPlitkaCounter]);
-            
+
         }
 
         private void bFurnitAdd_Click(object sender, EventArgs e)
         {
-            
+
             //if (openFileDialog1.ShowDialog() == DialogResult.OK)
             //{
             //    Model m = new Model();
@@ -651,7 +620,7 @@ namespace WorkPlace
                 if (modelsPath[nFurnituraCounter].Contains("fridge"))
                 {
                     obj = new Fridge(0, 0, 0, 1, 1, 2);
-                   
+
                 }
                 else if (modelsPath[nFurnituraCounter].Contains("stove"))
                 {
@@ -667,11 +636,11 @@ namespace WorkPlace
                 }
                 else if (modelsPath[nFurnituraCounter].Contains("cupboard"))
                 {
-                    obj = new Cupboard(0,0,0,1.5,0.5,0);
+                    obj = new Cupboard(0, 0, 0, 1.5, 0.5, 0);
                 }
 
 
-                if(obj !=null)
+                if (obj != null)
                     obj.LoadModel(modelsPath[nFurnituraCounter]);
                 room.AddObj(obj);
 
@@ -679,9 +648,10 @@ namespace WorkPlace
 
                 num += modelsPath[nFurnituraCounter][modelsPath[nFurnituraCounter].Length - 5];
                 DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, Convert.ToInt32(num), 0, 0));
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show("Файл повреждён\r\n"+ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Файл повреждён\r\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -704,7 +674,8 @@ namespace WorkPlace
             }
 
 
-            try{
+            try
+            {
                 //     room.UseTexture(gl, new Bitmap(oboiBPath[nOboiCounter]));
                 // oboiBPath[nOboiCounter]) - путь к файлу
 
@@ -718,7 +689,7 @@ namespace WorkPlace
             num += oboiBPath[nOboiCounter][oboiBPath[nOboiCounter].Length - 5];
 
             DataForBD.IdOboi = Convert.ToInt32(num);
-          //  Console.WriteLine(DataForBD.IdOboi);
+            //  Console.WriteLine(DataForBD.IdOboi);
         }
 
         private void openGLControl_Load(object sender, EventArgs e)
