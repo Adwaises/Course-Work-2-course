@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LibSaveOrder
 {
-    class SaveOrder
+    public class SaveOrder
     {
         ManagerBD mbd = new ManagerBD();
         DataTable dt;

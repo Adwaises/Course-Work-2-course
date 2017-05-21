@@ -666,13 +666,11 @@ namespace WorkPlace
                     obj = new Cupboard(0,0,0,1.5,0.5,0);
                 }
 
-
                 if(obj !=null)
                     obj.LoadModel(modelsPath[nFurnituraCounter]);
                 room.AddObj(obj);
 
                 string num = "" + modelsPath[nFurnituraCounter][modelsPath[nFurnituraCounter].Length - 6];
-
                 num += modelsPath[nFurnituraCounter][modelsPath[nFurnituraCounter].Length - 5];
                 DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, Convert.ToInt32(num), 0, 0));
             } catch (Exception ex)
