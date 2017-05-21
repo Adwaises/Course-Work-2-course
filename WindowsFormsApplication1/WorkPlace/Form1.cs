@@ -537,7 +537,7 @@ namespace WorkPlace
             {
                 nFurnituraCounter = furnituraPath.Count - 1;
             }
-            Console.WriteLine(nFurnituraCounter);
+            //Console.WriteLine(nFurnituraCounter);
 
             pbFurnit.Load(furnituraPath[nFurnituraCounter]);
             
@@ -554,7 +554,7 @@ namespace WorkPlace
             {
                 nFurnituraCounter = furnituraPath.Count - 1;
             }
-            Console.WriteLine(nFurnituraCounter);
+            //Console.WriteLine(nFurnituraCounter);
             pbFurnit.Load(furnituraPath[nFurnituraCounter]);
            
         }
