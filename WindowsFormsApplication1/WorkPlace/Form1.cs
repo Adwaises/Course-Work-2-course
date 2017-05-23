@@ -37,6 +37,16 @@ namespace WorkPlace
         private bool mouseDown = false;// важно
         private bool objMove = false;// важно
 
+        int nFurnituraCounter = 0;
+        int nPlitkaCounter = 0;
+        int nOboiCounter = 0;
+        List<string> furnituraPath = new List<string>();
+        List<string> plitkaPath = new List<string>();
+        List<string> oboiPath = new List<string>();
+        List<string> plitkaBPath = new List<string>();
+        List<string> oboiBPath = new List<string>();
+        List<string> modelsPath = new List<string>();
+
         public Form1()
         {
             cam = new Camera();
@@ -345,17 +355,7 @@ namespace WorkPlace
             ff.ShowDialog();
         }
 
-        int nFurnituraCounter = 0;
-        int nPlitkaCounter = 0;
-        int nOboiCounter = 0;
-        List<string> furnituraPath = new List<string>();
-        List<string> plitkaPath = new List<string>();
-        List<string> oboiPath = new List<string>();
 
-        List<string> plitkaBPath = new List<string>();
-        List<string> oboiBPath = new List<string>();
-
-        List<string> modelsPath = new List<string>();
         private void Form1_Load(object sender, EventArgs e)
         {
 
