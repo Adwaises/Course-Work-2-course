@@ -483,7 +483,7 @@ namespace WorkPlace
             {
                 nFurnituraCounter = furnituraPath.Count - 1;
             }
-            Console.WriteLine(nFurnituraCounter);
+            //Console.WriteLine(nFurnituraCounter);
 
             pbFurnit.Load(furnituraPath[nFurnituraCounter]);
 
@@ -500,7 +500,7 @@ namespace WorkPlace
             {
                 nFurnituraCounter = furnituraPath.Count - 1;
             }
-            Console.WriteLine(nFurnituraCounter);
+            //Console.WriteLine(nFurnituraCounter);
             pbFurnit.Load(furnituraPath[nFurnituraCounter]);
 
         }
@@ -620,7 +620,6 @@ namespace WorkPlace
                 room.AddObj(obj);
 
                 string num = "" + modelsPath[nFurnituraCounter][modelsPath[nFurnituraCounter].Length - 6];
-
                 num += modelsPath[nFurnituraCounter][modelsPath[nFurnituraCounter].Length - 5];
                 DataForBD.ListZakazMebTeh.Add(new ObjFurnit(DataForBD.IdZakaz, Convert.ToInt32(num), 0, 0));
             }
