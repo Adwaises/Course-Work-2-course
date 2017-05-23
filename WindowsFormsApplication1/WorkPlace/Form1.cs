@@ -48,7 +48,6 @@ namespace WorkPlace
             InitializeComponent();
             openGLControl.MouseWheel += new System.Windows.Forms.MouseEventHandler(openGLControl_MouseWheel);
 
-
             DataForBD.Length = Convert.ToInt32(room.length * 100);
             DataForBD.Width = Convert.ToInt32(room.width * 100);
             DataForBD.Height = Convert.ToInt32(room.height * 100);
@@ -69,18 +68,18 @@ namespace WorkPlace
         {
             var gl = openGLControl.OpenGL;
             gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
-            gl.Begin(OpenGL.GL_LINES);
-            gl.Color(1f, 0f, 0f); // X Green
-            gl.Vertex(0f, 0f, 0f);
-            gl.Vertex(3f, 0f, 0f);
-            gl.Color(0f, 1f, 0f); // Y Red
-            gl.Vertex(0f, 0f, 0f);
-            gl.Vertex(0f, 3f, 0f);
-            gl.Color(0f, 0f, 1f); // Z Blue
-            gl.Vertex(0f, 0f, 0f);
-            gl.Vertex(0f, 0f, 3f);
-            gl.End();
-            if(changeTex)
+            //gl.Begin(OpenGL.GL_LINES);
+            //gl.Color(1f, 0f, 0f); // X Green
+            //gl.Vertex(0f, 0f, 0f);
+            //gl.Vertex(3f, 0f, 0f);
+            //gl.Color(0f, 1f, 0f); // Y Red
+            //gl.Vertex(0f, 0f, 0f);
+            //gl.Vertex(0f, 3f, 0f);
+            //gl.Color(0f, 0f, 1f); // Z Blue
+            //gl.Vertex(0f, 0f, 0f);
+            //gl.Vertex(0f, 0f, 3f);
+            //gl.End();
+            if (changeTex)
             {
                 room.GenTexture(gl);
                 room.UseTextureToFloor(gl);
@@ -419,16 +418,16 @@ namespace WorkPlace
             DataForBD.IdZakaz++;
 
             try
-            {           
+            {
                 room.ChangePathToWall(oboiBPath[nOboiCounter]);
-                changeTex = true;     
+                changeTex = true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Файл повреждён\r\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             string num = "" + oboiBPath[nOboiCounter][oboiBPath[nOboiCounter].Length - 6];
-            num += oboiBPath[nOboiCounter][oboiBPath[nOboiCounter].Length - 5];  
+            num += oboiBPath[nOboiCounter][oboiBPath[nOboiCounter].Length - 5];
             DataForBD.IdOboi = Convert.ToInt32(num);
 
             try
@@ -443,7 +442,6 @@ namespace WorkPlace
             num = "" + plitkaBPath[nPlitkaCounter][plitkaBPath[nPlitkaCounter].Length - 6];
             num += plitkaBPath[nPlitkaCounter][plitkaBPath[nPlitkaCounter].Length - 5];
             DataForBD.IdPlitka = Convert.ToInt32(num);
-
             label1.Text = "Заказ №" + DataForBD.IdZakaz.ToString();
         }
 
@@ -460,7 +458,6 @@ namespace WorkPlace
             label1.Text = "Заказ №" + DataForBD.IdZakaz.ToString();
         }
 
-
         private void button7_Click(object sender, EventArgs e)
         {
             nFurnituraCounter++;
@@ -474,7 +471,6 @@ namespace WorkPlace
             }
 
             pbFurnit.Load(furnituraPath[nFurnituraCounter]);
-
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -489,7 +485,6 @@ namespace WorkPlace
                 nFurnituraCounter = furnituraPath.Count - 1;
             }
             pbFurnit.Load(furnituraPath[nFurnituraCounter]);
-
         }
 
         private void bOboiR_Click(object sender, EventArgs e)
@@ -504,7 +499,6 @@ namespace WorkPlace
                 nOboiCounter = oboiPath.Count - 1;
             }
             pbOboi.Load(oboiPath[nOboiCounter]);
-
         }
 
         private void bOboiL_Click(object sender, EventArgs e)
@@ -519,7 +513,6 @@ namespace WorkPlace
                 nOboiCounter = oboiPath.Count - 1;
             }
             pbOboi.Load(oboiPath[nOboiCounter]);
-
         }
 
         private void bPlitkaR_Click(object sender, EventArgs e)
@@ -534,7 +527,6 @@ namespace WorkPlace
                 nPlitkaCounter = plitkaPath.Count - 1;
             }
             pbPlitka.Load(plitkaPath[nPlitkaCounter]);
-
         }
 
         private void bPlitkaL_Click(object sender, EventArgs e)
@@ -549,7 +541,6 @@ namespace WorkPlace
                 nPlitkaCounter = plitkaPath.Count - 1;
             }
             pbPlitka.Load(plitkaPath[nPlitkaCounter]);
-
         }
 
         private void bFurnitAdd_Click(object sender, EventArgs e)
@@ -569,7 +560,6 @@ namespace WorkPlace
                 if (modelsPath[nFurnituraCounter].Contains("fridge"))
                 {
                     obj = new Fridge(0, 0, 0, 1, 1, 2);
-
                 }
                 else if (modelsPath[nFurnituraCounter].Contains("stove"))
                 {
@@ -623,18 +613,14 @@ namespace WorkPlace
             try
             {
                 room.ChangePathToWall(oboiBPath[nOboiCounter]);
-
                 changeTex = true;
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Файл повреждён\r\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
             string num = "" + oboiBPath[nOboiCounter][oboiBPath[nOboiCounter].Length - 6];
             num += oboiBPath[nOboiCounter][oboiBPath[nOboiCounter].Length - 5];
-
             DataForBD.IdOboi = Convert.ToInt32(num);
         }
 
@@ -658,18 +644,14 @@ namespace WorkPlace
             {
                 room.ChangePathToFloor(plitkaBPath[nPlitkaCounter]);
                 changeTex = true;
-                Console.WriteLine(plitkaBPath[nPlitkaCounter]);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Файл повреждён\r\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
             string num = "" + plitkaBPath[nPlitkaCounter][plitkaBPath[nPlitkaCounter].Length - 6];
             num += plitkaBPath[nPlitkaCounter][plitkaBPath[nPlitkaCounter].Length - 5];
-
             DataForBD.IdPlitka = Convert.ToInt32(num);
-            //  Console.WriteLine(DataForBD.IdPlitka);
         }
     }
 }
