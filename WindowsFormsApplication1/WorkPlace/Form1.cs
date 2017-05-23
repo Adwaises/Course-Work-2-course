@@ -25,30 +25,17 @@ namespace WorkPlace
         private double rotation = 0; //временно
         private double centX = 0; // важно
         private double centY = 0;
-        private double centZ = 0;
         private int indexOfObj; // важно
         private Room room;// важно
-        private double radius = 6;// важно
-        private double CamX = 0;//временно
-        private double CamY = 0;
-        private double CamZ = 0;
         private Camera cam;
-        private double secret = 20;// важно
         private ObjectMove objCtrl;
-        private double perspective = 1f;
+        private bool changeTex = false;
         ParserObj p = new ParserObj();
         private double mouseX = 0;// важно
         private double mouseY = 0;// важно
-        private double sigma = 0;// важно
-        private double fi = 0;// важно
         private bool editing = false;// важно
         private bool mouseDown = false;// важно
         private bool objMove = false;// важно
-        bool key = false;
-    //    Vertex ray_m = new Vertex(0, 0, 0);//временно
-        Vertex ray_n = new Vertex(0, 0, 0);// важно
-
-
 
         public Form1()
         {
@@ -61,6 +48,7 @@ namespace WorkPlace
             InitializeComponent();
             openGLControl.MouseWheel += new System.Windows.Forms.MouseEventHandler(openGLControl_MouseWheel);
 
+
             DataForBD.Length = Convert.ToInt32(room.length * 100);
             DataForBD.Width = Convert.ToInt32(room.width * 100);
             DataForBD.Height = Convert.ToInt32(room.height * 100);
@@ -71,6 +59,9 @@ namespace WorkPlace
         private void openGLControl_OpenGLInitialized(object sender, EventArgs e)
         {
             OpenGL gl = openGLControl.OpenGL;
+            room.GenTexture(gl);
+            room.UseTextureToFloor(gl);
+            room.UseTextureToWall(gl);
             gl.ClearColor(0.4f, 0.4f, 0.4f, 0); // задний фон
         }
 
@@ -78,11 +69,6 @@ namespace WorkPlace
         {
             var gl = openGLControl.OpenGL;
             gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
-            //float[] g_LightPosition = { 0, 0, 1, 3 };
-            //gl.Enable(OpenGL.GL_LIGHTING);
-            //gl.Light(OpenGL.GL_LIGHT0, OpenGL.GL_POSITION, g_LightPosition);
-            //gl.Enable(OpenGL.GL_LIGHT0);
-
             gl.Begin(OpenGL.GL_LINES);
             gl.Color(1f, 0f, 0f); // X Green
             gl.Vertex(0f, 0f, 0f);
@@ -94,15 +80,20 @@ namespace WorkPlace
             gl.Vertex(0f, 0f, 0f);
             gl.Vertex(0f, 0f, 3f);
             gl.End();
-          //  room.UseTexture(gl, new Bitmap("textures//oboiPlitkaBig//oboib21.png"));
-            
-            room.DrawRoom(gl);
-
+            if(changeTex)
+            {
+                room.GenTexture(gl);
+                room.UseTextureToFloor(gl);
+                room.UseTextureToWall(gl);
+                changeTex = false;
+            }
+            room.Draw(gl);
             for (int i = 0; i < room.GetSize(); i++)
             {
-                    room.GetObj(i).Render(gl);
+                room.GetObj(i).Render(gl);
             }
-            DrawPlane(gl); // рисуем полу
+            DrawPlane(gl);
+            gl.Finish();
             gl.Flush();// говорят, что эта штука для оптимизации
         }
 
@@ -114,11 +105,6 @@ namespace WorkPlace
             gl.Perspective(50, (double)openGLControl.Width / (double)openGLControl.Height, 0.5, 200.0);
             gl.LookAt(cam.CamX, cam.CamY, cam.CamZ, 0, 0, 0, 0, 0, 1);
             gl.MatrixMode(OpenGL.GL_MODELVIEW);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void openGLControl_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)
@@ -191,8 +177,6 @@ namespace WorkPlace
             mouseDown = false;
         }
 
-
-
         private void размерыКомнатыToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FRoomConf f = new FRoomConf(ref room);
@@ -205,8 +189,6 @@ namespace WorkPlace
             cam.Fi = 45;
             openGLControl_Resized(sender, e);
         }
-
-
 
         private void openGLControl_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -251,10 +233,9 @@ namespace WorkPlace
 
         }
 
-
         private void видСверхуToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            radius = room.length * 2 / Math.Tan(20);
+            cam.Radius = room.length * 2 / Math.Tan(20);
             cam.Sigma = 90;
             cam.Fi = 90;
             openGLControl_Resized(sender, e);
@@ -262,7 +243,7 @@ namespace WorkPlace
 
         private void видСбокуToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            radius = room.length * 2 / Math.Tan(20);
+            cam.Radius = room.length * 2 / Math.Tan(20);
             cam.Sigma = 0;
             cam.Fi = 0;
             openGLControl_Resized(sender, e);
@@ -270,7 +251,7 @@ namespace WorkPlace
 
         private void видСпередиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            radius = room.length * 2 / Math.Tan(20);
+            cam.Radius = room.length * 2 / Math.Tan(20);
             cam.Sigma = 0;
             cam.Fi = 90;
             openGLControl_Resized(sender, e);
@@ -319,7 +300,6 @@ namespace WorkPlace
 
         private void новыйToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // присвоение нового id
             mbd.Connection();
             DataTable dt1 = mbd.selectionquery("select * from zakaz;");
 
@@ -332,10 +312,7 @@ namespace WorkPlace
                 }
             }
             DataForBD.IdZakaz++;
-
-            //очистка
-            key = true;
-
+            room.ClearRoom();
             DataForBD.ListZakazMebTeh.Clear();
         }
 
@@ -392,24 +369,24 @@ namespace WorkPlace
             FileInfo[] fi = di.GetFiles("oboi*.png");
             foreach (FileInfo fc in fi)
             {
-                oboiPath.Add("textures//oboiPlitka//" + fc.Name);
+                oboiPath.Add("textures/oboiPlitka/" + fc.Name);
             }
 
-            di = new DirectoryInfo(@"textures//oboiPlitka");
+            di = new DirectoryInfo(@"textures//oboiPlitka//");
             fi = di.GetFiles("plitka*.png");
             foreach (FileInfo fc in fi)
             {
                 plitkaPath.Add("textures//oboiPlitka//" + fc.Name);
             }
 
-            di = new DirectoryInfo(@"textures//oboiPlitkaBig");
-            fi = di.GetFiles("oboi*.png");
+            di = new DirectoryInfo(@"textures//oboiPlitkaBig//");
+            fi = di.GetFiles("oboi*.bmp");
             foreach (FileInfo fc in fi)
             {
-                oboiBPath.Add("textures//oboiPlitkaBig//" + fc.Name);
+                oboiBPath.Add("textures/oboiPlitkaBig/" + fc.Name);
             }
 
-            di = new DirectoryInfo(@"textures//oboiPlitkaBig");
+            di = new DirectoryInfo(@"textures//oboiPlitkaBig//");
             fi = di.GetFiles("plitka*.png");
             foreach (FileInfo fc in fi)
             {
@@ -449,6 +426,8 @@ namespace WorkPlace
 
             try
             {
+
+                
                 //     room.UseTexture(gl, new Bitmap(oboiBPath[nOboiCounter]));
                 // oboiBPath[nOboiCounter]) - путь к файлу
 
@@ -672,6 +651,10 @@ namespace WorkPlace
 
             try
             {
+             //   room.ChangePathToWall(oboiBPath[nOboiCounter]);
+                room.ChangePathToWall(oboiBPath[nOboiCounter]);
+
+                changeTex = true;
                 //     room.UseTexture(gl, new Bitmap(oboiBPath[nOboiCounter]));
                 // oboiBPath[nOboiCounter]) - путь к файлу
 
