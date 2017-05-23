@@ -322,11 +322,6 @@ namespace WorkPlace
             fs.ShowDialog();
         }
 
-        private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void просмотрыременноToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormAddFurnit fBD = new FormAddFurnit();
@@ -387,7 +382,7 @@ namespace WorkPlace
             }
 
             di = new DirectoryInfo(@"textures//oboiPlitkaBig//");
-            fi = di.GetFiles("plitka*.png");
+            fi = di.GetFiles("plitka*.bmp");
             foreach (FileInfo fc in fi)
             {
                 plitkaBPath.Add("textures//oboiPlitkaBig//" + fc.Name);
@@ -411,7 +406,6 @@ namespace WorkPlace
                 modelsPath.Add("textures//models//" + fc.Name);
             }
 
-            //присвоение нового id
             mbd.Connection();
             DataTable dt1 = mbd.selectionquery("select * from zakaz;");
             DataForBD.IdZakaz = 1;
@@ -425,35 +419,30 @@ namespace WorkPlace
             DataForBD.IdZakaz++;
 
             try
-            {
-
-                
-                //     room.UseTexture(gl, new Bitmap(oboiBPath[nOboiCounter]));
-                // oboiBPath[nOboiCounter]) - путь к файлу
-
+            {           
+                room.ChangePathToWall(oboiBPath[nOboiCounter]);
+                changeTex = true;     
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Файл повреждён\r\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             string num = "" + oboiBPath[nOboiCounter][oboiBPath[nOboiCounter].Length - 6];
-            num += oboiBPath[nOboiCounter][oboiBPath[nOboiCounter].Length - 5];
+            num += oboiBPath[nOboiCounter][oboiBPath[nOboiCounter].Length - 5];  
             DataForBD.IdOboi = Convert.ToInt32(num);
+
             try
             {
-                //     room.UseTexture(gl, new Bitmap(oboiBPath[nOboiCounter]));
-
+                room.ChangePathToFloor(plitkaBPath[nPlitkaCounter]);
+                changeTex = true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Файл повреждён\r\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
             num = "" + plitkaBPath[nPlitkaCounter][plitkaBPath[nPlitkaCounter].Length - 6];
             num += plitkaBPath[nPlitkaCounter][plitkaBPath[nPlitkaCounter].Length - 5];
-
             DataForBD.IdPlitka = Convert.ToInt32(num);
-
 
             label1.Text = "Заказ №" + DataForBD.IdZakaz.ToString();
         }
@@ -483,7 +472,6 @@ namespace WorkPlace
             {
                 nFurnituraCounter = furnituraPath.Count - 1;
             }
-            //Console.WriteLine(nFurnituraCounter);
 
             pbFurnit.Load(furnituraPath[nFurnituraCounter]);
 
@@ -500,7 +488,6 @@ namespace WorkPlace
             {
                 nFurnituraCounter = furnituraPath.Count - 1;
             }
-            //Console.WriteLine(nFurnituraCounter);
             pbFurnit.Load(furnituraPath[nFurnituraCounter]);
 
         }
@@ -567,14 +554,6 @@ namespace WorkPlace
 
         private void bFurnitAdd_Click(object sender, EventArgs e)
         {
-
-            //if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            //{
-            //    Model m = new Model();
-            //    m.LoadModel(openFileDialog1.FileName);
-            //    list.Add(m);
-            //}
-
             if (nFurnituraCounter > furnituraPath.Count - 1)
             {
                 nFurnituraCounter = 0;
@@ -586,11 +565,6 @@ namespace WorkPlace
 
             try
             {
-                //Model m = new Model();
-                //m.LoadModel(modelsPath[nFurnituraCounter]);
-                // list.Add(m);
-
-
                 InterfaceObject obj = null;
                 if (modelsPath[nFurnituraCounter].Contains("fridge"))
                 {
@@ -613,7 +587,6 @@ namespace WorkPlace
                 {
                     obj = new Cupboard(0, 0, 0, 1.5, 0.5, 0);
                 }
-
 
                 if (obj != null)
                     obj.LoadModel(modelsPath[nFurnituraCounter]);
@@ -647,15 +620,11 @@ namespace WorkPlace
                 nOboiCounter = oboiPath.Count - 1;
             }
 
-
             try
             {
-             //   room.ChangePathToWall(oboiBPath[nOboiCounter]);
                 room.ChangePathToWall(oboiBPath[nOboiCounter]);
 
                 changeTex = true;
-                //     room.UseTexture(gl, new Bitmap(oboiBPath[nOboiCounter]));
-                // oboiBPath[nOboiCounter]) - путь к файлу
 
             }
             catch (Exception ex)
@@ -667,7 +636,6 @@ namespace WorkPlace
             num += oboiBPath[nOboiCounter][oboiBPath[nOboiCounter].Length - 5];
 
             DataForBD.IdOboi = Convert.ToInt32(num);
-            //  Console.WriteLine(DataForBD.IdOboi);
         }
 
         private void openGLControl_Load(object sender, EventArgs e)
@@ -688,8 +656,9 @@ namespace WorkPlace
 
             try
             {
-                //     room.UseTexture(gl, new Bitmap(oboiBPath[nOboiCounter]));
-
+                room.ChangePathToFloor(plitkaBPath[nPlitkaCounter]);
+                changeTex = true;
+                Console.WriteLine(plitkaBPath[nPlitkaCounter]);
             }
             catch (Exception ex)
             {
