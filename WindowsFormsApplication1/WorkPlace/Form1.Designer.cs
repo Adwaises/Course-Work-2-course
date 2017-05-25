@@ -541,7 +541,6 @@ namespace WorkPlace
 
         #endregion
 
-        //    private SceneControl sceneControl;
         private OpenGLControl openGLControl;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;

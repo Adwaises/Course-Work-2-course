@@ -21,21 +21,19 @@ namespace WorkPlace
     public partial class Form1 : Form
     {
         ManagerBD mbd = new ManagerBD();
-
-        private double rotation = 0; //временно
-        private double centX = 0; // важно
+        private double centX = 0; 
         private double centY = 0;
-        private int indexOfObj; // важно
-        private Room room;// важно
+        private int indexOfObj; 
+        private Room room;
         private Camera cam;
         private ObjectMove objCtrl;
         private bool changeTex = false;
         ParserObj p = new ParserObj();
-        private double mouseX = 0;// важно
-        private double mouseY = 0;// важно
-        private bool editing = false;// важно
-        private bool mouseDown = false;// важно
-        private bool objMove = false;// важно
+        private double mouseX = 0;
+        private double mouseY = 0;
+        private bool editing = false;
+        private bool mouseDown = false;
+        private bool objMove = false;
 
         int nFurnituraCounter = 0;
         int nPlitkaCounter = 0;
@@ -57,11 +55,9 @@ namespace WorkPlace
             room = new Room(8, 4, 2.5);
             InitializeComponent();
             openGLControl.MouseWheel += new System.Windows.Forms.MouseEventHandler(openGLControl_MouseWheel);
-
             DataForBD.Length = Convert.ToInt32(room.length * 100);
             DataForBD.Width = Convert.ToInt32(room.width * 100);
             DataForBD.Height = Convert.ToInt32(room.height * 100);
-
             просмотрToolStripMenuItem.Checked = true;
         }
 
@@ -71,24 +67,13 @@ namespace WorkPlace
             room.GenTexture(gl);
             room.UseTextureToFloor(gl);
             room.UseTextureToWall(gl);
-            gl.ClearColor(0.4f, 0.4f, 0.4f, 0); // задний фон
+            gl.ClearColor(0.4f, 0.4f, 0.4f, 0); 
         }
 
         private void openGLControl_OpenGLDraw(object sender, RenderEventArgs e)
         {
             var gl = openGLControl.OpenGL;
             gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
-            //gl.Begin(OpenGL.GL_LINES);
-            //gl.Color(1f, 0f, 0f); // X Green
-            //gl.Vertex(0f, 0f, 0f);
-            //gl.Vertex(3f, 0f, 0f);
-            //gl.Color(0f, 1f, 0f); // Y Red
-            //gl.Vertex(0f, 0f, 0f);
-            //gl.Vertex(0f, 3f, 0f);
-            //gl.Color(0f, 0f, 1f); // Z Blue
-            //gl.Vertex(0f, 0f, 0f);
-            //gl.Vertex(0f, 0f, 3f);
-            //gl.End();
             if (changeTex)
             {
                 room.GenTexture(gl);
@@ -103,7 +88,7 @@ namespace WorkPlace
             }
             DrawPlane(gl);
             gl.Finish();
-            gl.Flush();// говорят, что эта штука для оптимизации
+            gl.Flush();
         }
 
         private void openGLControl_Resized(object sender, EventArgs e)

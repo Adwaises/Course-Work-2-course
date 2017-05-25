@@ -181,8 +181,6 @@
     <Compile Include="FToMail.Designer.cs">
       <DependentUpon>FToMail.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model.cs" />
-    <Compile Include="ParserObj.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FDiagram.resx">
