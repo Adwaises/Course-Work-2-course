@@ -16,6 +16,8 @@ namespace WorkPlace
     {
         SaveOrder slo = new SaveOrder();
 
+        
+
         public FormSave()
         {
             InitializeComponent();
@@ -58,6 +60,35 @@ namespace WorkPlace
         private void FormSave_FormClosed(object sender, FormClosedEventArgs e)
         {
             slo.initIdOrder();
+        }
+
+        private void FormSave_Load(object sender, EventArgs e)
+        {
+            TBFamil.Enabled = false;
+            TBName.Enabled = false;
+            TBOtch.Enabled = false;
+            TBTel.Enabled = false;
+            TBmail.Enabled = false;
+        }
+
+        private void RBSelect_CheckedChanged(object sender, EventArgs e)
+        {
+            TBFamil.Enabled = false;
+            TBName.Enabled = false;
+            TBOtch.Enabled = false;
+            TBTel.Enabled = false;
+            TBmail.Enabled = false;
+            CBCustomer.Enabled = true;
+        }
+
+        private void RBNew_CheckedChanged(object sender, EventArgs e)
+        {
+            TBFamil.Enabled = true;
+            TBName.Enabled = true;
+            TBOtch.Enabled = true;
+            TBTel.Enabled = true;
+            TBmail.Enabled = true;
+            CBCustomer.Enabled = false;
         }
     }
 }

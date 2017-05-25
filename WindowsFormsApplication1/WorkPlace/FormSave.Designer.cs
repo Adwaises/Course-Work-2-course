@@ -75,6 +75,7 @@
             this.RBSelect.TabStop = true;
             this.RBSelect.Text = "Выбрать";
             this.RBSelect.UseVisualStyleBackColor = true;
+            this.RBSelect.CheckedChanged += new System.EventHandler(this.RBSelect_CheckedChanged);
             // 
             // groupBox1
             // 
@@ -97,6 +98,7 @@
             this.RBNew.TabIndex = 3;
             this.RBNew.Text = "Новый";
             this.RBNew.UseVisualStyleBackColor = true;
+            this.RBNew.CheckedChanged += new System.EventHandler(this.RBNew_CheckedChanged);
             // 
             // TBFamil
             // 
@@ -198,6 +200,7 @@
             this.Name = "FormSave";
             this.Text = "Form2";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormSave_FormClosed);
+            this.Load += new System.EventHandler(this.FormSave_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
