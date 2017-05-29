@@ -54,11 +54,6 @@ namespace WorkPlace
             this.бДToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.просмотрыременноToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.добавитьОбоиплиткуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.информацияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.анализПрибылиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.самаяПокупаемаяФурнитураToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.структураТоваровToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.логическиеВыводыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.bOboiR = new System.Windows.Forms.Button();
@@ -121,8 +116,7 @@ namespace WorkPlace
             this.режимToolStripMenuItem,
             this.отчетToolStripMenuItem,
             this.заказToolStripMenuItem,
-            this.бДToolStripMenuItem,
-            this.информацияToolStripMenuItem});
+            this.бДToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(976, 24);
@@ -290,45 +284,6 @@ namespace WorkPlace
             this.добавитьОбоиплиткуToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.добавитьОбоиплиткуToolStripMenuItem.Text = "Добавить обои/плитку";
             this.добавитьОбоиплиткуToolStripMenuItem.Click += new System.EventHandler(this.добавитьОбоиплиткуToolStripMenuItem_Click);
-            // 
-            // информацияToolStripMenuItem
-            // 
-            this.информацияToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.анализПрибылиToolStripMenuItem,
-            this.самаяПокупаемаяФурнитураToolStripMenuItem,
-            this.структураТоваровToolStripMenuItem,
-            this.логическиеВыводыToolStripMenuItem});
-            this.информацияToolStripMenuItem.Name = "информацияToolStripMenuItem";
-            this.информацияToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
-            this.информацияToolStripMenuItem.Text = "Информация";
-            // 
-            // анализПрибылиToolStripMenuItem
-            // 
-            this.анализПрибылиToolStripMenuItem.Name = "анализПрибылиToolStripMenuItem";
-            this.анализПрибылиToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
-            this.анализПрибылиToolStripMenuItem.Text = "Анализ прибыли";
-            this.анализПрибылиToolStripMenuItem.Click += new System.EventHandler(this.анализПрибылиToolStripMenuItem_Click);
-            // 
-            // самаяПокупаемаяФурнитураToolStripMenuItem
-            // 
-            this.самаяПокупаемаяФурнитураToolStripMenuItem.Name = "самаяПокупаемаяФурнитураToolStripMenuItem";
-            this.самаяПокупаемаяФурнитураToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
-            this.самаяПокупаемаяФурнитураToolStripMenuItem.Text = "Самая покупаемая фурнитура";
-            this.самаяПокупаемаяФурнитураToolStripMenuItem.Click += new System.EventHandler(this.самаяПокупаемаяФурнитураToolStripMenuItem_Click);
-            // 
-            // структураТоваровToolStripMenuItem
-            // 
-            this.структураТоваровToolStripMenuItem.Name = "структураТоваровToolStripMenuItem";
-            this.структураТоваровToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
-            this.структураТоваровToolStripMenuItem.Text = "Структура товаров";
-            this.структураТоваровToolStripMenuItem.Click += new System.EventHandler(this.структураТоваровToolStripMenuItem_Click);
-            // 
-            // логическиеВыводыToolStripMenuItem
-            // 
-            this.логическиеВыводыToolStripMenuItem.Name = "логическиеВыводыToolStripMenuItem";
-            this.логическиеВыводыToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
-            this.логическиеВыводыToolStripMenuItem.Text = "Логические выводы";
-            this.логическиеВыводыToolStripMenuItem.Click += new System.EventHandler(this.логическиеВыводыToolStripMenuItem_Click);
             // 
             // contextMenuStrip1
             // 
@@ -564,11 +519,6 @@ namespace WorkPlace
         private System.Windows.Forms.ToolStripMenuItem оформитьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem бДToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem просмотрыременноToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem информацияToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem анализПрибылиToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem самаяПокупаемаяФурнитураToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem структураТоваровToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem логическиеВыводыToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button bOboiAdd;
         private System.Windows.Forms.GroupBox groupBox2;
