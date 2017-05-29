@@ -582,6 +582,7 @@ namespace WorkPlace
             FormAddStroyMat fa = new FormAddStroyMat();
             fa.ShowDialog();
 
+
         }
 
         private void bOboiAdd_Click(object sender, EventArgs e)
